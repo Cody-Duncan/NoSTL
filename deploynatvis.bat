@@ -1,0 +1,1 @@
+copy /Y *.natvis "%USERPROFILE%\My Documents\Visual Studio 2013\Visualizers\"

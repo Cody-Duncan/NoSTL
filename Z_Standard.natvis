@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+  <Type Name="">
+    <DisplayString>{{ id={index} }}</DisplayString>
+    <Expand>
+        <Item Name="[id]" ExcludeView="simple">index</Item>
+    </Expand>
+  </Type>
+
+  <Type Name="z::static_string&lt;*&gt;">
+    <DisplayString>{{ "{m_str,sb}" }}</DisplayString>
+    <Expand>
+      <Item Name="[m_str]" ExcludeView="simple">m_str</Item>
+      <Item Name="[m_size]" ExcludeView="simple">m_size</Item>
+      <Item Name="[max_size]" ExcludeView="simple">$T1</Item>
+    </Expand>
+  </Type>
+ </AutoVisualizer>

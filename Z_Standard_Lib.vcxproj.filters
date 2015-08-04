@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Allocators">
+      <UniqueIdentifier>{921226d3-df61-40ab-b713-f3e184bd7a93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fundamental_DataStructures">
+      <UniqueIdentifier>{611889dd-fc37-4d06-8371-4a8d0de76463}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fundamental_Types">
+      <UniqueIdentifier>{5b428a71-afe9-4e24-8577-db50756797fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Algorithms">
+      <UniqueIdentifier>{0b42d63f-4916-43be-8ebf-c0a4183a4143}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Algorithms\Ranges">
+      <UniqueIdentifier>{5f765eb8-a44c-4451-88c8-fed2deecd88c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fundamental_Types\string">
+      <UniqueIdentifier>{1e851715-eee0-42c3-8f0e-acb98ba0d3fd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\z_standard\dyna_array.h">
+      <Filter>Fundamental_DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="include\z_standard\dyna_map.h">
+      <Filter>Fundamental_DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="include\z_standard\dyna_vector.h">
+      <Filter>Fundamental_DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="include\z_standard\static_array.h">
+      <Filter>Fundamental_DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="include\z_standard\static_vector.h">
+      <Filter>Fundamental_DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="include\z_standard\heap_allocator.h">
+      <Filter>Allocators</Filter>
+    </ClInclude>
+    <ClInclude Include="include\z_standard\slot_allocator.h">
+      <Filter>Allocators</Filter>
+    </ClInclude>
+    <ClInclude Include="include\z_standard\stack_allocator.h">
+      <Filter>Allocators</Filter>
+    </ClInclude>
+    <ClInclude Include="include\z_standard\z_primitives.h">
+      <Filter>Fundamental_Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\z_standard\z_typedefs.h">
+      <Filter>Fundamental_Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\z_standard\range.h">
+      <Filter>Algorithms\Ranges</Filter>
+    </ClInclude>
+    <ClInclude Include="include\z_standard\z_standard.h" />
+    <ClInclude Include="include\z_standard\z_algorithm.h">
+      <Filter>Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="include\z_standard\static_string.h">
+      <Filter>Fundamental_Types\string</Filter>
+    </ClInclude>
+    <ClInclude Include="include\z_standard\dyna_string.h">
+      <Filter>Fundamental_Types\string</Filter>
+    </ClInclude>
+    <ClInclude Include="include\z_standard\static_map.h">
+      <Filter>Fundamental_DataStructures</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\dyna_array.cpp">
+      <Filter>Fundamental_DataStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="source\dyna_map.cpp">
+      <Filter>Fundamental_DataStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="source\dyna_vector.cpp">
+      <Filter>Fundamental_DataStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="source\static_array.cpp">
+      <Filter>Fundamental_DataStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="source\static_vector.cpp">
+      <Filter>Fundamental_DataStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="source\heap_allocator.cpp">
+      <Filter>Allocators</Filter>
+    </ClCompile>
+    <ClCompile Include="source\slot_allocator.cpp">
+      <Filter>Allocators</Filter>
+    </ClCompile>
+    <ClCompile Include="source\stack_allocator.cpp">
+      <Filter>Allocators</Filter>
+    </ClCompile>
+    <ClCompile Include="source\z_primitives.cpp">
+      <Filter>Fundamental_Types</Filter>
+    </ClCompile>
+    <ClCompile Include="source\z_typedefs.cpp">
+      <Filter>Fundamental_Types</Filter>
+    </ClCompile>
+    <ClCompile Include="source\range.cpp">
+      <Filter>Algorithms\Ranges</Filter>
+    </ClCompile>
+    <ClCompile Include="source\z_algorithm.cpp">
+      <Filter>Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="source\static_string.cpp">
+      <Filter>Fundamental_Types\string</Filter>
+    </ClCompile>
+    <ClCompile Include="source\dyna_string.cpp">
+      <Filter>Fundamental_Types\string</Filter>
+    </ClCompile>
+    <ClCompile Include="source\static_map.cpp">
+      <Filter>Fundamental_DataStructures</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
