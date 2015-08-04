@@ -1,25 +1,22 @@
 # Z Standard Library
 A standard library for use in memory conscious applications. 
 
-Rationale:
-	- STL has a lot of cruft to support backwards compatibility. Want to avoid.
-	- Need statically allocating data structures. Avoid dynamic allocation.
-	- Need simple utility types like optional and bitflag.
-	- Need code that I understand. Standard lib code is often written with tons of macros to deal with various platforms, compilers, etc. Want code I can reuse without all the stuff.
-	- Need math functions and types that work without tons of template abstraction. Vector4f, not Vector4<float>
-	
-Development Roadmap:
-	This library will develop along-side other projects. May work on it specifically, but for now I will integrate types as I make them.
-	
-	1. static_string stub. Simple functionality now, and utility functionality later.
+This library will develop along-side other projects. May work on it specifically, but for now I will integrate types as I make them.
 
-Provisions:
-	Data Structures
-	Algorithms
-	Utility Types
-	Functions
+###Rationale:
+* STL has a lot of cruft to support backwards compatibility. Want to avoid.
+* Need statically allocating data structures. Avoid dynamic allocation.
+* Need simple utility types like optional and bitflag.
+* Need code that I understand. Standard lib code is often written with tons of macros to deal with various platforms, compilers, etc. Want code I can reuse without all the stuff.
+* Need math functions and types that work without tons of template abstraction. Vector4f, not Vector4<float>
 
-Pillars:
+###Development Roadmap:
+
+1. static_string stub. Simple functionality now, and utility functionality later.
+
+
+
+###Pillars:
 
 1. Reliability
 	- Units should be as bug free as possible.
