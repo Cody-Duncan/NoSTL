@@ -19,6 +19,9 @@
     <Filter Include="Fundamental_Types\string">
       <UniqueIdentifier>{1e851715-eee0-42c3-8f0e-acb98ba0d3fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Debugging">
+      <UniqueIdentifier>{9f2a3a57-9577-437b-80ae-a47880e46ed3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\z_standard\dyna_array.h">
@@ -67,6 +70,13 @@
     <ClInclude Include="include\z_standard\static_map.h">
       <Filter>Fundamental_DataStructures</Filter>
     </ClInclude>
+    <ClInclude Include="include\z_standard\assert.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="include\z_standard\debug_print.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="include\z_standard\stl_shim.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\dyna_array.cpp">

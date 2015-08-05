@@ -43,7 +43,7 @@ Description:
 
 #else
 #define debug_break()
-#define assert(condition, message, ...)
+#define assert_message(condition, message, ...)
 #define assert(condition)
 
 #endif

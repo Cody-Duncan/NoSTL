@@ -11,6 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\z_standard\assert.h" />
+    <ClInclude Include="include\z_standard\debug_print.h" />
     <ClInclude Include="include\z_standard\dyna_array.h" />
     <ClInclude Include="include\z_standard\dyna_map.h" />
     <ClInclude Include="include\z_standard\dyna_string.h" />
@@ -23,6 +25,7 @@
     <ClInclude Include="include\z_standard\static_map.h" />
     <ClInclude Include="include\z_standard\static_string.h" />
     <ClInclude Include="include\z_standard\static_vector.h" />
+    <ClInclude Include="include\z_standard\stl_shim.h" />
     <ClInclude Include="include\z_standard\z_algorithm.h" />
     <ClInclude Include="include\z_standard\z_primitives.h" />
     <ClInclude Include="include\z_standard\z_standard.h" />
