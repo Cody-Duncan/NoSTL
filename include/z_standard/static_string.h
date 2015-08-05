@@ -13,7 +13,7 @@ Description:
 #define STATIC_STRING_H
 
 // ---------- includes ---------
-#include "assert.h"
+#include "z_assert.h"
 
 namespace z
 {
@@ -131,7 +131,7 @@ namespace z
 	template<unsigned int str_max_length>
 	static_string<str_max_length>::static_string(const char* other, unsigned int length)
 	{
-		assert(length <= str_max_length-1);
+		z_assert(length <= str_max_length-1);
 		set_zero_str();
 		append(other, length);
 	}
@@ -140,7 +140,7 @@ namespace z
 	template<unsigned int str_length>
 	static_string<str_max_length>::static_string(const char (&other)[str_length])
 	{
-		assert(str_length <= str_max_length-1);
+		z_assert(str_length <= str_max_length-1);
 		set_zero_str();
 		append(other, str_length);
 	}
@@ -150,7 +150,7 @@ namespace z
 	static_string<str_max_length>::static_string(const base_string<T>& other) :
 		m_size(0)
 	{
-		assert(other.max_size() <= str_max_length-1);
+		z_assert(other.max_size() <= str_max_length-1);
 		set_zero_str();
 		append(other);
 	}
@@ -194,7 +194,7 @@ namespace z
 	template<unsigned int str_max_length>
 	const char& static_string<str_max_length>::at(unsigned int pos) const
 	{
-		assert(pos >= 0 && pos < size());
+		z_assert(pos >= 0 && pos < size());
 		return m_str[pos];
 	}
 
@@ -202,7 +202,7 @@ namespace z
 	template<typename T>
 	static_string<str_max_length>& static_string<str_max_length>::append(const base_string<T>& s)
 	{
-		assert((size() + s.size()) <= str_max_length-1);
+		z_assert((size() + s.size()) <= str_max_length-1);
 		append(s.c_str(), s.size());
 
 		return *this;
@@ -228,7 +228,7 @@ namespace z
 			++temp;
 		}
 
-		assert((size() + append_size) <= str_max_length-1);
+		z_assert((size() + append_size) <= str_max_length-1);
 		append(s, append_size);
 
 		return *this;
@@ -237,7 +237,7 @@ namespace z
 	template<unsigned int str_max_length>
 	static_string<str_max_length>& static_string<str_max_length>::append(const char* s, unsigned int n)
 	{
-		assert(n <= (max_size() - size()));
+		z_assert(n <= (max_size() - size()));
 		for(unsigned int i = 0; i < n; ++i)
 		{
 			m_str[i] = *s;
@@ -252,7 +252,7 @@ namespace z
 	template<unsigned int str_max_length>
 	static_string<str_max_length>& static_string<str_max_length>::fill(char c, unsigned int n)
 	{
-		assert(n <= (max_size() - size()));
+		z_assert(n <= (max_size() - size()));
 		for(int i = 0; i < n; ++i)
 		{
 			m_str[i] = c;
@@ -310,42 +310,42 @@ namespace z
 	template<unsigned int str_max_length>
 	static_string<str_max_length>& static_string<str_max_length>::trim()
 	{
-		assert(false && "not implemented");
+		z_assert(false && "not implemented");
 		return *this;
 	}
 
 	template<unsigned int str_max_length>
 	static_string<str_max_length>& static_string<str_max_length>::trim_left()
 	{
-		assert(false && "not implemented");
+		z_assert(false && "not implemented");
 		return *this;
 	}
 
 	template<unsigned int str_max_length>
 	static_string<str_max_length>& static_string<str_max_length>::trim_right()
 	{
-		assert(false && "not implemented");
+		z_assert(false && "not implemented");
 		return *this;
 	}
 
 	template<unsigned int str_max_length>
 	bool static_string<str_max_length>::starts_with(const char* prefix) const
 	{
-		assert(false && "not implemented");
+		z_assert(false && "not implemented");
 		return false;
 	}
 
 	template<unsigned int str_max_length>
 	bool static_string<str_max_length>::ends_with(const char* suffix) const
 	{
-		assert(false && "not implemented");
+		z_assert(false && "not implemented");
 		return false;
 	}
 
 	template<unsigned int str_max_length>
 	bool static_string<str_max_length>::contains(const char* str) const
 	{
-		assert(false && "not implemented");
+		z_assert(false && "not implemented");
 		return false;
 	}
 
@@ -381,6 +381,27 @@ namespace z
 			hash = 65599 * hash + string[i];
 		return hash ^ (hash >> 16);
 	}	
+}
+
+//STL HASH SHIM
+//TODO: REPLACE
+namespace std 
+{
+	template<typename T>
+	struct hash;
+
+	template <unsigned int str_max_length>
+	struct hash<z::static_string<str_max_length>>
+	{
+		std::size_t operator()(const z::static_string<str_max_length>& k) const
+		{
+			using std::size_t;
+			using std::hash;
+
+			return hash<string>()(std::string(k.c_str()));
+		}
+	};
+
 }
 
 #endif

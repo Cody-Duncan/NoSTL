@@ -70,13 +70,16 @@
     <ClInclude Include="include\z_standard\static_map.h">
       <Filter>Fundamental_DataStructures</Filter>
     </ClInclude>
-    <ClInclude Include="include\z_standard\assert.h">
-      <Filter>Debugging</Filter>
-    </ClInclude>
     <ClInclude Include="include\z_standard\debug_print.h">
       <Filter>Debugging</Filter>
     </ClInclude>
     <ClInclude Include="include\z_standard\stl_shim.h" />
+    <ClInclude Include="include\z_standard\unused.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="include\z_standard\z_assert.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\dyna_array.cpp">

@@ -27,7 +27,7 @@ Description:
 
 
 	//Halts the program if the condition is false. Prints the given message. Debug only.
-	#define assert_message(condition, message, ...)				\
+	#define z_assert_message(condition, message, ...)				\
 		do												\
 		{												\
 			if(!(condition)) 							\
@@ -38,13 +38,13 @@ Description:
 		} while(0)
 
 	//Halts the program if the condition is false. Debug only.
-	#define assert(condition) \
-		assert_message(condition, "")
+	#define z_assert(condition) \
+		z_assert_message(condition, "")
 
 #else
 #define debug_break()
-#define assert_message(condition, message, ...)
-#define assert(condition)
+#define z_assert_message(condition, message, ...)
+#define z_assert(condition)
 
 #endif
 //END ifdef _DEBUG
