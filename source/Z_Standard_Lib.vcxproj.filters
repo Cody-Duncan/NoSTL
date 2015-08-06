@@ -7,13 +7,13 @@
     <Filter Include="Algorithms">
       <UniqueIdentifier>{0b42d63f-4916-43be-8ebf-c0a4183a4143}</UniqueIdentifier>
     </Filter>
-	<Filter Include="DataStructures">
+    <Filter Include="DataStructures">
       <UniqueIdentifier>{fe02ba24-73bd-48a3-bc01-0bd3272a434c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Debugging">
       <UniqueIdentifier>{9f2a3a57-9577-437b-80ae-a47880e46ed3}</UniqueIdentifier>
     </Filter>
-	<Filter Include="Fundamental_Types">
+    <Filter Include="Fundamental_Types">
       <UniqueIdentifier>{5b428a71-afe9-4e24-8577-db50756797fd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Fundamental_Types\string">
@@ -29,9 +29,6 @@
     </ClInclude>
     <ClInclude Include="unused.h">
       <Filter>Debugging</Filter>
-    </ClInclude>
-    <ClInclude Include="range.h">
-      <Filter>Algorithms</Filter>
     </ClInclude>
     <ClInclude Include="static_vector.h">
       <Filter>DataStructures</Filter>
@@ -72,13 +69,13 @@
     <ClInclude Include="static_string.h">
       <Filter>Fundamental_Types\string</Filter>
     </ClInclude>
+    <ClInclude Include="range.h">
+      <Filter>Algorithms</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dyna_string.cpp">
       <Filter>Fundamental_Types\string</Filter>
-    </ClCompile>
-    <ClCompile Include="range.cpp">
-      <Filter>Algorithms</Filter>
     </ClCompile>
     <ClCompile Include="dyna_map.cpp">
       <Filter>DataStructures</Filter>
@@ -113,6 +110,9 @@
     </ClCompile>
     <ClCompile Include="static_string.cpp">
       <Filter>Fundamental_Types\string</Filter>
+    </ClCompile>
+    <ClCompile Include="range.cpp">
+      <Filter>Algorithms</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
