@@ -13,6 +13,7 @@ Description:
 #define STATIC_STRING_H
 
 // ---------- includes ---------
+#include "z_primitives.h"
 #include "z_assert.h"
 
 namespace z

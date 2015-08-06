@@ -7,9 +7,17 @@ Description:
 
 */
 
-#include "z_algorithm.h"
+#pragma once
+
+#ifndef ALGORITHMZ_H
+#define ALGORITHMZ_H
+
+// ---------- includes ---------
+
 
 namespace z
 {
 
 }
+
+#endif

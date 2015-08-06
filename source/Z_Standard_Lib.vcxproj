@@ -25,7 +25,7 @@
     <ClInclude Include="static_vector.h" />
     <ClInclude Include="stl_shim.h" />
     <ClInclude Include="unused.h" />
-    <ClInclude Include="z_algorithm.h" />
+    <ClInclude Include="algorithmz.h" />
     <ClInclude Include="z_assert.h" />
     <ClInclude Include="z_primitives.h" />
     <ClInclude Include="z_std.h" />
@@ -43,7 +43,7 @@
     <ClCompile Include="static_map.cpp" />
     <ClCompile Include="static_string.cpp" />
     <ClCompile Include="static_vector.cpp" />
-    <ClCompile Include="z_algorithm.cpp" />
+    <ClCompile Include="algorithmz.cpp" />
     <ClCompile Include="z_primitives.cpp" />
     <ClCompile Include="z_typedefs.cpp" />
   </ItemGroup>

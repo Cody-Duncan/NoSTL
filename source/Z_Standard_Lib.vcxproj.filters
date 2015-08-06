@@ -4,9 +4,6 @@
     <Filter Include="Allocators">
       <UniqueIdentifier>{921226d3-df61-40ab-b713-f3e184bd7a93}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fundamental_DataStructures">
-      <UniqueIdentifier>{611889dd-fc37-4d06-8371-4a8d0de76463}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Fundamental_Types">
       <UniqueIdentifier>{5b428a71-afe9-4e24-8577-db50756797fd}</UniqueIdentifier>
     </Filter>
@@ -19,9 +16,6 @@
     <Filter Include="Debugging">
       <UniqueIdentifier>{9f2a3a57-9577-437b-80ae-a47880e46ed3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="temp">
-      <UniqueIdentifier>{5950aa44-f80e-40f0-ad9d-061152a6ec56}</UniqueIdentifier>
-    </Filter>
     <Filter Include="DataStructures">
       <UniqueIdentifier>{fe02ba24-73bd-48a3-bc01-0bd3272a434c}</UniqueIdentifier>
     </Filter>
@@ -32,9 +26,6 @@
     </ClInclude>
     <ClInclude Include="dyna_string.h">
       <Filter>Fundamental_Types\string</Filter>
-    </ClInclude>
-    <ClInclude Include="z_algorithm.h">
-      <Filter>Algorithms</Filter>
     </ClInclude>
     <ClInclude Include="unused.h">
       <Filter>Debugging</Filter>
@@ -57,9 +48,6 @@
     <ClInclude Include="static_map.h">
       <Filter>DataStructures</Filter>
     </ClInclude>
-    <ClInclude Include="static_string.h">
-      <Filter>DataStructures</Filter>
-    </ClInclude>
     <ClInclude Include="z_primitives.h">
       <Filter>Fundamental_Types</Filter>
     </ClInclude>
@@ -78,13 +66,16 @@
     <ClInclude Include="allocator_stack.h">
       <Filter>Allocators</Filter>
     </ClInclude>
+    <ClInclude Include="algorithmz.h">
+      <Filter>Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="static_string.h">
+      <Filter>Fundamental_Types\string</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dyna_string.cpp">
       <Filter>Fundamental_Types\string</Filter>
-    </ClCompile>
-    <ClCompile Include="z_algorithm.cpp">
-      <Filter>Algorithms</Filter>
     </ClCompile>
     <ClCompile Include="range.cpp">
       <Filter>Algorithms</Filter>
@@ -99,9 +90,6 @@
       <Filter>DataStructures</Filter>
     </ClCompile>
     <ClCompile Include="static_map.cpp">
-      <Filter>DataStructures</Filter>
-    </ClCompile>
-    <ClCompile Include="static_string.cpp">
       <Filter>DataStructures</Filter>
     </ClCompile>
     <ClCompile Include="static_vector.cpp">
@@ -119,6 +107,12 @@
     </ClCompile>
     <ClCompile Include="allocator_stack.cpp">
       <Filter>Allocators</Filter>
+    </ClCompile>
+    <ClCompile Include="algorithmz.cpp">
+      <Filter>Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="static_string.cpp">
+      <Filter>Fundamental_Types\string</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
