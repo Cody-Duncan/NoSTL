@@ -9,8 +9,8 @@ Description:
 
 #pragma once
 
-#ifndef DYNA_ARRAY_H
-#define DYNA_ARRAY_H
+#ifndef ALLOCATOR_SLOT_H
+#define ALLOCATOR_SLOT_H
 
 // ---------- includes ---------
 

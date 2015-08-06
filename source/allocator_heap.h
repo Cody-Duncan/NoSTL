@@ -7,9 +7,17 @@ Description:
 
 */
 
-#include "z_standard\dyna_array.h"
+#pragma once
+
+#ifndef ALLOCATOR_HEAP_H
+#define ALLOCATOR_HEAP_H
+
+// ---------- includes ---------
+
 
 namespace z
 {
 
 }
+
+#endif

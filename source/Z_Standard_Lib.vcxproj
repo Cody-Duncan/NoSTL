@@ -11,43 +11,41 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\z_standard\z_assert.h" />
-    <ClInclude Include="include\z_standard\debug_print.h" />
-    <ClInclude Include="include\z_standard\dyna_array.h" />
-    <ClInclude Include="include\z_standard\dyna_map.h" />
-    <ClInclude Include="include\z_standard\dyna_string.h" />
-    <ClInclude Include="include\z_standard\dyna_vector.h" />
-    <ClInclude Include="include\z_standard\heap_allocator.h" />
-    <ClInclude Include="include\z_standard\range.h" />
-    <ClInclude Include="include\z_standard\slot_allocator.h" />
-    <ClInclude Include="include\z_standard\stack_allocator.h" />
-    <ClInclude Include="include\z_standard\static_array.h" />
-    <ClInclude Include="include\z_standard\static_map.h" />
-    <ClInclude Include="include\z_standard\static_string.h" />
-    <ClInclude Include="include\z_standard\static_vector.h" />
-    <ClInclude Include="include\z_standard\stl_shim.h" />
-    <ClInclude Include="include\z_standard\unused.h" />
-    <ClInclude Include="include\z_standard\z_algorithm.h" />
-    <ClInclude Include="include\z_standard\z_primitives.h" />
-    <ClInclude Include="include\z_standard\z_standard.h" />
-    <ClInclude Include="include\z_standard\z_typedefs.h" />
+    <ClInclude Include="debug_print.h" />
+    <ClInclude Include="dyna_map.h" />
+    <ClInclude Include="dyna_string.h" />
+    <ClInclude Include="dyna_vector.h" />
+    <ClInclude Include="allocator_heap.h" />
+    <ClInclude Include="range.h" />
+    <ClInclude Include="allocator_slot.h" />
+    <ClInclude Include="allocator_stack.h" />
+    <ClInclude Include="static_array.h" />
+    <ClInclude Include="static_map.h" />
+    <ClInclude Include="static_string.h" />
+    <ClInclude Include="static_vector.h" />
+    <ClInclude Include="stl_shim.h" />
+    <ClInclude Include="unused.h" />
+    <ClInclude Include="z_algorithm.h" />
+    <ClInclude Include="z_assert.h" />
+    <ClInclude Include="z_primitives.h" />
+    <ClInclude Include="z_std.h" />
+    <ClInclude Include="z_typedefs.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\dyna_array.cpp" />
-    <ClCompile Include="source\dyna_map.cpp" />
-    <ClCompile Include="source\dyna_string.cpp" />
-    <ClCompile Include="source\dyna_vector.cpp" />
-    <ClCompile Include="source\heap_allocator.cpp" />
-    <ClCompile Include="source\range.cpp" />
-    <ClCompile Include="source\slot_allocator.cpp" />
-    <ClCompile Include="source\stack_allocator.cpp" />
-    <ClCompile Include="source\static_array.cpp" />
-    <ClCompile Include="source\static_map.cpp" />
-    <ClCompile Include="source\static_string.cpp" />
-    <ClCompile Include="source\static_vector.cpp" />
-    <ClCompile Include="source\z_algorithm.cpp" />
-    <ClCompile Include="source\z_primitives.cpp" />
-    <ClCompile Include="source\z_typedefs.cpp" />
+    <ClCompile Include="dyna_map.cpp" />
+    <ClCompile Include="dyna_string.cpp" />
+    <ClCompile Include="dyna_vector.cpp" />
+    <ClCompile Include="allocator_heap.cpp" />
+    <ClCompile Include="range.cpp" />
+    <ClCompile Include="allocator_slot.cpp" />
+    <ClCompile Include="allocator_stack.cpp" />
+    <ClCompile Include="static_array.cpp" />
+    <ClCompile Include="static_map.cpp" />
+    <ClCompile Include="static_string.cpp" />
+    <ClCompile Include="static_vector.cpp" />
+    <ClCompile Include="z_algorithm.cpp" />
+    <ClCompile Include="z_primitives.cpp" />
+    <ClCompile Include="z_typedefs.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{46CE1275-7D61-49DF-B7DE-578B8F7B497A}</ProjectGuid>
@@ -96,6 +94,9 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy $(ProjectDir)*.h $(SolutionDir)include\$(ProjectName)\  /E /Y /D</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -111,6 +112,9 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy $(ProjectDir)*.h $(SolutionDir)include\$(ProjectName)\  /E /Y /D</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

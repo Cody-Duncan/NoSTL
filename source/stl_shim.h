@@ -20,7 +20,7 @@ Description:
 #include <array>
 #include <vector>
 #include <unordered_map>
-#include "z_standard\static_string.h"
+#include "static_string.h"
 
 namespace z
 {

@@ -7,7 +7,7 @@ Description:
 
 */
 
-#include "z_standard\z_algorithm.h"
+#include "z_algorithm.h"
 
 namespace z
 {

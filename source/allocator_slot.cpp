@@ -7,17 +7,9 @@ Description:
 
 */
 
-#pragma once
-
-#ifndef SLOT_ALLOCATOR_H
-#define SLOT_ALLOCATOR_H
-
-// ---------- includes ---------
-
+#include "allocator_slot.h"
 
 namespace z
 {
 
 }
-
-#endif

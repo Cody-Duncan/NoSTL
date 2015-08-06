@@ -7,7 +7,7 @@ Description:
 
 */
 
-#include "z_standard\dyna_vector.h"
+#include "dyna_vector.h"
 
 namespace z
 {

@@ -7,7 +7,7 @@ Description:
 
 */
 
-#include "z_standard\static_string.h"
+#include "static_string.h"
 
 namespace z
 {

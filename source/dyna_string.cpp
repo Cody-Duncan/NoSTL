@@ -7,7 +7,7 @@ Description:
 
 */
 
-#include "z_standard\dyna_string.h"
+#include "dyna_string.h"
 
 namespace z
 {

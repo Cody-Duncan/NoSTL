@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Allocators">
+      <UniqueIdentifier>{921226d3-df61-40ab-b713-f3e184bd7a93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fundamental_DataStructures">
+      <UniqueIdentifier>{611889dd-fc37-4d06-8371-4a8d0de76463}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fundamental_Types">
+      <UniqueIdentifier>{5b428a71-afe9-4e24-8577-db50756797fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Algorithms">
+      <UniqueIdentifier>{0b42d63f-4916-43be-8ebf-c0a4183a4143}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fundamental_Types\string">
+      <UniqueIdentifier>{1e851715-eee0-42c3-8f0e-acb98ba0d3fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debugging">
+      <UniqueIdentifier>{9f2a3a57-9577-437b-80ae-a47880e46ed3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="temp">
+      <UniqueIdentifier>{5950aa44-f80e-40f0-ad9d-061152a6ec56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructures">
+      <UniqueIdentifier>{fe02ba24-73bd-48a3-bc01-0bd3272a434c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="debug_print.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="dyna_string.h">
+      <Filter>Fundamental_Types\string</Filter>
+    </ClInclude>
+    <ClInclude Include="z_algorithm.h">
+      <Filter>Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="unused.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="range.h">
+      <Filter>Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="static_vector.h">
+      <Filter>DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="dyna_map.h">
+      <Filter>DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="dyna_vector.h">
+      <Filter>DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="static_array.h">
+      <Filter>DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="static_map.h">
+      <Filter>DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="static_string.h">
+      <Filter>DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="z_primitives.h">
+      <Filter>Fundamental_Types</Filter>
+    </ClInclude>
+    <ClInclude Include="z_typedefs.h" />
+    <ClInclude Include="z_assert.h">
+      <Filter>Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="stl_shim.h" />
+    <ClInclude Include="z_std.h" />
+    <ClInclude Include="allocator_heap.h">
+      <Filter>Allocators</Filter>
+    </ClInclude>
+    <ClInclude Include="allocator_slot.h">
+      <Filter>Allocators</Filter>
+    </ClInclude>
+    <ClInclude Include="allocator_stack.h">
+      <Filter>Allocators</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dyna_string.cpp">
+      <Filter>Fundamental_Types\string</Filter>
+    </ClCompile>
+    <ClCompile Include="z_algorithm.cpp">
+      <Filter>Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="range.cpp">
+      <Filter>Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="dyna_map.cpp">
+      <Filter>DataStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="dyna_vector.cpp">
+      <Filter>DataStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="static_array.cpp">
+      <Filter>DataStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="static_map.cpp">
+      <Filter>DataStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="static_string.cpp">
+      <Filter>DataStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="static_vector.cpp">
+      <Filter>DataStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="z_primitives.cpp">
+      <Filter>Fundamental_Types</Filter>
+    </ClCompile>
+    <ClCompile Include="z_typedefs.cpp" />
+    <ClCompile Include="allocator_heap.cpp">
+      <Filter>Allocators</Filter>
+    </ClCompile>
+    <ClCompile Include="allocator_slot.cpp">
+      <Filter>Allocators</Filter>
+    </ClCompile>
+    <ClCompile Include="allocator_stack.cpp">
+      <Filter>Allocators</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -7,9 +7,17 @@ Description:
 
 */
 
-#include "z_standard\heap_allocator.h"
+#pragma once
+
+#ifndef ALLOCATOR_STACK_H
+#define ALLOCATOR_STACK_H
+
+// ---------- includes ---------
+
 
 namespace z
 {
 
 }
+
+#endif

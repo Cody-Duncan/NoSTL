@@ -13,8 +13,10 @@ Description:
 #define Z_STANDARD_H
 
 // ---------- includes ---------
-#include "stl_shim.h"
 
+#include "z_primitives.h"
+#include "z_typedefs.h"
+#include "stl_shim.h"
 #include "static_string.h"
 
 namespace z
