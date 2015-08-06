@@ -4,20 +4,20 @@
     <Filter Include="Allocators">
       <UniqueIdentifier>{921226d3-df61-40ab-b713-f3e184bd7a93}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fundamental_Types">
-      <UniqueIdentifier>{5b428a71-afe9-4e24-8577-db50756797fd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Algorithms">
       <UniqueIdentifier>{0b42d63f-4916-43be-8ebf-c0a4183a4143}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fundamental_Types\string">
-      <UniqueIdentifier>{1e851715-eee0-42c3-8f0e-acb98ba0d3fd}</UniqueIdentifier>
+	<Filter Include="DataStructures">
+      <UniqueIdentifier>{fe02ba24-73bd-48a3-bc01-0bd3272a434c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Debugging">
       <UniqueIdentifier>{9f2a3a57-9577-437b-80ae-a47880e46ed3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DataStructures">
-      <UniqueIdentifier>{fe02ba24-73bd-48a3-bc01-0bd3272a434c}</UniqueIdentifier>
+	<Filter Include="Fundamental_Types">
+      <UniqueIdentifier>{5b428a71-afe9-4e24-8577-db50756797fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fundamental_Types\string">
+      <UniqueIdentifier>{1e851715-eee0-42c3-8f0e-acb98ba0d3fd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
