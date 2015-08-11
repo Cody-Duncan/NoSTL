@@ -51,8 +51,9 @@ namespace z
 			return get_impl().c_str();
 		}
 	};
+
 	template<unsigned int str_max_length>
-	struct static_string
+	struct static_string : public base_string<static_string<str_max_length>>
 	{
 	private:
 		char m_str[str_max_length];

@@ -77,8 +77,6 @@ namespace z
 	{
 		return range<T, T*>(iter, length);
 	}
-
-	
 }
 
 #endif
