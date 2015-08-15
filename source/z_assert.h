@@ -41,12 +41,16 @@ Description:
 	#define z_assert(condition) \
 		z_assert_message(condition, "")
 
+	#define z_static_assert(condition, message) \
+		static_assert(condition, message)
+
 	#define breakpoint_nop() __asm nop
 
 #else
 #define debug_break()
 #define z_assert_message(condition, message, ...)
 #define z_assert(condition)
+#define z_static_assert(condition, message)
 
 #endif
 //END ifdef _DEBUG

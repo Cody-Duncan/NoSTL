@@ -72,6 +72,9 @@
     <ClInclude Include="range.h">
       <Filter>Algorithms</Filter>
     </ClInclude>
+    <ClInclude Include="base_array.h">
+      <Filter>DataStructures</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dyna_string.cpp">
@@ -117,5 +120,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="static_array.inl">
+      <Filter>DataStructures</Filter>
+    </None>
+    <None Include="static_vector.inl">
+      <Filter>DataStructures</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="base_array.h" />
     <ClInclude Include="debug_print.h" />
     <ClInclude Include="dyna_map.h" />
     <ClInclude Include="dyna_string.h" />
@@ -49,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="static_array.inl" />
+    <None Include="static_vector.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{46CE1275-7D61-49DF-B7DE-578B8F7B497A}</ProjectGuid>
@@ -92,13 +95,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)include;$(SolutionDir)source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy $(ProjectDir)*.h $(SolutionDir)include\$(ProjectName)\  /E /Y /D</Command>
+      <Command>xcopy $(ProjectDir)*.h $(SolutionDir)include\$(ProjectName)\  /E /Y /D
+xcopy $(ProjectDir)*.inl $(SolutionDir)include\$(ProjectName)\  /E /Y /D</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -108,7 +112,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)include;$(SolutionDir)source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -116,7 +120,8 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy $(ProjectDir)*.h $(SolutionDir)include\$(ProjectName)\  /E /Y /D</Command>
+      <Command>xcopy $(ProjectDir)*.h $(SolutionDir)include\$(ProjectName)\  /E /Y /D
+xcopy $(ProjectDir)*.inl $(SolutionDir)include\$(ProjectName)\  /E /Y /D</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
