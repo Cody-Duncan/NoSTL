@@ -27,7 +27,7 @@ namespace z
 			return (*static_cast<derived *>(this));
 		}
 
-		derived& get_self() const
+		const derived& get_self() const
 		{
 			return (*static_cast<const derived *>(this));
 		}

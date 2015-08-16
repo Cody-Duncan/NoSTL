@@ -135,7 +135,7 @@ namespace z
 
 
 	template<class T, unsigned int max_length>
-	static_vector<T, max_length>& static_vector<T, max_length>::deep_copy(const static_vector& other)
+	static_vector<T, max_length>& static_vector<T, max_length>::deep_copy(const static_vector<T, max_length>& other)
 	{
 		const unsigned int size = other.size();
 
@@ -216,28 +216,40 @@ namespace z
 	template<class T, unsigned int max_length>
 	T& static_vector<T, max_length>::last()
 	{
-		return m_data.last();
+		return m_data[size()-1];
 	}
 
 
 	template<class T, unsigned int max_length>
 	const T& static_vector<T, max_length>::last() const
 	{
-		return m_data.last();
+		return m_data[size()-1];
+	}
+
+	template<class T, unsigned int max_length>
+	T* static_vector<T, max_length>::end()
+	{
+		return m_data.internal_array() + size();
 	}
 
 
 	template<class T, unsigned int max_length>
+	const T* static_vector<T, max_length>::end() const
+	{
+		return m_data.internal_array() + size();
+	}
+
+	template<class T, unsigned int max_length>
 	range<T> static_vector<T, max_length>::get_range()
 	{
-		return m_data.get_range(0, size()-1);
+		return m_data.get_range(0, size());
 	}
 
 
 	template<class T, unsigned int max_length>
 	range<const T> static_vector<T, max_length>::get_range() const
 	{
-		return m_data.get_range(0, size()-1);
+		return m_data.get_range(0, size());
 	}
 
 
@@ -245,7 +257,7 @@ namespace z
 	range<T> static_vector<T, max_length>::get_range(unsigned int index)
 	{
 		z_assert(index < size());
-		return m_data.get_range(index, size()-1);
+		return m_data.get_range(index, size());
 	}
 
 
@@ -253,7 +265,7 @@ namespace z
 	range<const T> static_vector<T, max_length>::get_range(unsigned int index) const
 	{
 		z_assert(index < size());
-		return m_data.get_range(index, size()-1);
+		return m_data.get_range(index, size());
 	}
 
 
@@ -262,7 +274,7 @@ namespace z
 	{
 		z_assert(start_index < size());
 		z_assert(start_index <= end_index);
-		z_assert(end_index < size());
+		z_assert(end_index <= size());
 		return m_data.get_range(start_index, end_index);
 	}
 
@@ -272,7 +284,7 @@ namespace z
 	{
 		z_assert(start_index < size());
 		z_assert(start_index <= end_index);
-		z_assert(end_index < size());
+		z_assert(end_index <= size());
 		return m_data.get_range(start_index, end_index);
 	}
 
@@ -388,6 +400,21 @@ namespace z
 		--m_size;
 	}
 
+	template<class T, unsigned int max_length>
+	void static_vector<T, max_length>::remove(unsigned int start_index, unsigned int end_index)
+	{
+		z_assert(index < size());
+		z_assert(size() > 0);
+
+		T* m_data_array = m_data.internal_array();
+		T* remove_start = m_data_array + start_index;
+		T* remove_end   = m_data_array + end_index;
+		T* end_location = m_data_array + m_data.max_size();
+
+		z::move(remove_end, end_location, remove_start); // shift elements left at index
+
+		--m_size;
+	}
 
 	template<class T, unsigned int max_length>
 	void static_vector<T, max_length>::remove_first()

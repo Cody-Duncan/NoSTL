@@ -51,6 +51,7 @@
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
     <None Include="static_array.inl" />
+    <None Include="static_string.inl" />
     <None Include="static_vector.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

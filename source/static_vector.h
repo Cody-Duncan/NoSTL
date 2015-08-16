@@ -69,6 +69,9 @@ namespace z
 		T& last();
 		const T& last() const;
 
+		T* end();
+		const T* end() const;
+
 		range<T> get_range();
 		range<const T> get_range() const;
 		range<T> get_range(unsigned int index);
@@ -90,6 +93,7 @@ namespace z
 		T& insert_element(unsigned int index, const T&& move_copy);
 
 		void remove(unsigned int index);
+		void remove(unsigned int start_index, unsigned int end_index);
 		void remove_first();
 		void remove_last();
 

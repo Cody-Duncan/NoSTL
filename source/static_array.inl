@@ -168,6 +168,18 @@ namespace z
 	}
 
 	template<class T, unsigned int max_length>
+	T* static_array<T, max_length>::end()
+	{
+		return m_data + max_length;
+	}
+
+	template<class T, unsigned int max_length>
+	const T* static_array<T, max_length>::end() const
+	{
+		return m_data + max_length;
+	}
+
+	template<class T, unsigned int max_length>
 	range<T> static_array<T, max_length>::get_range()
 	{
 		return make_range<T>(m_data, max_length);
@@ -185,7 +197,7 @@ namespace z
 		z_assert(index >= 0);
 		z_assert(index < max_length);
 
-		return make_range<T>((m_data + index), max_length - index);
+		return make_range<T>((m_data + index), max_length);
 	}
 
 	template<class T, unsigned int max_length>
@@ -194,7 +206,7 @@ namespace z
 		z_assert(index >= 0);
 		z_assert(index < max_length);
 
-		return make_range<const T>((m_data + index), max_length - index);
+		return make_range<const T>((m_data + index), max_length);
 	}
 
 	template<class T, unsigned int max_length>
@@ -202,7 +214,7 @@ namespace z
 	{
 		z_assert(start_index >= 0);
 		z_assert(start_index <= end_index);
-		z_assert(end_index < max_length);
+		z_assert(end_index <= max_length);
 
 		return make_range<T>((m_data + start_index), end_index - start_index);
 	}
@@ -212,7 +224,7 @@ namespace z
 	{
 		z_assert(start_index >= 0);
 		z_assert(start_index <= end_index);
-		z_assert(end_index < max_length);
+		z_assert(end_index <= max_length);
 
 		return make_range<const T>((m_data + start_index), end_index - start_index);
 	}

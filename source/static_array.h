@@ -67,6 +67,9 @@ namespace z
 		T& last();
 		const T& last() const;
 
+		T* end();
+		const T* end() const;
+
 		range<T> get_range();
 		range<const T> get_range() const;
 		range<T> get_range(unsigned int index);

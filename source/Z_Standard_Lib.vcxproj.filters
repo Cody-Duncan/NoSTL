@@ -126,5 +126,8 @@
     <None Include="static_vector.inl">
       <Filter>DataStructures</Filter>
     </None>
+    <None Include="static_string.inl">
+      <Filter>Fundamental_Types\string</Filter>
+    </None>
   </ItemGroup>
 </Project>
