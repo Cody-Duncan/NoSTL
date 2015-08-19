@@ -54,7 +54,7 @@ namespace z
 	}
 
 	template<unsigned int str_max_length>
-	static_string<str_max_length>& static_string<str_max_length>::operator=(const static_string<str_max_length> &other) const
+	static_string<str_max_length>& static_string<str_max_length>::operator=(const static_string<str_max_length> &other)
 	{
 		clear_zero();
 		append(other);

@@ -71,7 +71,7 @@ namespace z
 		template<typename T>
 		static_string(const base_string<T>& other);
 
-		static_string& operator=(const static_string &other) const;
+		static_string& operator=(const static_string &other);
 
 		bool operator==(const static_string &other) const;
 

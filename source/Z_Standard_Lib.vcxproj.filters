@@ -52,7 +52,6 @@
     <ClInclude Include="z_assert.h">
       <Filter>Debugging</Filter>
     </ClInclude>
-    <ClInclude Include="stl_shim.h" />
     <ClInclude Include="z_std.h" />
     <ClInclude Include="allocator_heap.h">
       <Filter>Allocators</Filter>
@@ -75,6 +74,7 @@
     <ClInclude Include="base_array.h">
       <Filter>DataStructures</Filter>
     </ClInclude>
+    <ClInclude Include="z_macros.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dyna_string.cpp">

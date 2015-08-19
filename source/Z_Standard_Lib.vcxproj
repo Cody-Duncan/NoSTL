@@ -24,10 +24,10 @@
     <ClInclude Include="static_map.h" />
     <ClInclude Include="static_string.h" />
     <ClInclude Include="static_vector.h" />
-    <ClInclude Include="stl_shim.h" />
     <ClInclude Include="unused.h" />
     <ClInclude Include="algorithmz.h" />
     <ClInclude Include="z_assert.h" />
+    <ClInclude Include="z_macros.h" />
     <ClInclude Include="z_primitives.h" />
     <ClInclude Include="z_std.h" />
     <ClInclude Include="z_typedefs.h" />

@@ -13,11 +13,12 @@ Description:
 #define DYNA_VECTOR_H
 
 // ---------- includes ---------
-
+#include <vector>
 
 namespace z
 {
-
+	template<typename T>
+	using dyna_array = std::vector<T>;
 }
 
 #endif
