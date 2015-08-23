@@ -58,6 +58,7 @@ namespace z
 	{
 		clear_zero();
 		append(other);
+		return *this;
 	}
 
 	template<unsigned int str_max_length>
