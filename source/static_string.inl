@@ -207,8 +207,6 @@ namespace z
 			++s;
 		}
 
-		printf("%s %d", s, n);
-
 		m_str[m_str.size()] = '\0';
 
 		return *this;
