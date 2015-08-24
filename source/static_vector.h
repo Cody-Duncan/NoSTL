@@ -32,7 +32,7 @@ namespace z
 		static_vector(const static_vector&);
 		static_vector(static_vector&&);
 
-		static_vector& operator=(const static_vector&) = delete;
+		//operator=, compiler generated
 		
 		unsigned int size() const;
 		unsigned int max_size() const;

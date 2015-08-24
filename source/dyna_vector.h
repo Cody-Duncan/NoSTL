@@ -18,7 +18,7 @@ Description:
 namespace z
 {
 	template<typename T>
-	using dyna_array = std::vector<T>;
+	using dyna_vector = std::vector<T>;
 }
 
 #endif

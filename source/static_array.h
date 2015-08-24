@@ -35,7 +35,7 @@ namespace z
 		static_array(const static_array&);
 		static_array(static_array&&);
 
-		static_array& operator=(const static_array&) = delete;
+		//operator= , compiler generated
 		
 		unsigned int size() const;
 		unsigned int max_size() const;
