@@ -145,6 +145,8 @@ namespace z
 		bool ends_with(const char* suffix) const;
 		bool contains(const char* str) const;
 
+		void recheck_string_size();
+
 		char* c_str();
 		const char* c_str() const;
 

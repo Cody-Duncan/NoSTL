@@ -440,6 +440,38 @@ namespace z
 	}
 
 	template<unsigned int str_max_length>
+	void static_string<str_max_length>::recheck_string_size()
+	{
+		bool found_null = false;
+		int string_size = 0;
+		char* temp = m_str.internal_array();
+
+		for(int i = 0; (!found_null) && (i < str_max_length); ++i)
+		{
+			if(temp[i] == '\0')
+			{
+				found_null = true;
+				string_size = i;
+			}
+		}
+
+		if(found_null)
+		{
+			//up size to the actual size of the string.
+			for(int i = m_str.size(); i < string_size; ++i)
+			{
+				m_str.new_element_raw();
+			}
+
+			//down the size to the actual string
+			for(int i = m_str.size(); i > string_size; --i)
+			{
+				m_str.remove_last();
+			}
+		}
+	}
+
+	template<unsigned int str_max_length>
 	char* static_string<str_max_length>::c_str()
 	{
 		return m_str.internal_array();
