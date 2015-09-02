@@ -11,5 +11,12 @@ Description:
 
 namespace z
 {
+	void test_range_find()
+	{
+		char data[12] = "hello world";
+		range<char> test = make_range(data, 12);
 
+		test.find_first_of("lo");
+		test.find_last_of("lo");
+	}
 }

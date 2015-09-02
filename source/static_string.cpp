@@ -159,6 +159,9 @@ namespace z
 			static_string<4> arr_find("FGH");
 			range<char> test_range3_two_index = arr.find(arr_find);
 
+			static_string<20> arr3(data);
+			range<char> test_range4_find_reverse = arr3.find_reverse("FED");
+
 			breakpoint_nop();
 		}
 

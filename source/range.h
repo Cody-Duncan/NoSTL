@@ -22,6 +22,7 @@ namespace z
 	template<typename T, typename iterator_t = T*>
 	struct range
 	{
+		typedef iterator_t iterator_type;
 		iterator_t iterator;
 		int length;
 
@@ -63,7 +64,19 @@ namespace z
 			return 
 				this->iterator == it.iterator && 
 				this->length == it.length;
-		}		
+		}
+
+		range find_first_of(const T& val) const;
+		range find_first_of(const range<const T>& values) const;
+
+		range find_last_of(const T& val) const;
+		range find_last_of(const range<const T>& values) const;
+
+		template<unsigned int arr_length>
+		range find_first_of(const T(&values)[arr_length]) const;
+
+		template<unsigned int arr_length>
+		range find_last_of(const T(&values)[arr_length]) const;
 	};
 
 	template<typename T, typename I>
@@ -78,5 +91,7 @@ namespace z
 		return range<T, T*>(iter, length);
 	}
 }
+
+#include "range.inl"
 
 #endif

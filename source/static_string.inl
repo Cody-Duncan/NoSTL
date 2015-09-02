@@ -3,6 +3,7 @@
 #endif
 
 #include <string.h>
+#include "str_util.h"
 
 namespace z
 {
@@ -370,6 +371,24 @@ namespace z
 			return m_str.get_range(index);
 		}
 		return make_range<const char>(m_str.end(), 0); //null range
+	}
+
+	template<unsigned int str_max_length>
+	range<char> static_string<str_max_length>::find_reverse(const char* other)
+	{
+		const static_string<str_max_length>* this_ptr = const_cast<const static_string<str_max_length>*>(this);
+		range<const char> result = this_ptr->find_reverse(other);
+		return make_range(const_cast<char*>(result.iterator), result.length);
+	}
+
+	template<unsigned int str_max_length>
+	range<const char> static_string<str_max_length>::find_reverse(const char* other) const
+	{
+		int result_index = strr(c_str(), size(), other, size(), strlen(other));
+		if(result_index == -1)
+			return make_range<const char>(m_str.end(), 0); //null range
+
+		return m_str.get_range(result_index);
 	}
 
 	template<unsigned int str_max_length>

@@ -134,6 +134,9 @@ namespace z
 		range<char> find(const char* other);
 		range<const char> find(const char* other) const;
 
+		range<char> find_reverse(const char* other);
+		range<const char> find_reverse(const char* other) const;
+
 		static_string& clone();
 		static_string& to_upper();
 		static_string& to_lower();

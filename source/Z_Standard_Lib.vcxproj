@@ -24,6 +24,7 @@
     <ClInclude Include="static_map.h" />
     <ClInclude Include="static_string.h" />
     <ClInclude Include="static_vector.h" />
+    <ClInclude Include="str_util.h" />
     <ClInclude Include="unused.h" />
     <ClInclude Include="algorithmz.h" />
     <ClInclude Include="z_assert.h" />
@@ -45,11 +46,13 @@
     <ClCompile Include="static_string.cpp" />
     <ClCompile Include="static_vector.cpp" />
     <ClCompile Include="algorithmz.cpp" />
+    <ClCompile Include="str_util.cpp" />
     <ClCompile Include="z_primitives.cpp" />
     <ClCompile Include="z_typedefs.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="range.inl" />
     <None Include="static_array.inl" />
     <None Include="static_string.inl" />
     <None Include="static_vector.inl" />
