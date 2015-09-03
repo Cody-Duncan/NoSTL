@@ -32,6 +32,7 @@ namespace z
 		~static_array();
 
 		static_array(const T*, unsigned int size);
+		static_array(range<T>&);
 		static_array(const static_array&);
 		static_array(static_array&&);
 
@@ -49,6 +50,7 @@ namespace z
 		static_array& deep_copy(const T (&)[array_size]);
 
 		static_array& deep_copy(const T*, unsigned int size);
+		static_array& deep_copy(range<T>&);
 		static_array& deep_copy(const static_array&);
 
 		void reconstruct_element(unsigned int index);

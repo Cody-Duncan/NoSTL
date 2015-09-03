@@ -19,6 +19,12 @@ namespace z
 	}
 
 	template<class T, unsigned int max_length>
+	static_array<T, max_length>::static_array(range<T>& r)
+	{
+		deep_copy(r);
+	}
+
+	template<class T, unsigned int max_length>
 	static_array<T, max_length>::static_array(const static_array& other)
 	{
 		deep_copy(other);
@@ -66,6 +72,21 @@ namespace z
 		for(unsigned int i = 0; i < size; ++i)
 		{
 			m_data[i] = other_array[i];
+		}
+
+		return *this;
+	}
+
+	template<class T, unsigned int max_length>
+	static_array<T, max_length>& static_array<T, max_length>::deep_copy(range<T>& r)
+	{
+		z_assert(r.length <= max_length);
+		
+		int length = r.length;
+		for(int i = 0; i < length; ++i)
+		{
+			m_data[i] = r.get_element();
+			++r;
 		}
 
 		return *this;

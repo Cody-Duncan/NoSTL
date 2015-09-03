@@ -64,6 +64,7 @@ namespace z
 		static_string(const char*);
 		static_string(const char*, unsigned int);
 		static_string(const static_string& other);
+		static_string(range<char> range);
 
 		template <unsigned int str_length>
 		static_string(const char (&)[str_length]);
@@ -103,6 +104,7 @@ namespace z
 		static_string& append(const base_string<T>& s);
 		static_string& append(const char* s);
 		static_string& append(const char* s, unsigned int n);
+		static_string& append(range<char> range);
 
 		static_string& fill(char c, unsigned int n);
 

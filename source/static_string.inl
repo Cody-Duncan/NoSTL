@@ -36,6 +36,14 @@ namespace z
 	}
 
 	template<unsigned int str_max_length>
+	static_string<str_max_length>::static_string(range<char> range)
+	{
+		z_assert(range.length <= str_max_length);
+		clear_zero();
+		append(range);
+	}
+
+	template<unsigned int str_max_length>
 	template<unsigned int str_length>
 	static_string<str_max_length>::static_string(const char (&other)[str_length])
 	{
@@ -209,6 +217,21 @@ namespace z
 		}
 
 		m_str[m_str.size()] = '\0';
+
+		return *this;
+	}
+
+	template<unsigned int str_max_length>
+	static_string<str_max_length>& static_string<str_max_length>::append(range<char> r)
+	{
+		z_assert((unsigned int)r.length <= (max_size() - size()));
+
+		int length = r.length;
+		for(int i = 0; i < length; ++i)
+		{
+			m_str.new_element(r.get_element());
+			++r;
+		}
 
 		return *this;
 	}

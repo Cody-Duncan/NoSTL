@@ -196,6 +196,20 @@ namespace z
 		breakpoint_nop();
 	}
 
+	void test_range_copy()
+	{
+		static const int data_size = 20;
+		int data[data_size];
+		for(int i = 0; i < data_size; ++i)
+		{
+			data[i] = i;
+		}
+
+		range<int> r(data, 20);
+		static_array<int, 20> arr(r);
+		breakpoint_nop();
+	}
+
 	namespace test
 	{
 		void test_static_array()
@@ -212,6 +226,7 @@ namespace z
 			test_first_last();
 			test_get_range();
 			test_internal_array();
+			test_range_copy();
 		}
 	}
 }

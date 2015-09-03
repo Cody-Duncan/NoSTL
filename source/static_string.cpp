@@ -181,6 +181,17 @@ namespace z
 
 			breakpoint_nop();
 		}
+
+		void test_range_copy()
+		{
+			static const int data_size = 20;
+			char data[20] = "ABCDEFGHIJIHGFEDCBA";
+
+			range<char>r(data, data_size);
+			static_string<20> arr(r);
+
+			breakpoint_nop();
+		}
 	}
 
 	namespace test
@@ -199,6 +210,7 @@ namespace z
 			test_internal_array();
 			test_find();
 			test_starts_ends_contains();
+			test_range_copy();
 		}
 	}
 }
