@@ -27,6 +27,9 @@ namespace z
 
 	// ******************** find_first_of ********************
 
+	// ------------------------------
+	// find single value in a range
+
 	template<typename T, typename iterator_t>
 	range<const T, iterator_t> find_first_of(range<const T, iterator_t> search_range, const T& val)
 	{
@@ -52,6 +55,10 @@ namespace z
 		return make_range(const_cast<iterator_t>(result.iterator), result.length);
 	}
 
+
+	// ------------------------------
+	// find any of those in a range
+
 	template<typename T, typename iterator_t>
 	range<const T, iterator_t> find_first_of(range<const T, iterator_t> search_range, range<const T> values)
 	{
@@ -75,10 +82,6 @@ namespace z
 
 		return make_null_range(search_range);
 	}
-
-
-	// ------------------------------
-	// find any of those in a range
 
 	// (const range, non-const range)
 	template<typename T, typename iterator_t>
@@ -131,6 +134,8 @@ namespace z
 
 	// ******************** find_last_of ********************
 
+	// ------------------------------
+	// find single value in a range
 
 	template<typename T, typename iterator_t>
 	range<const T, iterator_t> find_last_of(range<const T, iterator_t> search_range, const T& val)
@@ -155,6 +160,10 @@ namespace z
 		return make_range(const_cast<iterator_t>(result.iterator), result.length);
 	}
 
+
+	// ------------------------------
+	// find any of those in a range
+
 	template<typename T, typename iterator_t>
 	range<const T, iterator_t> find_last_of(range<const T, iterator_t> search_range, range<const T> values)
 	{
@@ -176,10 +185,6 @@ namespace z
 
 		return make_null_range(search_range);
 	}
-
-
-	// ------------------------------
-	// find any of those in a range
 
 	// (const range, non-const range)
 	template<typename T, typename iterator_t>
