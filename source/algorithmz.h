@@ -14,9 +14,13 @@ Description:
 
 // ---------- includes ---------
 #include <type_traits>
+#include "range.h"
+#include "range_algorithms.h"
 
 namespace z
 {
+	// ******************** move ********************
+
 	template<class input_iter, class output_iter>
 	typename std::enable_if<!std::is_fundamental<output_iter>::value, output_iter>::type 
 		move(input_iter first, input_iter last, output_iter d_first)
@@ -46,6 +50,7 @@ namespace z
 		unsigned int num = last - first;
 		return (T*) memmove(d_first, first, num * sizeof(T));
 	}
+
 }
 
 #endif

@@ -13,6 +13,7 @@ Description:
 #define STATIC_ARRAY_H
 
 // ---------- includes ---------
+#include "z_primitives.h"
 #include "range.h"
 #include "z_assert.h"
 
@@ -24,44 +25,44 @@ namespace z
 {
 	
 
-	template<class T, unsigned int max_length>
+	template<class T, uint max_length>
 	struct static_array : protected base_array<T, static_array<T, max_length>>
 	{
 	public:
 		static_array();
 		~static_array();
 
-		static_array(const T*, unsigned int size);
+		static_array(const T*, uint size);
 		static_array(range<T>&);
 		static_array(const static_array&);
 		static_array(static_array&&);
 
 		//operator= , compiler generated
 		
-		unsigned int size() const;
-		unsigned int max_size() const;
+		uint size() const;
+		uint max_size() const;
 		bool is_empty() const;
 		bool is_full() const;
 
-		template<template<class, unsigned int> class array_type, unsigned int other_max_length>
+		template<template<class, uint> class array_type, uint other_max_length>
 		static_array& deep_copy(z::base_array<T, array_type<T, other_max_length>>& other);
 
-		template<unsigned int array_size>
+		template<uint array_size>
 		static_array& deep_copy(const T (&)[array_size]);
 
-		static_array& deep_copy(const T*, unsigned int size);
+		static_array& deep_copy(const T*, uint size);
 		static_array& deep_copy(range<T>&);
 		static_array& deep_copy(const static_array&);
 
-		void reconstruct_element(unsigned int index);
+		void reconstruct_element(uint index);
 		void reconstruct_array();
 		void zero_array();
 
-		T& get(unsigned int index);
-		const T& get(unsigned int index) const;
+		T& get(uint index);
+		const T& get(uint index) const;
 
-		T& operator[]( unsigned int index );
-		const T& operator[]( unsigned int index ) const;
+		T& operator[]( uint index );
+		const T& operator[]( uint index ) const;
 
 		T& first();
 		const T& first() const;
@@ -74,10 +75,10 @@ namespace z
 
 		range<T> get_range();
 		range<const T> get_range() const;
-		range<T> get_range(unsigned int index);
-		range<const T> get_range(unsigned int index) const;
-		range<T> get_range(unsigned int start_index, unsigned int end_index);
-		range<const T> get_range(unsigned int start_index, unsigned int end_index) const;
+		range<T> get_range(uint index);
+		range<const T> get_range(uint index) const;
+		range<T> get_range(uint start_index, uint end_index);
+		range<const T> get_range(uint start_index, uint end_index) const;
 
 		T* internal_array();
 		const T* internal_array() const;

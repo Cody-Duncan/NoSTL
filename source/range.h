@@ -31,6 +31,13 @@ namespace z
 			length(length)
 		{}
 
+		// allows non-const to be assigned to const type
+		template<typename other_T, typename other_iterator>
+		range(range<other_T, other_iterator*>& other) :
+			iterator(other.iterator),
+			length(other.length)
+		{}
+
 		T& operator*() const
 		{
 			return *iterator;
@@ -69,11 +76,11 @@ namespace z
 		range find_first_of(const T& val) const;
 		range find_first_of(const range<const T>& values) const;
 
-		range find_last_of(const T& val) const;
-		range find_last_of(const range<const T>& values) const;
-
 		template<unsigned int arr_length>
 		range find_first_of(const T(&values)[arr_length]) const;
+
+		range find_last_of(const T& val) const;
+		range find_last_of(const range<const T>& values) const;
 
 		template<unsigned int arr_length>
 		range find_last_of(const T(&values)[arr_length]) const;
@@ -90,8 +97,27 @@ namespace z
 	{
 		return range<T, T*>(iter, length);
 	}
+
+	template<typename T, typename I>
+	range<T, I> make_null_range(I iter, unsigned int length)
+	{
+		return range<T, I>(iter + length, 0);
+	}
+
+	template<typename T, typename I>
+	range<T, I> make_null_range(const range<T,I>& source_range)
+	{
+		return range<T, I>(source_range.iterator + source_range.length, 0);
+	}
+
+	template<typename T, typename I>
+	range<T, I> make_null_range(const range<T,I>* source_range)
+	{
+		return range<T, I>(source_range->iterator + source_range->length, 0);
+	}
 }
 
+#include "range_algorithms.h"
 #include "range.inl"
 
 #endif

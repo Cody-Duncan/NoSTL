@@ -19,6 +19,9 @@
     <Filter Include="Fundamental_Types\string">
       <UniqueIdentifier>{1e851715-eee0-42c3-8f0e-acb98ba0d3fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Macros">
+      <UniqueIdentifier>{6b182aab-d508-401f-ae85-e42f93391bca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debug_print.h">
@@ -26,9 +29,6 @@
     </ClInclude>
     <ClInclude Include="dyna_string.h">
       <Filter>Fundamental_Types\string</Filter>
-    </ClInclude>
-    <ClInclude Include="unused.h">
-      <Filter>Debugging</Filter>
     </ClInclude>
     <ClInclude Include="static_vector.h">
       <Filter>DataStructures</Filter>
@@ -48,11 +48,9 @@
     <ClInclude Include="z_primitives.h">
       <Filter>Fundamental_Types</Filter>
     </ClInclude>
-    <ClInclude Include="z_typedefs.h" />
     <ClInclude Include="z_assert.h">
       <Filter>Debugging</Filter>
     </ClInclude>
-    <ClInclude Include="z_std.h" />
     <ClInclude Include="allocator_heap.h">
       <Filter>Allocators</Filter>
     </ClInclude>
@@ -74,9 +72,23 @@
     <ClInclude Include="base_array.h">
       <Filter>DataStructures</Filter>
     </ClInclude>
-    <ClInclude Include="z_macros.h" />
     <ClInclude Include="str_util.h">
       <Filter>Fundamental_Types\string</Filter>
+    </ClInclude>
+    <ClInclude Include="unused.h">
+      <Filter>Macros</Filter>
+    </ClInclude>
+    <ClInclude Include="zero_struct.h">
+      <Filter>Macros</Filter>
+    </ClInclude>
+    <ClInclude Include="no_op.h">
+      <Filter>Macros</Filter>
+    </ClInclude>
+    <ClInclude Include="z_macros.h">
+      <Filter>Macros</Filter>
+    </ClInclude>
+    <ClInclude Include="range_algorithms.h">
+      <Filter>Algorithms</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -101,7 +113,6 @@
     <ClCompile Include="z_primitives.cpp">
       <Filter>Fundamental_Types</Filter>
     </ClCompile>
-    <ClCompile Include="z_typedefs.cpp" />
     <ClCompile Include="allocator_heap.cpp">
       <Filter>Allocators</Filter>
     </ClCompile>
@@ -125,7 +136,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
     <None Include="static_array.inl">
       <Filter>DataStructures</Filter>
     </None>

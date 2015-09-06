@@ -16,14 +16,8 @@ Description:
 #define Z_MACROS_H
 
 // ---------- includes ---------
-
-
-#define Zero_Struct(s) memset(&s, 0, sizeof(s));
-
-#ifdef _MSC_VER
-#define NO_OP __nop()
-#else
-#define NO_OP __asm nop
-#endif
+#include "no_op.h"
+#include "unused.h"
+#include "zero_struct.h"
 
 #endif

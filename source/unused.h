@@ -13,6 +13,6 @@ Description:
 #ifndef Z_UNUSED_H
 #define Z_UNUSED_H
 
-#define UNUSED(var) do { (void)(var); } while (0)
+#define unused(var) do { (void)(var); } while (0)
 
 #endif

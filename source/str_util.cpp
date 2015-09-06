@@ -1,3 +1,12 @@
+/*
+Author: Cody Duncan
+Date: September 6, 2015
+Copyright: N/A
+Witty Quote:
+Description:
+
+*/
+
 #include "str_util.h"
 #include "z_assert.h"
 

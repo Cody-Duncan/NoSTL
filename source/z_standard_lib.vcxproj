@@ -21,9 +21,11 @@
     <ClInclude Include="dyna_string.h" />
     <ClInclude Include="dyna_vector.h" />
     <ClInclude Include="allocator_heap.h" />
+    <ClInclude Include="no_op.h" />
     <ClInclude Include="range.h" />
     <ClInclude Include="allocator_slot.h" />
     <ClInclude Include="allocator_stack.h" />
+    <ClInclude Include="range_algorithms.h" />
     <ClInclude Include="static_array.h" />
     <ClInclude Include="static_map.h" />
     <ClInclude Include="static_string.h" />
@@ -31,11 +33,10 @@
     <ClInclude Include="str_util.h" />
     <ClInclude Include="unused.h" />
     <ClInclude Include="algorithmz.h" />
+    <ClInclude Include="zero_struct.h" />
     <ClInclude Include="z_assert.h" />
     <ClInclude Include="z_macros.h" />
     <ClInclude Include="z_primitives.h" />
-    <ClInclude Include="z_std.h" />
-    <ClInclude Include="z_typedefs.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dyna_map.cpp" />
@@ -52,10 +53,8 @@
     <ClCompile Include="algorithmz.cpp" />
     <ClCompile Include="str_util.cpp" />
     <ClCompile Include="z_primitives.cpp" />
-    <ClCompile Include="z_typedefs.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
     <None Include="range.inl" />
     <None Include="static_array.inl" />
     <None Include="static_string.inl" />
