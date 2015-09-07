@@ -2,7 +2,6 @@
 	#include "static_string.h"
 #endif
 
-#include <string.h>
 #include "str_util.h"
 
 namespace z
@@ -190,6 +189,9 @@ namespace z
 	template<unsigned int str_max_length>
 	static_string<str_max_length>& static_string<str_max_length>::append(const char* s)
 	{
+		if(s == nullptr)
+			return *this;
+
 		int append_size = 0;
 		const char* temp = s;
 
@@ -208,6 +210,7 @@ namespace z
 	template<unsigned int str_max_length>
 	static_string<str_max_length>& static_string<str_max_length>::append(const char* s, unsigned int n)
 	{
+		z_assert(s != nullptr || n == 0);
 		z_assert(n <= (max_str_size() - size()));
 
 		for(unsigned int i = 0; i < n; ++i)
@@ -511,6 +514,12 @@ namespace z
 				m_str.remove_last();
 			}
 		}
+	}
+
+	template<unsigned int str_max_length>
+	std::string static_string<str_max_length>::str() const
+	{
+		return std::move(std::string(c_str(), size()));
 	}
 
 	template<unsigned int str_max_length>

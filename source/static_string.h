@@ -16,6 +16,7 @@ Description:
 #include "z_primitives.h"
 #include "z_assert.h"
 #include "static_vector.h"
+#include <string.h> // for conversion to std::string
 
 namespace z
 {
@@ -151,6 +152,8 @@ namespace z
 		bool contains(const char* str) const;
 
 		void recheck_string_size();
+
+		std::string str() const;
 
 		char* c_str();
 		const char* c_str() const;
