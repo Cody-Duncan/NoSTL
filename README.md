@@ -1,4 +1,5 @@
-# Z Standard Library
+# NoSTL
+(formerly z_standard lib)
 A standard library for use in memory conscious applications. 
 
 This library will develop along-side other projects. May work on it specifically, but for now I will integrate types as I make them.
