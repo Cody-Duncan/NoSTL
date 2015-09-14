@@ -19,45 +19,45 @@ Description:
 
 namespace nostl
 {
-	template<typename T, typename iterator_t = T*>
+	template <typename T, typename iterator_t = T *>
 	struct range
 	{
 		typedef iterator_t iterator_type;
 		iterator_t iterator;
 		int length;
 
-		range(const iterator_t& iter, int length) :
-			iterator(iter),
-			length(length)
-		{}
+		range(const iterator_t &iter, int length) : iterator(iter),
+													length(length)
+		{
+		}
 
 		// allows non-const to be assigned to const type
-		template<typename other_T, typename other_iterator>
-		range(range<other_T, other_iterator*>& other) :
-			iterator(other.iterator),
-			length(other.length)
-		{}
+		template <typename other_T, typename other_iterator>
+		range(range<other_T, other_iterator *> &other) : iterator(other.iterator),
+														 length(other.length)
+		{
+		}
 
-		T& operator*() const
+		T &operator*() const
 		{
 			return *iterator;
 		}
 
-		T& get_element() const
+		T &get_element() const
 		{
 			return *iterator;
 		}
 
 		bool is_end() { return length == 0; }
 
-		range& operator++()
+		range &operator++()
 		{
 			++iterator;
 			--length;
 			return *this;
 		}
 
-		range& operator++(int)
+		range &operator++(int)
 		{
 			iterator_t temp = iterator;
 			int temp_len = length;
@@ -66,52 +66,51 @@ namespace nostl
 			return range(temp, temp_len);
 		}
 
-		bool operator==(const range& it)
+		bool operator==(const range &it)
 		{
-			return 
-				this->iterator == it.iterator && 
-				this->length == it.length;
+			return this->iterator == it.iterator &&
+				   this->length == it.length;
 		}
 
-		range find_first_of(const T& val) const;
-		range find_first_of(const range<const T>& values) const;
+		range find_first_of(const T &val) const;
+		range find_first_of(const range<const T> &values) const;
 
-		template<unsigned int arr_length>
+		template <unsigned int arr_length>
 		range find_first_of(const T(&values)[arr_length]) const;
 
-		range find_last_of(const T& val) const;
-		range find_last_of(const range<const T>& values) const;
+		range find_last_of(const T &val) const;
+		range find_last_of(const range<const T> &values) const;
 
-		template<unsigned int arr_length>
+		template <unsigned int arr_length>
 		range find_last_of(const T(&values)[arr_length]) const;
 	};
 
-	template<typename T, typename I>
+	template <typename T, typename I>
 	range<T, I> make_range(I iter, unsigned int length)
 	{
 		return range<T, I>(iter, length);
 	}
 
-	template<typename T>
-	range<T, T*> make_range(T* iter, unsigned int length)
+	template <typename T>
+	range<T, T *> make_range(T *iter, unsigned int length)
 	{
-		return range<T, T*>(iter, length);
+		return range<T, T *>(iter, length);
 	}
 
-	template<typename T, typename I>
+	template <typename T, typename I>
 	range<T, I> make_null_range(I iter, unsigned int length)
 	{
 		return range<T, I>(iter + length, 0);
 	}
 
-	template<typename T, typename I>
-	range<T, I> make_null_range(const range<T,I>& source_range)
+	template <typename T, typename I>
+	range<T, I> make_null_range(const range<T, I> &source_range)
 	{
 		return range<T, I>(source_range.iterator + source_range.length, 0);
 	}
 
-	template<typename T, typename I>
-	range<T, I> make_null_range(const range<T,I>* source_range)
+	template <typename T, typename I>
+	range<T, I> make_null_range(const range<T, I> *source_range)
 	{
 		return range<T, I>(source_range->iterator + source_range->length, 0);
 	}

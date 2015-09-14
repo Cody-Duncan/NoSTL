@@ -22,7 +22,7 @@ Description:
 
 namespace nostl
 {
-	template<class T, uint max_length>
+	template <class T, uint max_length>
 	struct static_vector
 	{
 	public:
@@ -34,7 +34,7 @@ namespace nostl
 		static_vector(static_vector&&);
 
 		//operator=, compiler generated
-		
+
 		uint size() const;
 		uint max_size() const;
 		uint size_remaining() const;
@@ -45,11 +45,11 @@ namespace nostl
 		void clear_zero();
 		void clear_reconstruct();
 
-		template<template<class, uint> class array_type, uint other_max_length>
+		template <template <class, uint> class array_type, uint other_max_length>
 		static_vector& deep_copy(nostl::base_array<T, array_type<T, other_max_length>>& other);
 
-		template<uint array_size>
-		static_vector& deep_copy(const T (&)[array_size]);
+		template <uint array_size>
+		static_vector& deep_copy(const T(&)[array_size]);
 
 		static_vector& deep_copy(const T*, uint size);
 		static_vector& deep_copy(const static_vector&);

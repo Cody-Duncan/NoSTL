@@ -177,8 +177,8 @@ namespace nostl
 			static_vector<int, 20> arr(data, data_size);
 
 			range<int> test_range_base = arr.get_range();
-			range<int> test_range_index = arr.get_range(data_size/2);
-			range<int> test_range_two_index = arr.get_range(1, data_size-1);
+			range<int> test_range_index = arr.get_range(data_size / 2);
+			range<int> test_range_two_index = arr.get_range(1, data_size - 1);
 			breakpoint_nop();
 		}
 
@@ -192,7 +192,7 @@ namespace nostl
 			}
 
 			static_vector<int, 20> arr(data, data_size);
-			int* ptr = arr.internal_array();
+			int *ptr = arr.internal_array();
 			breakpoint_nop();
 		}
 
@@ -211,7 +211,7 @@ namespace nostl
 
 			static_vector<int, 20> arr(data, data_size);
 			bool empty = arr.is_empty();
-			breakpoint_nop();	
+			breakpoint_nop();
 		}
 
 		void test_clear()
@@ -259,7 +259,7 @@ namespace nostl
 			static_vector<int, 20> arr;
 			for(unsigned int i = 0; i < arr.max_size(); ++i)
 			{
-				arr.insert_element(0,i);
+				arr.insert_element(0, i);
 			}
 			breakpoint_nop();
 		}
@@ -288,7 +288,6 @@ namespace nostl
 			}
 			breakpoint_nop();
 		}
-
 	}
 
 	namespace test

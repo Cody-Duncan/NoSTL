@@ -177,8 +177,8 @@ namespace nostl
 		static_array<int, 20> arr(data, data_size);
 
 		range<int> test_range_base = arr.get_range();
-		range<int> test_range_index = arr.get_range(data_size/2);
-		range<int> test_range_two_index = arr.get_range(1, data_size-1);
+		range<int> test_range_index = arr.get_range(data_size / 2);
+		range<int> test_range_two_index = arr.get_range(1, data_size - 1);
 		breakpoint_nop();
 	}
 
@@ -192,7 +192,7 @@ namespace nostl
 		}
 
 		static_array<int, 20> arr(data, data_size);
-		int* ptr = arr.internal_array();
+		int *ptr = arr.internal_array();
 		breakpoint_nop();
 	}
 

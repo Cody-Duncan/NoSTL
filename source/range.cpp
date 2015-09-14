@@ -25,7 +25,7 @@ namespace nostl
 		// non-const
 
 		range<char> result0 = test.find_first_of('l');
-		range<char> result1 =test.find_last_of('l');
+		range<char> result1 = test.find_last_of('l');
 
 		range<char> result2 =test.find_first_of(search_range);
 		range<char> result3 =test.find_last_of(const_search_range);

@@ -22,21 +22,21 @@ Description:
 
 #if defined(_WIN32)
 
-	inline void internal_debug_print(const char* szFormat, ...)
-	{
-		char szBuff[1024];
-		va_list arg;
-		va_start(arg, szFormat);
-		_vsnprintf_s(szBuff, sizeof(szBuff), szFormat, arg);
-		va_end(arg);
+inline void internal_debug_print(const char* szFormat, ...)
+{
+	char szBuff[1024];
+	va_list arg;
+	va_start(arg, szFormat);
+	_vsnprintf_s(szBuff, sizeof(szBuff), szFormat, arg);
+	va_end(arg);
 
-		OutputDebugString(szBuff);
-	}
+	OutputDebugString(szBuff);
+}
 
-	#define debug_print(message, ...) internal_debug_print(message, __VA_ARGS__)
+#define debug_print(message, ...) internal_debug_print(message, __VA_ARGS__)
 
 #else
-	#define debug_print(message, ...) static_assert(false, "No implementation of debug_print or assert(condition, message) for this platform")
+#define debug_print(message, ...) static_assert(false, "No implementation of debug_print or assert(condition, message) for this platform")
 #endif
 //END if defined(_WIN32)
 
