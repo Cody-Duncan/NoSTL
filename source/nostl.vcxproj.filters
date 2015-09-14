@@ -45,12 +45,6 @@
     <ClInclude Include="static_map.h">
       <Filter>DataStructures</Filter>
     </ClInclude>
-    <ClInclude Include="z_primitives.h">
-      <Filter>Fundamental_Types</Filter>
-    </ClInclude>
-    <ClInclude Include="z_assert.h">
-      <Filter>Debugging</Filter>
-    </ClInclude>
     <ClInclude Include="allocator_heap.h">
       <Filter>Allocators</Filter>
     </ClInclude>
@@ -84,11 +78,17 @@
     <ClInclude Include="no_op.h">
       <Filter>Macros</Filter>
     </ClInclude>
-    <ClInclude Include="z_macros.h">
-      <Filter>Macros</Filter>
-    </ClInclude>
     <ClInclude Include="range_algorithms.h">
       <Filter>Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="macros.h">
+      <Filter>Macros</Filter>
+    </ClInclude>
+    <ClInclude Include="primitives.h">
+      <Filter>Fundamental_Types</Filter>
+    </ClInclude>
+    <ClInclude Include="assert.h">
+      <Filter>Debugging</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -110,9 +110,6 @@
     <ClCompile Include="static_vector.cpp">
       <Filter>DataStructures</Filter>
     </ClCompile>
-    <ClCompile Include="z_primitives.cpp">
-      <Filter>Fundamental_Types</Filter>
-    </ClCompile>
     <ClCompile Include="allocator_heap.cpp">
       <Filter>Allocators</Filter>
     </ClCompile>
@@ -133,6 +130,9 @@
     </ClCompile>
     <ClCompile Include="str_util.cpp">
       <Filter>Fundamental_Types\string</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives.cpp">
+      <Filter>Fundamental_Types</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

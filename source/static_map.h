@@ -15,7 +15,7 @@ Description:
 // ---------- includes ---------
 
 
-namespace z
+namespace nostl
 {
 
 }

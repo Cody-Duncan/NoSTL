@@ -7,9 +7,9 @@ Description:
 
 */
 
-#include "z_primitives.h"
+#include "primitives.h"
 
-namespace z
+namespace nostl
 {
 
 }

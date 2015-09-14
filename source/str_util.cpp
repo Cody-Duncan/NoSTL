@@ -8,7 +8,7 @@ Description:
 */
 
 #include "str_util.h"
-#include "z_assert.h"
+#include "assert.h"
 
 //search for a substring, starting at the end
 //returns the index of the start of the substring, or -1 if not found

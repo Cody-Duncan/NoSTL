@@ -15,13 +15,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="assert.h" />
     <ClInclude Include="base_array.h" />
     <ClInclude Include="debug_print.h" />
     <ClInclude Include="dyna_map.h" />
     <ClInclude Include="dyna_string.h" />
     <ClInclude Include="dyna_vector.h" />
     <ClInclude Include="allocator_heap.h" />
+    <ClInclude Include="macros.h" />
     <ClInclude Include="no_op.h" />
+    <ClInclude Include="primitives.h" />
     <ClInclude Include="range.h" />
     <ClInclude Include="allocator_slot.h" />
     <ClInclude Include="allocator_stack.h" />
@@ -34,15 +37,13 @@
     <ClInclude Include="unused.h" />
     <ClInclude Include="algorithmz.h" />
     <ClInclude Include="zero_struct.h" />
-    <ClInclude Include="z_assert.h" />
-    <ClInclude Include="z_macros.h" />
-    <ClInclude Include="z_primitives.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dyna_map.cpp" />
     <ClCompile Include="dyna_string.cpp" />
     <ClCompile Include="dyna_vector.cpp" />
     <ClCompile Include="allocator_heap.cpp" />
+    <ClCompile Include="primitives.cpp" />
     <ClCompile Include="range.cpp" />
     <ClCompile Include="allocator_slot.cpp" />
     <ClCompile Include="allocator_stack.cpp" />
@@ -52,7 +53,6 @@
     <ClCompile Include="static_vector.cpp" />
     <ClCompile Include="algorithmz.cpp" />
     <ClCompile Include="str_util.cpp" />
-    <ClCompile Include="z_primitives.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="range.inl" />
@@ -63,7 +63,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{46CE1275-7D61-49DF-B7DE-578B8F7B497A}</ProjectGuid>
     <RootNamespace>NoSTL</RootNamespace>
-    <ProjectName>z_standard</ProjectName>
+    <ProjectName>nostl</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

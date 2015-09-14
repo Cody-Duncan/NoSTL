@@ -15,7 +15,7 @@ Description:
 // ---------- includes ---------
 #include <unordered_map>
 
-namespace z
+namespace nostl
 {
 	template<typename Key_t, typename Value_t>
 	using dyna_map = std::unordered_map<Key_t, Value_t>;

@@ -6,7 +6,7 @@
 
 #include "algorithmz.h"
 
-namespace z
+namespace nostl
 {
 	template<class T, uint max_length>
 	static_vector<T, max_length>::static_vector() :
@@ -105,7 +105,7 @@ namespace z
 
 	template<class T, uint max_length>
 	template<template<class, uint> class array_type, uint other_max_length>
-	static_vector<T, max_length>& static_vector<T, max_length>::deep_copy(z::base_array<T, array_type<T, other_max_length>>& other)
+	static_vector<T, max_length>& static_vector<T, max_length>::deep_copy(nostl::base_array<T, array_type<T, other_max_length>>& other)
 	{
 		// do not static_assert the max_lengths. other may have a larger capacity, but fewer elements.
 		return deep_copy(other.internal_array(), other.size());
@@ -353,7 +353,7 @@ namespace z
 		T* space_location = m_data_array + index;
 		T* end_location = m_data_array + m_data.max_size();
 
-		z::move(space_location, end_location - 1, space_location + 1); // shift elements right at index
+		nostl::move(space_location, end_location - 1, space_location + 1); // shift elements right at index
 
 		++m_size;
 
@@ -397,7 +397,7 @@ namespace z
 		T* space_location = m_data_array + index;
 		T* end_location = m_data_array + m_data.max_size();
 
-		z::move(space_location + 1, end_location, space_location); // shift elements left at index
+		nostl::move(space_location + 1, end_location, space_location); // shift elements left at index
 
 		--m_size;
 	}
@@ -413,7 +413,7 @@ namespace z
 		T* remove_end   = m_data_array + end_index;
 		T* end_location = m_data_array + m_data.max_size();
 
-		z::move(remove_end, end_location, remove_start); // shift elements left at index
+		nostl::move(remove_end, end_location, remove_start); // shift elements left at index
 
 		--m_size;
 	}

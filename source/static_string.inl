@@ -4,7 +4,7 @@
 
 #include "str_util.h"
 
-namespace z
+namespace nostl
 {
 	template<unsigned int str_max_length>
 	static_string<str_max_length>::static_string()
@@ -119,7 +119,7 @@ namespace z
 
 	template<unsigned int str_max_length>
 	template<template<unsigned int> class str_type, unsigned int other_max_length>
-	static_string<str_max_length>& static_string<str_max_length>::deep_copy(z::base_string<str_type<other_max_length>>& other)
+	static_string<str_max_length>& static_string<str_max_length>::deep_copy(nostl::base_string<str_type<other_max_length>>& other)
 	{
 		m_str.deep_copy(other.c_str(), other.size());
 		return *this;
@@ -363,7 +363,7 @@ namespace z
 
 	template<unsigned int str_max_length>
 	template<template<unsigned int> class str_type, unsigned int other_max_length>
-	range<char> static_string<str_max_length>::find(const z::base_string<str_type<other_max_length>>& other)
+	range<char> static_string<str_max_length>::find(const nostl::base_string<str_type<other_max_length>>& other)
 	{
 		const static_string<str_max_length>* this_ptr = const_cast<const static_string<str_max_length>*>(this);
 		range<const char> result = this_ptr->find(other.c_str());
@@ -372,7 +372,7 @@ namespace z
 
 	template<unsigned int str_max_length>
 	template<template<unsigned int> class str_type, unsigned int other_max_length>
-	range<const char> static_string<str_max_length>::find(const z::base_string<str_type<other_max_length>>& other) const
+	range<const char> static_string<str_max_length>::find(const nostl::base_string<str_type<other_max_length>>& other) const
 	{
 		return find(other.c_str());
 	}
@@ -480,7 +480,7 @@ namespace z
 	template<unsigned int str_max_length>
 	bool static_string<str_max_length>::contains(const char* str) const
 	{
-		z::range<const char> range = find(str);
+		nostl::range<const char> range = find(str);
 		return !range.is_end();
 	}
 

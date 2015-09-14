@@ -9,7 +9,7 @@ Description:
 
 #include "allocator_heap.h"
 
-namespace z
+namespace nostl
 {
 
 }

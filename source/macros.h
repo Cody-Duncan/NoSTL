@@ -12,8 +12,8 @@ Description:
 
 #pragma once
 
-#ifndef Z_MACROS_H
-#define Z_MACROS_H
+#ifndef MACROS_H
+#define MACROS_H
 
 // ---------- includes ---------
 #include "no_op.h"

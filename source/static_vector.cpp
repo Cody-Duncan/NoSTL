@@ -9,7 +9,7 @@ Description:
 
 #include "static_vector.h"
 
-namespace z
+namespace nostl
 {
 	namespace test_static_vector
 	{

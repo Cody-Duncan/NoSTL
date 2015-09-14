@@ -9,7 +9,7 @@ Description:
 
 #include "static_map.h"
 
-namespace z
+namespace nostl
 {
 
 }

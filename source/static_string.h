@@ -13,12 +13,12 @@ Description:
 #define STATIC_STRING_H
 
 // ---------- includes ---------
-#include "z_primitives.h"
-#include "z_assert.h"
+#include "primitives.h"
+#include "assert.h"
 #include "static_vector.h"
 #include <string.h> // for conversion to std::string
 
-namespace z
+namespace nostl
 {
 	template<typename derived>
 	struct base_string
@@ -84,7 +84,7 @@ namespace z
 		bool is_full() const;
 
 		template<template<unsigned int> class str_type, unsigned int other_max_length>
-		static_string& deep_copy(z::base_string<str_type<other_max_length>>& other);
+		static_string& deep_copy(nostl::base_string<str_type<other_max_length>>& other);
 
 		template<unsigned int array_size>
 		static_string& deep_copy(const char (&)[array_size]);
@@ -129,10 +129,10 @@ namespace z
 		range<const char> find_char_reverse(char char_to_find) const;
 
 		template<template<unsigned int> class str_type, unsigned int other_max_length>
-		range<char> find(const z::base_string<str_type<other_max_length>>& other);
+		range<char> find(const nostl::base_string<str_type<other_max_length>>& other);
 
 		template<template<unsigned int> class str_type, unsigned int other_max_length>
-		range<const char> find(const z::base_string<str_type<other_max_length>>& other) const;
+		range<const char> find(const nostl::base_string<str_type<other_max_length>>& other) const;
 
 		range<char> find(const char* other);
 		range<const char> find(const char* other) const;
@@ -165,7 +165,7 @@ namespace z
 
 #include "static_string.inl"
 
-namespace z
+namespace nostl
 {
 	typedef static_string<64> string;
 
@@ -178,9 +178,9 @@ namespace z
 	typedef static_string<2048> string_longlong;
 
 	template<unsigned int l>
-	z::string create_str(const char (&d)[l])
+	nostl::string create_str(const char (&d)[l])
 	{
-		return z::string(d);
+		return nostl::string(d);
 	}
 
 	inline unsigned int hash_string(const char *string, size_t len)
@@ -205,9 +205,9 @@ namespace std
 	struct hash;
 
 	template <unsigned int str_max_length>
-	struct hash<z::static_string<str_max_length>>
+	struct hash<nostl::static_string<str_max_length>>
 	{
-		std::size_t operator()(const z::static_string<str_max_length>& k) const
+		std::size_t operator()(const nostl::static_string<str_max_length>& k) const
 		{
 			using std::size_t;
 			using std::hash;

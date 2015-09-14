@@ -15,7 +15,7 @@ Description:
 // ---------- includes ---------
 #include <vector>
 
-namespace z
+namespace nostl
 {
 	template<typename T>
 	using dyna_vector = std::vector<T>;

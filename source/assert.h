@@ -9,8 +9,8 @@ Description:
 
 #pragma once
 
-#ifndef Z_ASSERT_H
-#define Z_ASSERT_H
+#ifndef ASSERT_H
+#define ASSERT_H
 
 #ifdef _DEBUG
 

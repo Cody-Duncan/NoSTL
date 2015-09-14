@@ -9,7 +9,7 @@ Description:
 
 #include "dyna_map.h"
 
-namespace z
+namespace nostl
 {
 
 }

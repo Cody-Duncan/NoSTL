@@ -11,7 +11,7 @@ Description:
 #include "static_array.h"
 #include <vector>
 
-namespace z
+namespace nostl
 {
 	struct test_struct
 	{

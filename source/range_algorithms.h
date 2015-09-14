@@ -16,7 +16,7 @@ Description:
 #include <type_traits>
 #include "range.h"
 
-namespace z
+namespace nostl
 {
 
 
@@ -115,7 +115,7 @@ namespace z
 	template<typename T, typename iterator_t, unsigned int arr_length>
 	range<const T, iterator_t> find_first_of(range<const T, iterator_t> search_range, const T(&values)[arr_length])
 	{		
-		return z::find_first_of(search_range, make_range(values, arr_length));
+		return nostl::find_first_of(search_range, make_range(values, arr_length));
 	}
 
 	// (non-const range, const array)
@@ -218,7 +218,7 @@ namespace z
 	template<typename T, typename iterator_t, unsigned int arr_length>
 	range<const T, iterator_t> find_last_of(range<const T, iterator_t> search_range, const T(&values)[arr_length])
 	{		
-		return z::find_last_of(search_range, make_range(values, arr_length));
+		return nostl::find_last_of(search_range, make_range(values, arr_length));
 	}
 
 	// (non-const range, const array)

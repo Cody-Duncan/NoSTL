@@ -9,7 +9,7 @@ Description:
 
 #include "static_string.h"
 
-namespace z
+namespace nostl
 {
 	namespace test_static_string
 	{

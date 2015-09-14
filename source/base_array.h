@@ -16,7 +16,7 @@ Description:
 
 // ---------- definitions ----------
 
-namespace z
+namespace nostl
 {
 	template<typename T, typename derived>
 	struct base_array

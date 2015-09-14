@@ -9,8 +9,8 @@ Description:
 
 #pragma once
 
-#ifndef Z_DEBUG_PRINT_H
-#define Z_DEBUG_PRINT_H
+#ifndef DEBUG_PRINT_H
+#define DEBUG_PRINT_H
 
 // ---------- includes ---------
 #if defined(_WIN32)

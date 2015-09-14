@@ -17,7 +17,7 @@ Description:
 #include <type_traits>
 #include <iterator>
 
-namespace z
+namespace nostl
 {
 	template<typename T, typename iterator_t = T*>
 	struct range

@@ -9,8 +9,8 @@ Description:
 
 #pragma once
 
-#ifndef Z_NO_OP_H
-#define Z_NO_OP_H
+#ifndef NO_OP_H
+#define NO_OP_H
 
 #ifdef _MSC_VER
 #define no_op __nop()

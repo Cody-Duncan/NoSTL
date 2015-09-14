@@ -13,14 +13,14 @@ Description:
 #define STATIC_VECTOR_H
 
 // ---------- includes ---------
-#include "z_primitives.h"
+#include "primitives.h"
 #include "range.h"
-#include "z_assert.h"
+#include "assert.h"
 
 #include "base_array.h"
 #include "static_array.h"
 
-namespace z
+namespace nostl
 {
 	template<class T, uint max_length>
 	struct static_vector
@@ -46,7 +46,7 @@ namespace z
 		void clear_reconstruct();
 
 		template<template<class, uint> class array_type, uint other_max_length>
-		static_vector& deep_copy(z::base_array<T, array_type<T, other_max_length>>& other);
+		static_vector& deep_copy(nostl::base_array<T, array_type<T, other_max_length>>& other);
 
 		template<uint array_size>
 		static_vector& deep_copy(const T (&)[array_size]);
@@ -108,7 +108,7 @@ namespace z
 
 // --------- testing functions --------
 
-namespace z
+namespace nostl
 {
 	namespace test
 	{

@@ -17,7 +17,7 @@ Description:
 #include "range.h"
 #include "range_algorithms.h"
 
-namespace z
+namespace nostl
 {
 	// ******************** move ********************
 

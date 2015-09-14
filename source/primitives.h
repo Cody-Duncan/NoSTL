@@ -9,12 +9,12 @@ Description:
 
 #pragma once
 
-#ifndef Z_PRIMITIVES_H
-#define Z_PRIMITIVES_H
+#ifndef PRIMITIVES_H
+#define PRIMITIVES_H
 
 // ---------- includes ---------
 
-namespace z
+namespace nostl
 {
 	typedef unsigned int uint;
 	typedef unsigned char uchar;
@@ -33,34 +33,34 @@ namespace z
 #ifndef DONT_USE_Z_PRIMITIVE_GLOBAL_ALIAS
 
 //unsigned int
-using uint = z::uint;
+using uint = nostl::uint;
 
 //unsigned char
-using uchar = z::uchar;
+using uchar = nostl::uchar;
 
 //char
-using int8 =  z::int8;
+using int8 =  nostl::int8;
 
 //short
-using int16 = z::int16;
+using int16 = nostl::int16;
 
 //int
-using int32 = z::int32;
+using int32 = nostl::int32;
 
 //__int64
-using int64 = z::int64;
+using int64 = nostl::int64;
 
 //unsigned char
-using uint8 =  z::uint8;
+using uint8 =  nostl::uint8;
 
 //unsigned short
-using uint16 = z::uint16;
+using uint16 = nostl::uint16;
 
 //unsigned int
-using uint32 = z::uint32;
+using uint32 = nostl::uint32;
 
 //unsigned __int64
-using uint64 = z::uint64;
+using uint64 = nostl::uint64;
 
 #endif
 

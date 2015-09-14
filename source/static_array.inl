@@ -2,7 +2,7 @@
 	#include "static_array.h"
 #endif
 
-namespace z
+namespace nostl
 {
 	template<class T, uint max_length>
 	static_array<T, max_length>::static_array()
@@ -51,7 +51,7 @@ namespace z
 
 	template<class T, uint max_length>
 	template<template<class, uint> class array_type, uint other_max_length>
-	static_array<T, max_length>& static_array<T, max_length>::deep_copy(z::base_array<T, array_type<T, other_max_length>>& other)
+	static_array<T, max_length>& static_array<T, max_length>::deep_copy(nostl::base_array<T, array_type<T, other_max_length>>& other)
 	{
 		// do not static_assert the max_lengths. other may have a larger capacity, but fewer elements.
 		return deep_copy(other.internal_array(), other.size());

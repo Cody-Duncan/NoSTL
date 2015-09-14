@@ -9,7 +9,7 @@ Description:
 
 #include "dyna_vector.h"
 
-namespace z
+namespace nostl
 {
 
 }

@@ -9,8 +9,8 @@ Description:
 
 #pragma once
 
-#ifndef Z_ZERO_STRUCT_H
-#define Z_ZERO_STRUCT_H
+#ifndef ZERO_STRUCT_H
+#define ZERO_STRUCT_H
 
 #define zero_struct(s) memset(&s, 0, sizeof(s));
 

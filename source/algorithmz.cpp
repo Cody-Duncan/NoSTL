@@ -9,7 +9,7 @@ Description:
 
 #include "algorithmz.h"
 
-namespace z
+namespace nostl
 {
 
 	void test()

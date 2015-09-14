@@ -9,7 +9,7 @@ Description:
 
 #include "dyna_string.h"
 
-namespace z
+namespace nostl
 {
 
 }

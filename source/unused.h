@@ -10,8 +10,8 @@ Description:
 
 #pragma once
 
-#ifndef Z_UNUSED_H
-#define Z_UNUSED_H
+#ifndef UNUSED_H
+#define UNUSED_H
 
 #define unused(var) do { (void)(var); } while (0)
 

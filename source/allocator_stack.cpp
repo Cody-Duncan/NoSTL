@@ -9,7 +9,7 @@ Description:
 
 #include "allocator_stack.h"
 
-namespace z
+namespace nostl
 {
 
 }
