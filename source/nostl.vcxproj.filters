@@ -164,4 +164,7 @@
       <Filter>Fundamental_Types\string</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="nostl.natvis" />
+  </ItemGroup>
 </Project>

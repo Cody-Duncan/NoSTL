@@ -63,6 +63,9 @@
     <None Include="static_string.inl" />
     <None Include="static_vector.inl" />
   </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="nostl.natvis" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{46CE1275-7D61-49DF-B7DE-578B8F7B497A}</ProjectGuid>
     <RootNamespace>NoSTL</RootNamespace>

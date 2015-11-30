@@ -44,7 +44,11 @@ Description:
 	#define z_static_assert(condition, message) \
 		static_assert(condition, message)
 
-	#define breakpoint_nop() __asm nop
+	#ifdef _WIN64
+		#define breakpoint_nop() __nop()
+	#elif _WIN32 
+		#define breakpoint_nop() __asm nop
+	#endif
 
 #else
 #define debug_break()

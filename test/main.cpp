@@ -6,18 +6,20 @@
 #include "nostl\static_array.h"
 #include "nostl\static_vector.h"
 #include "nostl\static_string.h"
+#include "nostl\static_map.h"
 
 #define zero_struct(a) //memset(&a, 0, sizeof(a));
 
 
 int main(int argc, char* argv[])
 {
-	nostl::static_array<int, 2> test;
+	std::cout << "beginning test" << std::endl;
 
-	//z::test::test_static_array();
-	nostl::test::test_static_vector();
-
-	nostl::test::test_static_string();
-
-	nostl::static_string<20> test_str("  ABCDEF");
+	//nostl::test::test_static_array();
+	//nostl::test::test_static_vector();
+	//nostl::test::test_static_string();
+	nostl::test::test_static_map();
+	
+	char i[128];
+	std::cin >> i;
 }

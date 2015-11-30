@@ -231,3 +231,5 @@ FakesAssemblies/
 
 include
 lib
+/test_include
+/*.opendb

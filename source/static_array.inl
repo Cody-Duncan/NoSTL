@@ -52,6 +52,18 @@ namespace nostl
 	}
 
 	template <class T, uint max_length>
+	bool static_array<T, max_length>::is_empty() const
+	{
+		return size() == 0;
+	}
+
+	template <class T, uint max_length>
+	bool static_array<T, max_length>::is_full() const
+	{
+		return size() == max_length;
+	}
+
+	template <class T, uint max_length>
 	template <template <class, uint> class array_type, uint other_max_length>
 	static_array<T, max_length> &static_array<T, max_length>::deep_copy(nostl::base_array<T, array_type<T, other_max_length>> &other)
 	{
