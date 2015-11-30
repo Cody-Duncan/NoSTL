@@ -35,9 +35,8 @@ namespace nostl
 	}
 
 	template<unsigned int str_max_length>
-	static_string<str_max_length>::static_string(range<char> range)
+	static_string<str_max_length>::static_string(range<char*> range)
 	{
-		z_assert(range.length <= str_max_length);
 		clear_zero();
 		append(range);
 	}
@@ -225,15 +224,11 @@ namespace nostl
 	}
 
 	template<unsigned int str_max_length>
-	static_string<str_max_length>& static_string<str_max_length>::append(range<char> r)
+	static_string<str_max_length>& static_string<str_max_length>::append(range<char*> r)
 	{
-		z_assert((unsigned int)r.length <= (max_size() - size()));
-
-		int length = r.length;
-		for(int i = 0; i < length; ++i)
+		for(; r.is_valid(); r.pop_front())
 		{
 			m_str.new_element(r.get_element());
-			++r;
 		}
 
 		return *this;
@@ -278,59 +273,59 @@ namespace nostl
 	}
 
 	template<unsigned int str_max_length>
-	range<char> static_string<str_max_length>::get_range()
+	range<char*> static_string<str_max_length>::get_range()
 	{
 		return m_str.get_range();
 	}
 
 	template<unsigned int str_max_length>
-	range<const char> static_string<str_max_length>::get_range() const
+	range<const char*> static_string<str_max_length>::get_range() const
 	{
 		return m_str.get_range();
 	}
 	
 	template<unsigned int str_max_length>
-	range<char> static_string<str_max_length>::get_range(unsigned int index)
+	range<char*> static_string<str_max_length>::get_range(unsigned int index)
 	{
 		return m_str.get_range(index);
 	}
 
 	template<unsigned int str_max_length>
-	range<const char> static_string<str_max_length>::get_range(unsigned int index) const
+	range<const char*> static_string<str_max_length>::get_range(unsigned int index) const
 	{
 		return m_str.get_range(index);
 	}
 
 	template<unsigned int str_max_length>
-	range<char> static_string<str_max_length>::get_range(unsigned int start_index, unsigned int end_index)
+	range<char*> static_string<str_max_length>::get_range(unsigned int start_index, unsigned int end_index)
 	{
 		return m_str.get_range(start_index, end_index);
 	}
 
 	template<unsigned int str_max_length>
-	range<const char> static_string<str_max_length>::get_range(unsigned int start_index, unsigned int end_index) const
+	range<const char*> static_string<str_max_length>::get_range(unsigned int start_index, unsigned int end_index) const
 	{
 		return m_str.get_range(start_index, end_index);
 	}
 
 	template<unsigned int str_max_length>
-	range<char> static_string<str_max_length>::find_char(char char_to_find)
+	range<char*> static_string<str_max_length>::find_char(char char_to_find)
 	{
 		const static_string<str_max_length>* this_ptr = const_cast<const static_string<str_max_length>*>(this);
-		range<const char> result = this_ptr->find_char(char_to_find);
-		return make_range(const_cast<char*>(result.iterator), result.length);
+		range<const char*> result = this_ptr->find_char(char_to_find);
+		return make_range(const_cast<char*>(result.first), const_cast<char*>(result.second));
 	}
 
 	template<unsigned int str_max_length>
-	range<char> static_string<str_max_length>::find_char_reverse(char char_to_find)
+	range<char*> static_string<str_max_length>::find_char_reverse(char char_to_find)
 	{
 		const static_string<str_max_length>* this_ptr = const_cast<const static_string<str_max_length>*>(this);
-		range<const char> result = this_ptr->find_char_reverse(char_to_find);
-		return make_range(const_cast<char*>(result.iterator), result.length);
+		range<const char*> result = this_ptr->find_char_reverse(char_to_find);
+		return make_range(const_cast<char*>(result.first), const_cast<char*>(result.second));
 	}
 
 	template<unsigned int str_max_length>
-	range<const char> static_string<str_max_length>::find_char(char char_to_find) const
+	range<const char*> static_string<str_max_length>::find_char(char char_to_find) const
 	{
 		const char* start_location = m_str.internal_array();
 		const char* found_location = (const char*) memchr(start_location, char_to_find, m_str.size());
@@ -339,11 +334,11 @@ namespace nostl
 			const int& index = found_location - start_location;
 			return m_str.get_range(index);
 		}
-		return make_range<const char>(m_str.end(), 0); //null range
+		return make_range<const char*>(m_str.end(), m_str.end()); //null range
 	}
 
 	template<unsigned int str_max_length>
-	range<const char> static_string<str_max_length>::find_char_reverse(char char_to_find) const
+	range<const char*> static_string<str_max_length>::find_char_reverse(char char_to_find) const
 	{
 		int i = m_str.size() - 1;
 		for(; i >= 0; --i)
@@ -358,35 +353,35 @@ namespace nostl
 		{
 			return m_str.get_range(i);
 		}
-		return make_range<const char>(m_str.end(), 0); //null range
+		return make_range<const char*>(m_str.end(), m_str.end()); //null range
 	}
 
 	template<unsigned int str_max_length>
 	template<template<unsigned int> class str_type, unsigned int other_max_length>
-	range<char> static_string<str_max_length>::find(const nostl::base_string<str_type<other_max_length>>& other)
+	range<char*> static_string<str_max_length>::find(const nostl::base_string<str_type<other_max_length>>& other)
 	{
 		const static_string<str_max_length>* this_ptr = const_cast<const static_string<str_max_length>*>(this);
-		range<const char> result = this_ptr->find(other.c_str());
-		return make_range(const_cast<char*>(result.iterator), result.length);
+		range<const char*> result = this_ptr->find(other.c_str());
+		return make_range(const_cast<char*>(result.first), const_cast<char*>(result.second));
 	}
 
 	template<unsigned int str_max_length>
 	template<template<unsigned int> class str_type, unsigned int other_max_length>
-	range<const char> static_string<str_max_length>::find(const nostl::base_string<str_type<other_max_length>>& other) const
+	range<const char*> static_string<str_max_length>::find(const nostl::base_string<str_type<other_max_length>>& other) const
 	{
 		return find(other.c_str());
 	}
 
 	template<unsigned int str_max_length>
-	range<char> static_string<str_max_length>::find(const char* other)
+	range<char*> static_string<str_max_length>::find(const char* other)
 	{
 		const static_string<str_max_length>* this_ptr = const_cast<const static_string<str_max_length>*>(this);
-		range<const char> result = this_ptr->find(other);
-		return make_range(const_cast<char*>(result.iterator), result.length);
+		range<const char*> result = this_ptr->find(other);
+		return make_range(const_cast<char*>(result.first), const_cast<char*>(result.second));
 	}
 
 	template<unsigned int str_max_length>
-	range<const char> static_string<str_max_length>::find(const char* other) const
+	range<const char*> static_string<str_max_length>::find(const char* other) const
 	{
 		const char* str_this = m_str.internal_array();
 		const char* found_location = (const char*) strstr(str_this, other);
@@ -396,23 +391,23 @@ namespace nostl
 			const int& index = found_location - str_this;
 			return m_str.get_range(index);
 		}
-		return make_range<const char>(m_str.end(), 0); //null range
+		return make_range<const char*>(m_str.end(), m_str.end()); //null range
 	}
 
 	template<unsigned int str_max_length>
-	range<char> static_string<str_max_length>::find_reverse(const char* other)
+	range<char*> static_string<str_max_length>::find_reverse(const char* other)
 	{
 		const static_string<str_max_length>* this_ptr = const_cast<const static_string<str_max_length>*>(this);
-		range<const char> result = this_ptr->find_reverse(other);
-		return make_range(const_cast<char*>(result.iterator), result.length);
+		range<const char*> result = this_ptr->find_reverse(other);
+		return make_range(const_cast<char*>(result.first), const_cast<char*>(result.second));
 	}
 
 	template<unsigned int str_max_length>
-	range<const char> static_string<str_max_length>::find_reverse(const char* other) const
+	range<const char*> static_string<str_max_length>::find_reverse(const char* other) const
 	{
 		int result_index = strr(c_str(), size(), other, size(), strlen(other));
 		if(result_index == -1)
-			return make_range<const char>(m_str.end(), 0); //null range
+			return make_range<const char*>(m_str.end(), m_str.end()); //null range
 
 		return m_str.get_range(result_index);
 	}
@@ -480,8 +475,8 @@ namespace nostl
 	template<unsigned int str_max_length>
 	bool static_string<str_max_length>::contains(const char* str) const
 	{
-		nostl::range<const char> range = find(str);
-		return !range.is_end();
+		nostl::range<const char*> range = find(str);
+		return !range.is_valid();
 	}
 
 	template<unsigned int str_max_length>

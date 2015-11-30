@@ -239,21 +239,21 @@ namespace nostl
 	}
 
 	template <class T, uint max_length>
-	range<T> static_vector<T, max_length>::get_range()
+	range<T*> static_vector<T, max_length>::get_range()
 	{
 		return m_data.get_range(0, size());
 	}
 
 
 	template <class T, uint max_length>
-	range<const T> static_vector<T, max_length>::get_range() const
+	range<const T*> static_vector<T, max_length>::get_range() const
 	{
 		return m_data.get_range(0, size());
 	}
 
 
 	template <class T, uint max_length>
-	range<T> static_vector<T, max_length>::get_range(uint index)
+	range<T*> static_vector<T, max_length>::get_range(uint index)
 	{
 		z_assert(index < size());
 		return m_data.get_range(index, size());
@@ -261,7 +261,7 @@ namespace nostl
 
 
 	template <class T, uint max_length>
-	range<const T> static_vector<T, max_length>::get_range(uint index) const
+	range<const T*> static_vector<T, max_length>::get_range(uint index) const
 	{
 		z_assert(index < size());
 		return m_data.get_range(index, size());
@@ -269,7 +269,7 @@ namespace nostl
 
 
 	template <class T, uint max_length>
-	range<T> static_vector<T, max_length>::get_range(uint start_index, uint end_index)
+	range<T*> static_vector<T, max_length>::get_range(uint start_index, uint end_index)
 	{
 		z_assert(start_index < size());
 		z_assert(start_index <= end_index);
@@ -279,7 +279,7 @@ namespace nostl
 
 
 	template <class T, uint max_length>
-	range<const T> static_vector<T, max_length>::get_range(uint start_index, uint end_index) const
+	range<const T*> static_vector<T, max_length>::get_range(uint start_index, uint end_index) const
 	{
 		z_assert(start_index < size());
 		z_assert(start_index <= end_index);

@@ -14,7 +14,7 @@ Description:
 
 // ---------- includes ---------
 #include "primitives.h"
-#include "range.h"
+#include "range2.h"
 #include "assert.h"
 
 #include "base_array.h"
@@ -73,12 +73,12 @@ namespace nostl
 		T* end();
 		const T* end() const;
 
-		range<T> get_range();
-		range<const T> get_range() const;
-		range<T> get_range(uint index);
-		range<const T> get_range(uint index) const;
-		range<T> get_range(uint start_index, uint end_index);
-		range<const T> get_range(uint start_index, uint end_index) const;
+		range<T*> get_range();
+		range<const T*> get_range() const;
+		range<T*> get_range(uint index);
+		range<const T*> get_range(uint index) const;
+		range<T*> get_range(uint start_index, uint end_index);
+		range<const T*> get_range(uint start_index, uint end_index) const;
 
 		T* internal_array();
 		const T* internal_array() const;

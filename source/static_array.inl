@@ -21,7 +21,7 @@ namespace nostl
 	}
 
 	template <class T, uint max_length>
-	static_array<T, max_length>::static_array(range<T> &r)
+	static_array<T, max_length>::static_array(range<T*> &r)
 	{
 		deep_copy(r);
 	}
@@ -80,15 +80,13 @@ namespace nostl
 	}
 
 	template <class T, uint max_length>
-	static_array<T, max_length> &static_array<T, max_length>::deep_copy(range<T> &r)
+	static_array<T, max_length> &static_array<T, max_length>::deep_copy(range<T*> &r)
 	{
-		z_assert(r.length <= max_length);
-
-		int length = r.length;
-		for(int i = 0; i < length; ++i)
+		range<T*> new_r = r;
+		range<T*> current_r = get_range();
+		for(; new_r.is_valid(); r.pop_front(), current_r.pop_front())
 		{
-			m_data[i] = r.get_element();
-			++r;
+			current_r.get_element() = r.get_element();
 		}
 
 		return *this;
@@ -191,6 +189,18 @@ namespace nostl
 	}
 
 	template <class T, uint max_length>
+	T* static_array<T, max_length>::begin()
+	{
+		return m_data;
+	}
+
+	template <class T, uint max_length>
+	const T *static_array<T, max_length>::begin() const
+	{
+		return m_data;
+	}
+
+	template <class T, uint max_length>
 	T *static_array<T, max_length>::end()
 	{
 		return m_data + max_length;
@@ -203,53 +213,53 @@ namespace nostl
 	}
 
 	template <class T, uint max_length>
-	range<T> static_array<T, max_length>::get_range()
+	range<typename static_array<T, max_length>::iterator> static_array<T, max_length>::get_range()
 	{
-		return make_range<T>(m_data, max_length);
+		return make_range_from_container(*this);
 	}
 
 	template <class T, uint max_length>
-	range<const T> static_array<T, max_length>::get_range() const
+	range<typename static_array<T, max_length>::const_iterator> static_array<T, max_length>::get_range() const
 	{
-		return make_range<const T>(m_data, max_length);
+		return make_range_from_container(*this);
 	}
 
 	template <class T, uint max_length>
-	range<T> static_array<T, max_length>::get_range(uint index)
-	{
-		z_assert(index >= 0);
-		z_assert(index < max_length);
-
-		return make_range<T>((m_data + index), max_length);
-	}
-
-	template <class T, uint max_length>
-	range<const T> static_array<T, max_length>::get_range(uint index) const
+	range<typename static_array<T, max_length>::iterator> static_array<T, max_length>::get_range(uint index)
 	{
 		z_assert(index >= 0);
 		z_assert(index < max_length);
 
-		return make_range<const T>((m_data + index), max_length);
+		return make_range((begin() + index), end());
 	}
 
 	template <class T, uint max_length>
-	range<T> static_array<T, max_length>::get_range(uint start_index, uint end_index)
+	range<typename static_array<T, max_length>::const_iterator> static_array<T, max_length>::get_range(uint index) const
+	{
+		z_assert(index >= 0);
+		z_assert(index < max_length);
+
+		return make_range((begin() + index), end());
+	}
+
+	template <class T, uint max_length>
+	range<typename static_array<T, max_length>::iterator> static_array<T, max_length>::get_range(uint start_index, uint end_index)
 	{
 		z_assert(start_index >= 0);
 		z_assert(start_index <= end_index);
 		z_assert(end_index <= max_length);
 
-		return make_range<T>((m_data + start_index), end_index - start_index);
+		return make_range((begin() + start_index), (begin() + end_index));
 	}
 
 	template <class T, uint max_length>
-	range<const T> static_array<T, max_length>::get_range(uint start_index, uint end_index) const
+	range<typename static_array<T, max_length>::const_iterator> static_array<T, max_length>::get_range(uint start_index, uint end_index) const
 	{
 		z_assert(start_index >= 0);
 		z_assert(start_index <= end_index);
 		z_assert(end_index <= max_length);
 
-		return make_range<const T>((m_data + start_index), end_index - start_index);
+		return make_range((begin() + start_index), (begin() + end_index));
 	}
 
 	template <class T, uint max_length>

@@ -14,7 +14,7 @@ Description:
 
 // ---------- includes ---------
 #include "primitives.h"
-#include "range.h"
+#include "range2.h"
 #include "assert.h"
 
 #include "base_array.h"
@@ -29,11 +29,26 @@ namespace nostl
 	struct static_array : protected base_array<T, static_array<T, max_length>>
 	{
 	public:
+		using self = static_array;
+        using value_type = T;
+        using reference = T&;
+        using const_reference = T const&;
+        using iterator = T*;
+		using I = iterator;
+        using const_iterator = T const*;
+		using const_I = const_iterator;
+        using pointer = T*;
+        using const_pointer = T const*;
+        using size_type = unsigned int;
+        using difference_type = uint64;
+        //using reverse_iterator = ranges::reverse_iterator<iterator>;
+        //using const_reverse_iterator = ranges::reverse_iterator<const_iterator>;
+
 		static_array();
 		~static_array();
 
 		static_array(const T *, uint size);
-		static_array(range<T> &);
+		static_array(range<T*> &);
 		static_array(const static_array &);
 		static_array(static_array &&);
 
@@ -51,7 +66,7 @@ namespace nostl
 		static_array &deep_copy(const T(&)[array_size]);
 
 		static_array &deep_copy(const T *, uint size);
-		static_array &deep_copy(range<T> &);
+		static_array &deep_copy(range<T*> &);
 		static_array &deep_copy(const static_array &);
 
 		void reconstruct_element(uint index);
@@ -70,15 +85,18 @@ namespace nostl
 		T &last();
 		const T &last() const;
 
+		T* begin();
+		const T *begin() const;
+
 		T *end();
 		const T *end() const;
 
-		range<T> get_range();
-		range<const T> get_range() const;
-		range<T> get_range(uint index);
-		range<const T> get_range(uint index) const;
-		range<T> get_range(uint start_index, uint end_index);
-		range<const T> get_range(uint start_index, uint end_index) const;
+		range<I> get_range();
+		range<const_I> get_range() const;
+		range<I> get_range(uint index);
+		range<const_I> get_range(uint index) const;
+		range<I> get_range(uint start_index, uint end_index);
+		range<const_I> get_range(uint start_index, uint end_index) const;
 
 		T *internal_array();
 		const T *internal_array() const;

@@ -65,7 +65,7 @@ namespace nostl
 		static_string(const char*);
 		static_string(const char*, unsigned int);
 		static_string(const static_string& other);
-		static_string(range<char> range);
+		static_string(range<char*> range);
 
 		template <unsigned int str_length>
 		static_string(const char (&)[str_length]);
@@ -105,7 +105,7 @@ namespace nostl
 		static_string& append(const base_string<T>& s);
 		static_string& append(const char* s);
 		static_string& append(const char* s, unsigned int n);
-		static_string& append(range<char> range);
+		static_string& append(range<char*> range);
 
 		static_string& fill(char c, unsigned int n);
 
@@ -115,30 +115,30 @@ namespace nostl
 		char* end();
 		const char* end() const;
 
-		range<char> get_range();
-		range<const char> get_range() const;
-		range<char> get_range(unsigned int index);
-		range<const char> get_range(unsigned int index) const;
-		range<char> get_range(unsigned int start_index, unsigned int end_index);
-		range<const char> get_range(unsigned int start_index, unsigned int end_index) const;
+		range<char*> get_range();
+		range<const char*> get_range() const;
+		range<char*> get_range(unsigned int index);
+		range<const char*> get_range(unsigned int index) const;
+		range<char*> get_range(unsigned int start_index, unsigned int end_index);
+		range<const char*> get_range(unsigned int start_index, unsigned int end_index) const;
 
-		range<char> find_char(char char_to_find);
-		range<char> find_char_reverse(char char_to_find);
+		range<char*> find_char(char char_to_find);
+		range<char*> find_char_reverse(char char_to_find);
 
-		range<const char> find_char(char char_to_find) const;
-		range<const char> find_char_reverse(char char_to_find) const;
-
-		template<template<unsigned int> class str_type, unsigned int other_max_length>
-		range<char> find(const nostl::base_string<str_type<other_max_length>>& other);
+		range<const char*> find_char(char char_to_find) const;
+		range<const char*> find_char_reverse(char char_to_find) const;
 
 		template<template<unsigned int> class str_type, unsigned int other_max_length>
-		range<const char> find(const nostl::base_string<str_type<other_max_length>>& other) const;
+		range<char*> find(const nostl::base_string<str_type<other_max_length>>& other);
 
-		range<char> find(const char* other);
-		range<const char> find(const char* other) const;
+		template<template<unsigned int> class str_type, unsigned int other_max_length>
+		range<const char*> find(const nostl::base_string<str_type<other_max_length>>& other) const;
 
-		range<char> find_reverse(const char* other);
-		range<const char> find_reverse(const char* other) const;
+		range<char*> find(const char* other);
+		range<const char*> find(const char* other) const;
+
+		range<char*> find_reverse(const char* other);
+		range<const char*> find_reverse(const char* other) const;
 
 		static_string& clone();
 		static_string& to_upper();

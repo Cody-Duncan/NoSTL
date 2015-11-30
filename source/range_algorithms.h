@@ -14,7 +14,7 @@ Description:
 
 // ---------- includes ---------
 #include <type_traits>
-#include "range.h"
+#include "range2.h"
 
 namespace nostl
 {
@@ -24,99 +24,90 @@ namespace nostl
 	// ------------------------------
 	// find single value in a range
 
-	template <typename T, typename iterator_t>
-	range<const T, iterator_t> find_first_of(range<const T, iterator_t> search_range, const T &val)
+	template <typename I, typename S, typename T>
+	range<I, S> find_first_of(range<I, S> search_range, const T &val)
 	{
-		iterator_t &current_iter = search_range.iterator;
-		int length = search_range.length;
-		for (int i = 0; i < length; ++i)
+		for (; search_range.is_valid(); search_range.pop_front())
 		{
-			if (*current_iter == val)
+			if (search_range.front() == val)
 			{
-				return make_range(current_iter, length - i);
+				return search_range;
 			}
-
-			++current_iter;
 		}
 
-		return make_null_range(search_range);
+		return search_range;
 	}
 
-	template <typename T, typename iterator_t>
-	range<T, iterator_t> find_first_of(range<T, iterator_t> search_range, const T &val)
-	{
-		range<const T> result = find_first_of(range<const T>(search_range), val);
-		return make_range(const_cast<iterator_t>(result.iterator), result.length);
-	}
+	/////template <typename T, typename iterator_t>
+	/////range<T, iterator_t> find_first_of(range<T, iterator_t> search_range, const T &val)
+	/////{
+	/////	range<const T> result = find_first_of(range<const T>(search_range), val);
+	/////	return make_range(const_cast<iterator_t>(result.iterator), result.length);
+	/////}
 
 	// ------------------------------
 	// find any of those in a range
 
-	template <typename T, typename iterator_t>
-	range<const T, iterator_t> find_first_of(range<const T, iterator_t> search_range, range<const T> values)
+	template <typename I, typename S, typename Iv, typename Sv>
+	range<I, S> find_first_of(range<I, S> search_range, range<Iv, Sv> values)
 	{
-		iterator_t current_iter = search_range.iterator;
-		int length = search_range.length;
-		for (int i = 0; i < length; ++i)
+		for (; search_range.is_valid(); search_range.pop_front())
 		{
-			typename range<const T>::iterator_type values_iter = values.iterator;
-			for (int k = 0; k < values.length; ++k)
+			/*for (; values.is_valid(); values.pop_front())
 			{
-				if (*current_iter == *values_iter)
+				if (search_range.front() == values.front())
 				{
-					return make_range(current_iter, length - i);
+					return search_range;
 				}
-
-				++values_iter;
-			}
-
-			++current_iter;
+			}*/
 		}
 
-		return make_null_range(search_range);
+		return search_range;
 	}
 
 	// (const range, non-const range)
-	template <typename T, typename iterator_t>
-	range<T, iterator_t> find_first_of(range<const T, iterator_t> search_range, range<T> values)
-	{
-		range<const T> result = find_first_of(search_range, range<const T>(values));
-		return make_range(const_cast<iterator_t>(result.iterator), result.length);
-	}
-
-	// (non-const range, const range)
-	template <typename T, typename iterator_t>
-	range<T, iterator_t> find_first_of(range<T, iterator_t> search_range, range<const T> values)
-	{
-		range<const T> result = find_first_of(range<const T>(search_range), values);
-		return make_range(const_cast<iterator_t>(result.iterator), result.length);
-	}
-
-	// (non-const range, non_const range)
-	template <typename T, typename iterator_t>
-	range<T, iterator_t> find_first_of(range<T, iterator_t> search_range, range<T> values)
-	{
-		range<const T> result = find_first_of(range<const T>(search_range), range<const T>(values));
-		return make_range(const_cast<iterator_t>(result.iterator), result.length);
-	}
+	/////template <typename T, typename iterator_t>
+	/////range<T, iterator_t> find_first_of(range<const T, iterator_t> search_range, range<T> values)
+	/////{
+	/////	range<const T> result = find_first_of(search_range, range<const T>(values));
+	/////	return make_range(const_cast<iterator_t>(result.iterator), result.length);
+	/////}
+	/////
+	/////// (non-const range, const range)
+	/////template <typename T, typename iterator_t>
+	/////range<T, iterator_t> find_first_of(range<T, iterator_t> search_range, range<const T> values)
+	/////{
+	/////	range<const T> result = find_first_of(range<const T>(search_range), values);
+	/////	return make_range(const_cast<iterator_t>(result.iterator), result.length);
+	/////}
+	/////
+	/////// (non-const range, non_const range)
+	/////template <typename T, typename iterator_t>
+	/////range<T, iterator_t> find_first_of(range<T, iterator_t> search_range, range<T> values)
+	/////{
+	/////	range<const T> result = find_first_of(range<const T>(search_range), range<const T>(values));
+	/////	return make_range(const_cast<iterator_t>(result.iterator), result.length);
+	/////}
 
 	// ------------------------------
 	// find any of those in an array
 
 	// (const range, const array)
-	template <typename T, typename iterator_t, unsigned int arr_length>
-	range<const T, iterator_t> find_first_of(range<const T, iterator_t> search_range, const T(&values)[arr_length])
+	template <typename I, typename S, typename T, unsigned int arr_length>
+	range<I, S> find_first_of(range<I, S> search_range, const T(&values)[arr_length])
 	{
-		return nostl::find_first_of(search_range, make_range(values, arr_length));
+		return nostl::find_first_of(search_range, make_range_from_array(values));
 	}
-
+	
 	// (non-const range, const array)
-	template <typename T, typename iterator_t, unsigned int arr_length>
-	range<T, iterator_t> find_first_of(range<T, iterator_t> search_range, const T(&values)[arr_length])
-	{
-		range<const T> result = find_first_of(range<const T>(search_range), values);
-		return make_range(const_cast<iterator_t>(result.iterator), result.length);
-	}
+	//template <typename I, typename S, typename T, unsigned int arr_length>
+	//range<T, iterator_t> find_first_of(range<I, S> search_range, const T(&values)[arr_length])
+	//{
+	//	range<const T> result = find_first_of(range<const T>(search_range), values);
+	//	return make_range(const_cast<iterator_t>(result.iterator), result.length);
+	//}
+
+	/*
 
 	// ******************** find_last_of ********************
 
@@ -212,6 +203,8 @@ namespace nostl
 		range<const T> result = find_last_of(range<const T>(search_range), values);
 		return make_range(const_cast<iterator_t>(result.iterator), result.length);
 	}
+
+	*/
 }
 
 #endif

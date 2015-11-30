@@ -22,6 +22,12 @@
     <Filter Include="Macros">
       <UniqueIdentifier>{6b182aab-d508-401f-ae85-e42f93391bca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Algorithms\Range2">
+      <UniqueIdentifier>{f6d59e5d-99bf-41a8-a535-9e3de6f3348b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Algorithms\Range2\utility">
+      <UniqueIdentifier>{b69f436f-0e35-4373-b28d-b3db29bb8ae7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debug_print.h">
@@ -60,9 +66,6 @@
     <ClInclude Include="static_string.h">
       <Filter>Fundamental_Types\string</Filter>
     </ClInclude>
-    <ClInclude Include="range.h">
-      <Filter>Algorithms</Filter>
-    </ClInclude>
     <ClInclude Include="base_array.h">
       <Filter>DataStructures</Filter>
     </ClInclude>
@@ -78,9 +81,6 @@
     <ClInclude Include="no_op.h">
       <Filter>Macros</Filter>
     </ClInclude>
-    <ClInclude Include="range_algorithms.h">
-      <Filter>Algorithms</Filter>
-    </ClInclude>
     <ClInclude Include="macros.h">
       <Filter>Macros</Filter>
     </ClInclude>
@@ -89,6 +89,24 @@
     </ClInclude>
     <ClInclude Include="assert.h">
       <Filter>Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="range2.h">
+      <Filter>Algorithms\Range2</Filter>
+    </ClInclude>
+    <ClInclude Include="view_interface.h">
+      <Filter>Algorithms\Range2</Filter>
+    </ClInclude>
+    <ClInclude Include="iterator.h">
+      <Filter>Algorithms\Range2\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="range_forward_declarations.h">
+      <Filter>Algorithms\Range2</Filter>
+    </ClInclude>
+    <ClInclude Include="range_concepts.h">
+      <Filter>Algorithms\Range2</Filter>
+    </ClInclude>
+    <ClInclude Include="iterator_concepts.h">
+      <Filter>Algorithms\Range2</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -125,14 +143,14 @@
     <ClCompile Include="static_string.cpp">
       <Filter>Fundamental_Types\string</Filter>
     </ClCompile>
-    <ClCompile Include="range.cpp">
-      <Filter>Algorithms</Filter>
-    </ClCompile>
     <ClCompile Include="str_util.cpp">
       <Filter>Fundamental_Types\string</Filter>
     </ClCompile>
     <ClCompile Include="primitives.cpp">
       <Filter>Fundamental_Types</Filter>
+    </ClCompile>
+    <ClCompile Include="quicktest.cpp">
+      <Filter>Algorithms\Range2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -144,9 +162,6 @@
     </None>
     <None Include="static_string.inl">
       <Filter>Fundamental_Types\string</Filter>
-    </None>
-    <None Include="range.inl">
-      <Filter>Algorithms</Filter>
     </None>
   </ItemGroup>
 </Project>

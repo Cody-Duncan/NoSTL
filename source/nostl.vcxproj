@@ -22,13 +22,16 @@
     <ClInclude Include="dyna_string.h" />
     <ClInclude Include="dyna_vector.h" />
     <ClInclude Include="allocator_heap.h" />
+    <ClInclude Include="iterator.h" />
+    <ClInclude Include="iterator_concepts.h" />
     <ClInclude Include="macros.h" />
     <ClInclude Include="no_op.h" />
     <ClInclude Include="primitives.h" />
-    <ClInclude Include="range.h" />
     <ClInclude Include="allocator_slot.h" />
     <ClInclude Include="allocator_stack.h" />
-    <ClInclude Include="range_algorithms.h" />
+    <ClInclude Include="range2.h" />
+    <ClInclude Include="range_concepts.h" />
+    <ClInclude Include="range_forward_declarations.h" />
     <ClInclude Include="static_array.h" />
     <ClInclude Include="static_map.h" />
     <ClInclude Include="static_string.h" />
@@ -36,6 +39,7 @@
     <ClInclude Include="str_util.h" />
     <ClInclude Include="unused.h" />
     <ClInclude Include="algorithmz.h" />
+    <ClInclude Include="view_interface.h" />
     <ClInclude Include="zero_struct.h" />
   </ItemGroup>
   <ItemGroup>
@@ -44,7 +48,7 @@
     <ClCompile Include="dyna_vector.cpp" />
     <ClCompile Include="allocator_heap.cpp" />
     <ClCompile Include="primitives.cpp" />
-    <ClCompile Include="range.cpp" />
+    <ClCompile Include="quicktest.cpp" />
     <ClCompile Include="allocator_slot.cpp" />
     <ClCompile Include="allocator_stack.cpp" />
     <ClCompile Include="static_array.cpp" />
@@ -55,7 +59,6 @@
     <ClCompile Include="str_util.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="range.inl" />
     <None Include="static_array.inl" />
     <None Include="static_string.inl" />
     <None Include="static_vector.inl" />
