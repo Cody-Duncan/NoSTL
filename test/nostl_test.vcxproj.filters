@@ -2,5 +2,11 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="static_map_perf_test.cpp" />
+    <ClCompile Include="RDTSC.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="static_map_perf_test.h" />
+    <ClInclude Include="RDTSC.h" />
   </ItemGroup>
 </Project>
