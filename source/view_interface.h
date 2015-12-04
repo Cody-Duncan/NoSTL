@@ -82,7 +82,7 @@ namespace nostl
 		}
 
 		template<typename D = Derived>
-		range_reference_t<Derived const> front() const
+		range_reference_t<D const> front() const
 		{
 			return *derived().begin();
 		}
@@ -136,12 +136,6 @@ namespace nostl
 		{
 			Derived const & c_rng = rng;
 			return sout << c_rng;
-		}
-
-		template<bool B = true, typename Stream = meta::if_c<B, std::ostream>>
-		friend Stream &operator<<(Stream &sout, Derived &&rng)
-		{
-			return sout << rng;
 		}
 	};
 }

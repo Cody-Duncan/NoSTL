@@ -89,7 +89,7 @@ namespace nostl
 		}
 	};
 
-	template <class Key, class Value, uint max_length, typename HashFunction = std::hash<Key>, typename Equality = std::equal_to<Key>>
+	template <class Key, class Value, uint max_length, typename HashFunction, typename Equality>
 		static_map<Key, Value, max_length, HashFunction, Equality>::
 		static_map() :
 		m_size(0)
@@ -252,7 +252,6 @@ namespace nostl
 		static_map<Key, Value, max_length, HashFunction, Equality>::
 		erase(const Key& key)
 	{
-		const uint hash_value = compute_hash(key);
 		const uint pos = find_index(key);
 
 		if(pos == NONE)
@@ -277,7 +276,6 @@ namespace nostl
 		static_map<Key, Value, max_length, HashFunction, Equality>::
 		get(const Key& key) const
 	{
-		const uint hash = compute_hash(key);
 		const uint pos = find_index(key);
 		z_assert(pos != NONE);
 		return m_buckets[pos].value;

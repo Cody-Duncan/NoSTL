@@ -8,6 +8,7 @@ Description:
 */
 
 #include "static_map.h"
+#include "unused.h"
 
 namespace nostl
 {
@@ -59,6 +60,7 @@ namespace nostl
 			map.get(15); sum += map.get_dist();
 			map.get(16); sum += map.get_dist();
 			float avg_1 = (float)sum / 16.0f;
+			unused(avg_1);
 			breakpoint_nop();
 
 			map.erase(12);
@@ -97,6 +99,7 @@ namespace nostl
 			map.get(15); sum += map.get_dist();
 			map.get(16); sum += map.get_dist();
 			float avg_2 = (float)sum / 16.0f;
+			unused(avg_2);
 			breakpoint_nop();
 		}
 	}
@@ -107,7 +110,7 @@ namespace nostl
 		{
 			using namespace test_static_map;
 
-			test_basic();
+			nostl::test_static_map::test_basic();
 		}
 	}
 }

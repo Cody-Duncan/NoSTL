@@ -10,6 +10,7 @@ Description:
 
 #include "static_array.h"
 #include <vector>
+#include "unused.h"
 
 namespace nostl
 {
@@ -162,6 +163,8 @@ namespace nostl
 		static_array<int, 20> arr(data, data_size);
 		int first = arr.first();
 		int last = arr.last();
+		unused(first);
+		unused(last);
 		breakpoint_nop();
 	}
 
@@ -179,6 +182,9 @@ namespace nostl
 		range<int*> test_range_base = arr.get_range();
 		range<int*> test_range_index = arr.get_range(data_size / 2);
 		range<int*> test_range_two_index = arr.get_range(1, data_size - 1);
+		unused(test_range_base);
+		unused(test_range_index);
+		unused(test_range_two_index);
 		breakpoint_nop();
 	}
 
@@ -193,6 +199,7 @@ namespace nostl
 
 		static_array<int, 20> arr(data, data_size);
 		int *ptr = arr.internal_array();
+		unused(ptr);
 		breakpoint_nop();
 	}
 

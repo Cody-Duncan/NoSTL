@@ -33,7 +33,7 @@ inline void internal_debug_print(const char* szFormat, ...)
 	OutputDebugString(szBuff);
 }
 
-#define debug_print(message, ...) internal_debug_print(message, __VA_ARGS__)
+#define debug_print(...) internal_debug_print(__VA_ARGS__)
 
 #else
 #define debug_print(message, ...) static_assert(false, "No implementation of debug_print or assert(condition, message) for this platform")

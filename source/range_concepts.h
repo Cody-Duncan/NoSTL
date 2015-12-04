@@ -12,10 +12,10 @@ namespace nostl
 		{
 			// Associated types
 			template<typename T>
-			using iterator_t = decltype(std::begin(std::declval<T&>()));
+			using iterator_t = decltype(std::declval<T&>().begin());
 
 			template<typename T>
-			using sentinel_t = decltype(std::begin(std::declval<T&>().end()));
+			using sentinel_t = decltype(std::end(std::declval<T&>()));
 
 			//template<typename T>
             //using difference_t = concepts::WeaklyIncrementable::difference_t<iterator_t<T>>;
@@ -27,7 +27,7 @@ namespace nostl
             //using value_t = concepts::Readable::value_t<iterator_t<T>>;
 
             template<typename T>
-            using reference_t = concepts::Readable::reference_t<concepts::Range::iterator_t<T>>;
+            using reference_t = concepts::Readable::reference_t<Range::iterator_t<T>>;
 		};
 	}
 

@@ -7,11 +7,6 @@ Description:
 
 */
 
-#pragma once
-
-#ifndef QUICK_TEST_H
-#define QUICK_TEST_H
-
 // ---------- includes ---------
 
 #include "range2.h"
@@ -28,6 +23,7 @@ namespace nostl
 		vi.front();
 		vi.back();
 		int a = vi[1];
+		(void)(a);
 		
 		std::cout << vi << std::endl;
 
@@ -35,9 +31,7 @@ namespace nostl
 		vic.front();
 		vic.back();
 		int b = vic[1];
-		
+		(void)(b);
 		std::cout << vic << std::endl;
 	}
 }
-
-#endif
