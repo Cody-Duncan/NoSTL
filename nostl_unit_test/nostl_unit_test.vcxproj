@@ -142,6 +142,7 @@
     </ClCompile>
     <ClCompile Include="unittest1.cpp" />
     <ClCompile Include="unit_test_static_array.cpp" />
+    <ClCompile Include="unit_test_static_map.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

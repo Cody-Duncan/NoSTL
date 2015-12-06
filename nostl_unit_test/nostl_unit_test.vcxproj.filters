@@ -32,5 +32,8 @@
     <ClCompile Include="unit_test_static_array.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="unit_test_static_map.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

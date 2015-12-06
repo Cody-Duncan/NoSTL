@@ -10,7 +10,7 @@
   </Type>
   
   <Type Name="nostl::map_pair&lt;*&gt;">
-    <DisplayString Condition="hash_value==-1">{{DELETED}}</DisplayString>
+    <DisplayString Condition="((int)hash_value)&lt;0">{{DELETED}}</DisplayString>
 	<DisplayString Condition="hash_value==0">{{FREE}}</DisplayString>
 	<DisplayString>{{hash_value = {hash_value}; key = {key}; value = {value}}}</DisplayString>
   </Type>
