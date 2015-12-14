@@ -25,6 +25,7 @@ Description:
 inline void internal_debug_print(const char* szFormat, ...)
 {
 	char szBuff[1024];
+	szBuff[1023] = 0; // null terminate
 	va_list arg;
 	va_start(arg, szFormat);
 	_vsnprintf_s(szBuff, sizeof(szBuff), szFormat, arg);

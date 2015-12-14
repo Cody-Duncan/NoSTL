@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+  <Type Name="z::static_string&lt;*&gt;">
+    <DisplayString>{{ "{m_str,sb}" }}</DisplayString>
+    <Expand>
+      <Item Name="[m_str]" ExcludeView="simple">m_str</Item>
+      <Item Name="[m_size]" ExcludeView="simple">m_size</Item>
+      <Item Name="[max_size]" ExcludeView="simple">$T1</Item>
+    </Expand>
+  </Type>
+
+  <Type Name="nostl::static_array&lt;*,*&gt;">
+    <DisplayString>{{size={$T2}}} </DisplayString>
+    <Expand>
+      <Item Name="[size]">$T2</Item>
+      <ArrayItems>
+        <Size>$T2</Size>
+        <ValuePointer>m_data</ValuePointer>
+      </ArrayItems>
+    </Expand>
+  </Type>
+
+  <Type Name="nostl::static_map&lt;*,*,*,*,*&gt;">
+    <DisplayString>{{size={m_size}; load_factor={m_size/(float)$T3}}} </DisplayString>
+    <Expand>
+      <Item Name="[size]">m_size</Item>
+      <Item Name="[load_factor]">m_size/(float)$T3</Item>
+      <Item Name="[buckets]">m_buckets</Item>
+    </Expand>
+  </Type>
+
+    <Type Name="nostl::map_pair&lt;*&gt;">
+	  <DisplayString Condition="hash_value==0">{{FREE}}</DisplayString>
+	  <DisplayString>{{key = {key}; value = {value}; hash_value = {hash_value}}}</DisplayString>
+  </Type>
+ </AutoVisualizer>

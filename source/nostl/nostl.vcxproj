@@ -133,8 +133,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy $(ProjectDir)*.h $(SolutionDir)include\$(ProjectName)\  /E /Y /D
-xcopy $(ProjectDir)*.inl $(SolutionDir)include\$(ProjectName)\  /E /Y /D</Command>
+      <Command>xcopy $(ProjectDir)*.h $(SolutionDir)install\include\$(ProjectName)\  /E /Y /D
+xcopy $(ProjectDir)*.inl $(SolutionDir)install\include\$(ProjectName)\  /E /Y /D
+xcopy $(OutDir)*.lib $(SolutionDir)install\lib\$(Configuration)\  /E /Y /D
+xcopy $(OutDir)*.pdb $(SolutionDir)install\lib\$(Configuration)\  /E /Y /D</Command>
     </PostBuildEvent>
     <Lib />
   </ItemDefinitionGroup>
@@ -155,8 +157,10 @@ xcopy $(ProjectDir)*.inl $(SolutionDir)include\$(ProjectName)\  /E /Y /D</Comman
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy $(ProjectDir)*.h $(SolutionDir)include\$(ProjectName)\  /E /Y /D
-xcopy $(ProjectDir)*.inl $(SolutionDir)include\$(ProjectName)\  /E /Y /D</Command>
+      <Command>xcopy $(ProjectDir)*.h $(SolutionDir)install\include\$(ProjectName)\  /E /Y /D
+xcopy $(ProjectDir)*.inl $(SolutionDir)install\include\$(ProjectName)\  /E /Y /D
+xcopy $(OutDir)*.lib $(SolutionDir)install\lib\$(Configuration)\  /E /Y /D
+xcopy $(OutDir)*.pdb $(SolutionDir)install\lib\$(Configuration)\  /E /Y /D</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
@@ -175,8 +179,10 @@ xcopy $(ProjectDir)*.inl $(SolutionDir)include\$(ProjectName)\  /E /Y /D</Comman
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy $(ProjectDir)*.h $(SolutionDir)include\$(ProjectName)\  /E /Y /D
-xcopy $(ProjectDir)*.inl $(SolutionDir)include\$(ProjectName)\  /E /Y /D</Command>
+      <Command>xcopy $(ProjectDir)*.h $(SolutionDir)install\include\$(ProjectName)\  /E /Y /D
+xcopy $(ProjectDir)*.inl $(SolutionDir)install\include\$(ProjectName)\  /E /Y /D
+xcopy $(OutDir)*.lib $(SolutionDir)install\lib\$(Configuration)\  /E /Y /D
+xcopy $(OutDir)*.pdb $(SolutionDir)install\lib\$(Configuration)\  /E /Y /D</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

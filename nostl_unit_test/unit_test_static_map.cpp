@@ -55,7 +55,7 @@ namespace nostl_unit_test
 			// runs before class starts running tests.
 
 			//fill data with 0->n
-			for(int i = 0; i < data_size; ++i)
+			for(uint i = 0; i < data_size; ++i)
 			{
 				data[i] = i;
 			}
@@ -68,11 +68,12 @@ namespace nostl_unit_test
 			std::uniform_int_distribution<> uniform_dis(0, max_rand_value);
 
 			// generate random_uniq_keys and random_uniq_values
-			for(int i = 0; i < data_size; ++i)
+			for(uint i = 0; i < data_size; ++i)
 			{
 				int key = uniform_dis(key_gen);
 				while(std::find(random_uniq_keys, random_uniq_keys + data_size, key) != (random_uniq_keys + data_size))
 				{
+					// reroll if it already exists
 					key = uniform_dis(key_gen);
 				}
 				random_uniq_keys[i] = key;
@@ -80,22 +81,25 @@ namespace nostl_unit_test
 				int value = uniform_dis(value_gen);
 				while(std::find(random_uniq_values, random_uniq_values + data_size, key) != (random_uniq_values + data_size))
 				{
+					// reroll if it already exists
 					value = uniform_dis(value_gen);
 				}
-				random_uniq_values[i] = uniform_dis(value_gen);
+				random_uniq_values[i] = value;
 			}
 
 			// generate random_separate_keys
-			for(int i = 0; i < data_size; ++i)
+			for(uint i = 0; i < data_size; ++i)
 			{
 				int key = -1;
 				while(key == -1)
 				{
 					key = uniform_dis(key_gen);
+
 					int* find_result= std::find(random_uniq_keys, random_uniq_keys + data_size, key);
 					if(find_result != (random_uniq_keys + data_size))
 					{
-						key = -1; // try again
+						// exists in random_uniq_keys, try again
+						key = -1; 
 					}
 				}
 				random_separate_keys[i] = key;
@@ -104,7 +108,7 @@ namespace nostl_unit_test
 			// generate random_nonuniq_keys and random_nonuniq_values
 			std::uniform_int_distribution<> uniform_small_dis(0, data_size/2);
 
-			for(int i = 0; i < data_size; ++i)
+			for(uint i = 0; i < data_size; ++i)
 			{
 				int key = uniform_small_dis(key_gen);
 				int value = uniform_small_dis(value_gen);
@@ -123,7 +127,7 @@ namespace nostl_unit_test
 			int* end_unique = std::unique(std::begin(temp_nonuniq_keys), std::end(temp_nonuniq_keys));
 			num_uniq_keys_in_nonuniq_set = data_size - ((temp_nonuniq_keys + data_size) - end_unique);
 
-			for(int i = 0; i < data_size; ++i)
+			for(uint i = 0; i < data_size; ++i)
 			{
 				std::reverse_iterator<int*>result = 
 					std::find_first_of(
@@ -131,6 +135,7 @@ namespace nostl_unit_test
 						std::rend(random_nonuniq_keys), 
 						&random_nonuniq_keys[i],
 						&random_nonuniq_keys[i+1]);
+
 				random_nonuniq_mapping[i] = &(*result) - random_nonuniq_keys;
 			}
 		}
@@ -181,7 +186,7 @@ namespace nostl_unit_test
 		{
 			nostl::static_map<int, int, data_size> test_map;
 
-			for(int i = 0; i < data_size; ++i)
+			for(uint i = 0; i < data_size; ++i)
 			{
 				int key = random_uniq_keys[i];
 				int value = random_uniq_values[i];
@@ -191,11 +196,21 @@ namespace nostl_unit_test
 			Assert::AreEqual(data_size, test_map.size());
 		}
 
+		TEST_METHOD(static_map_insert_complex)
+		{
+			nostl::static_map<int, test_struct, data_size> test_map;
+
+			test_struct value;
+			test_map.insert(20, value);
+
+			Assert::AreEqual(1u, test_map.size());
+		}
+
 		TEST_METHOD(static_map_emplace)
 		{
 			nostl::static_map<int, int, data_size> test_map;
 
-			for(int i = 0; i < data_size; ++i)
+			for(uint i = 0; i < data_size; ++i)
 			{
 				int key = random_uniq_keys[i];
 				int value = random_uniq_values[i];
@@ -209,12 +224,12 @@ namespace nostl_unit_test
 		{
 			nostl::static_map<int, int, data_size> test_map;
 
-			for(int i = 0; i < data_size; ++i)
+			for(uint i = 0; i < data_size; ++i)
 			{
 				test_map.insert(random_uniq_keys[i], random_uniq_values[i]);
 			}
 
-			for(int i = 0; i < data_size; ++i)
+			for(uint i = 0; i < data_size; ++i)
 			{
 				Assert::AreEqual(random_uniq_values[i], test_map.get(random_uniq_keys[i]));
 			}
@@ -223,17 +238,17 @@ namespace nostl_unit_test
 		TEST_METHOD(static_map_contains)
 		{
 			nostl::static_map<int, int, data_size> test_map;
-			for(int i = 0; i < data_size; ++i)
+			for(uint i = 0; i < data_size; ++i)
 			{
 				test_map.insert(random_uniq_keys[i], random_uniq_values[i]);
 			}
 
-			for(int i = 0; i < data_size; ++i)
+			for(uint i = 0; i < data_size; ++i)
 			{
 				Assert::IsTrue(test_map.contains(random_uniq_keys[i]));
 			}
 
-			for(int i = 0; i < data_size; ++i)
+			for(uint i = 0; i < data_size; ++i)
 			{
 				Assert::IsFalse(test_map.contains(random_separate_keys[i]));
 			}
@@ -242,12 +257,12 @@ namespace nostl_unit_test
 		TEST_METHOD(static_map_get)
 		{
 			nostl::static_map<int, int, data_size> test_map;
-			for(int i = 0; i < data_size; ++i)
+			for(uint i = 0; i < data_size; ++i)
 			{
 				test_map.insert(random_uniq_keys[i], random_uniq_values[i]);
 			}
 
-			for(int i = 0; i < data_size; ++i)
+			for(uint i = 0; i < data_size; ++i)
 			{
 				Assert::AreEqual(random_uniq_values[i], test_map.get(random_uniq_keys[i]));
 			}
@@ -257,12 +272,12 @@ namespace nostl_unit_test
 		{
 			nostl::static_map<int, int, data_size> test_map;
 
-			for(int i = 0; i < data_size; ++i)
+			for(uint i = 0; i < data_size; ++i)
 			{
 				test_map.insert(random_uniq_keys[i], random_uniq_values[i]);
 			}
 
-			for(int i = 0; i < data_size; ++i)
+			for(uint i = 0; i < data_size; ++i)
 			{
 				Assert::IsTrue(test_map.erase(random_uniq_keys[i]));
 
@@ -298,6 +313,9 @@ namespace nostl_unit_test
 
 		TEST_METHOD(static_map_max_size)
 		{
+			// Cannot go up to 10^6 because it runs out of stack space.
+			// This should be sufficient.
+
 			nostl::static_map<int, int, 1> test_map_1;
 			nostl::static_map<int, int, 10> test_map_10;
 			nostl::static_map<int, int, 100> test_map_100;
@@ -322,7 +340,7 @@ namespace nostl_unit_test
 		{
 			nostl::static_map<int, int, data_size> test_map;
 
-			for(int i = 0; i < data_size; ++i)
+			for(uint i = 0; i < data_size; ++i)
 			{
 				int key = random_nonuniq_keys[i];
 				int value = random_uniq_values[i];
@@ -331,7 +349,7 @@ namespace nostl_unit_test
 
 			Assert::AreEqual(num_uniq_keys_in_nonuniq_set, test_map.size());
 
-			for(int i = 0; i < data_size; ++i)
+			for(uint i = 0; i < data_size; ++i)
 			{
 				Assert::AreEqual(random_uniq_values[random_nonuniq_mapping[i]], test_map.get(random_nonuniq_keys[i]));
 			}
@@ -350,9 +368,9 @@ namespace nostl_unit_test
 		TEST_METHOD(static_map_fuzz_random_modification)
 		{
 			nostl::static_map<int, int, data_size> test_map;
-			std::vector<std::pair<int, int>> current_pairs;
+			std::vector<std::pair<int, int>> current_pairs; // list of pairs the map should be holding, used for verification
 
-			for(int i = 0; i < data_size; ++i)
+			for(uint i = 0; i < data_size; ++i)
 			{
 				int key = random_uniq_values[i];
 				int value = random_uniq_values[i];

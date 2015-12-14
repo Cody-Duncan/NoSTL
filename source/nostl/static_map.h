@@ -20,10 +20,8 @@ Description:
 
 namespace nostl
 {
-#define NONE -1
-	constexpr uint empty_hash = 0;
-	constexpr uint deleted_hash = NONE;
-
+	#define NONE -1
+	constexpr uint deleted_hash = 0;
 
 	template <class Key, class Value>
 	struct map_pair
@@ -54,6 +52,7 @@ namespace nostl
 		map_pair<Key, Value>* internal_array();
 		const map_pair<Key, Value>* internal_array() const;
 
+		// ==== static_map functions ====
 		void insert(Key new_key, Value new_value);
 		void emplace(Key&& new_key, Value&& new_value);
 
@@ -172,36 +171,34 @@ namespace nostl
 		find_index(const Key& key) const
 	{
 		const uint hash_value = compute_hash(key);
-		uint pos = compute_desired_pos(hash_value);
+		uint desired_pos = compute_desired_pos(hash_value);
+		uint pos = desired_pos;
 		uint dist = 0;
+		bool found = false;
 
-		for(;;)
+		for(uint i = 0; i < max_length; ++i)
 		{
+			pos = (desired_pos + i) % max_length;
 			const map_pair<Key, Value>& bucket = m_buckets[pos];
 
-			if(bucket.hash_value != deleted_hash) //skip deleted
+			uint bucket_probe_dist = probe_distance(bucket.hash_value, pos);
+			if(bucket.hash_value == deleted_hash ||
+				dist > bucket_probe_dist)
 			{
-				if(bucket.hash_value == empty_hash)
-				{
-					return NONE;
-				}
-				else
-				{
-					uint bucket_probe_dist = probe_distance(bucket.hash_value, pos);
-					if(dist > bucket_probe_dist)
-					{
-						return NONE;
-					}
-					else if(bucket.hash_value == hash_value && bucket.key == key)
-					{
-						return pos;
-					}
-				}
+				found = false;
+				break;
 			}
-
-			pos = clamp_to_bucket_length(pos + 1);
+			
+			if(bucket.hash_value == hash_value && bucket.key == key)
+			{
+				found = true;
+				break;
+			}
+			
 			++dist;
 		}
+
+		return found ? pos : NONE;
 	}
 
 	template <class Key, class Value, uint max_length, typename HashFunction, typename Equality>
@@ -237,8 +234,7 @@ namespace nostl
 				break;
 			}
 
-			if(bucket.hash_value == empty_hash || 
-				bucket.hash_value == deleted_hash)
+			if(bucket.hash_value == deleted_hash)
 			{
 				//construct
 				construct(pos, hash_value, std::forward<Key>(new_key), std::forward<Value>(new_value));
@@ -286,8 +282,7 @@ namespace nostl
 			index_current = (pos + i - 1) % max_length;
 			index_next = (pos + i) % max_length;
 
-			if(m_buckets[index_next].hash_value == deleted_hash ||
-				m_buckets[index_next].hash_value == empty_hash)
+			if(m_buckets[index_next].hash_value == deleted_hash)
 			{
 				m_buckets[index_current].~map_pair<Key, Value>();
 				m_buckets[index_current].hash_value = deleted_hash;
