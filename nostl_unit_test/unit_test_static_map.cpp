@@ -18,18 +18,33 @@ namespace nostl_unit_test
 		{}
 	};
 
-	TEST_CLASS(unit_test)
+	TEST_CLASS(unit_test_static_map)
 	{
 	public:
 		static const unsigned int data_size = 20;
 		static int data[data_size];
 
 		static const int max_rand_value = std::numeric_limits<int>::max();
+		// sets of random keys and values that are uniq
 		static int random_uniq_keys[data_size];
 		static int random_uniq_values[data_size];
 
+		//these keys are not contained in random_uniq_keys
+		static int random_separate_keys[data_size];
+
+		// sets of keys and values that are not uniq, within the range of 0,data_size
 		static int random_nonuniq_keys[data_size];
 		static int random_nonuniq_values[data_size];
+
+		// mapping of key_index -> index where the last instance of that key exists.
+		// For example:
+		//		keys [ 1, 2, 5, 2, 3, 1 ]
+		//      map  [ 5, 3, 2, 3, 4, 5 ]
+		//      value[ 9, 8, 7, 6, 5, 4 ]
+		// this is used to verify the results of insertion of duplicate keys.
+		// Result of insertion given key/value pairs
+		// [ 1, 2, 3, 5 ]
+		// [ 4, 6, 5, 7 ]
 		static int random_nonuniq_mapping[data_size];
 		static uint num_uniq_keys_in_nonuniq_set;
 
@@ -52,6 +67,7 @@ namespace nostl_unit_test
 			std::mt19937 value_gen(17);
 			std::uniform_int_distribution<> uniform_dis(0, max_rand_value);
 
+			// generate random_uniq_keys and random_uniq_values
 			for(int i = 0; i < data_size; ++i)
 			{
 				int key = uniform_dis(key_gen);
@@ -69,6 +85,23 @@ namespace nostl_unit_test
 				random_uniq_values[i] = uniform_dis(value_gen);
 			}
 
+			// generate random_separate_keys
+			for(int i = 0; i < data_size; ++i)
+			{
+				int key = -1;
+				while(key == -1)
+				{
+					key = uniform_dis(key_gen);
+					int* find_result= std::find(random_uniq_keys, random_uniq_keys + data_size, key);
+					if(find_result != (random_uniq_keys + data_size))
+					{
+						key = -1; // try again
+					}
+				}
+				random_separate_keys[i] = key;
+			}
+
+			// generate random_nonuniq_keys and random_nonuniq_values
 			std::uniform_int_distribution<> uniform_small_dis(0, data_size/2);
 
 			for(int i = 0; i < data_size; ++i)
@@ -80,6 +113,7 @@ namespace nostl_unit_test
 				random_nonuniq_values[i] = value;
 			}
 
+			// generate random_nonuniq_mapping
 			int* random_nonuniq_keys_end = random_nonuniq_keys + data_size;
 
 			int temp_nonuniq_keys[data_size];
@@ -106,49 +140,44 @@ namespace nostl_unit_test
 			// runs before each method
 		}
 
-		TEST_METHOD_CLEANUP(method_initialize)
+		TEST_METHOD_CLEANUP(static_map_method_initialize)
 		{
 			// runs after each method			
 		}
 
-		TEST_CLASS_CLEANUP(method_cleanup)
+		TEST_CLASS_CLEANUP(static_map_method_cleanup)
 		{
 			// runs after class finishes running tests.
 		}
 
 
 		// ==================== TESTS ====================
-
-		TEST_METHOD(Assert_Namespace_Test)
-		{
-			Assert::IsTrue(true);
-		}
-
-		TEST_METHOD(Default_Constructor_Primitive)
+		
+		TEST_METHOD(static_map_Default_Constructor_Primitive)
 		{
 			nostl::static_map<int, int, data_size> test_map;
 		}
 
-		TEST_METHOD(Default_Constructor_Complex)
+		TEST_METHOD(static_map_Default_Constructor_Complex)
 		{
 			nostl::static_map<int, test_struct, data_size> test_map;
 		}
 
-		TEST_METHOD(Copy_Constructor)
+		TEST_METHOD(static_map_Copy_Constructor)
 		{
 			nostl::static_map<int, int, data_size> test_map;
 
 			nostl::static_map<int, int, data_size> test_array(test_map);
 		}
 
-		TEST_METHOD(Move_Constructor)
+		TEST_METHOD(static_map_Move_Constructor)
 		{
 			nostl::static_map<int, int, data_size> test_map;
 
 			nostl::static_map<int, int, data_size> test_array(std::move(test_map));
 		}
 
-		TEST_METHOD(Insert)
+		TEST_METHOD(static_map_insert)
 		{
 			nostl::static_map<int, int, data_size> test_map;
 
@@ -162,7 +191,7 @@ namespace nostl_unit_test
 			Assert::AreEqual(data_size, test_map.size());
 		}
 
-		TEST_METHOD(Emplace)
+		TEST_METHOD(static_map_emplace)
 		{
 			nostl::static_map<int, int, data_size> test_map;
 
@@ -176,7 +205,7 @@ namespace nostl_unit_test
 			Assert::AreEqual(data_size, test_map.size());
 		}
 
-		TEST_METHOD(Find_Index)
+		TEST_METHOD(static_map_find_index)
 		{
 			nostl::static_map<int, int, data_size> test_map;
 
@@ -191,7 +220,40 @@ namespace nostl_unit_test
 			}
 		}
 
-		TEST_METHOD(Erase)
+		TEST_METHOD(static_map_contains)
+		{
+			nostl::static_map<int, int, data_size> test_map;
+			for(int i = 0; i < data_size; ++i)
+			{
+				test_map.insert(random_uniq_keys[i], random_uniq_values[i]);
+			}
+
+			for(int i = 0; i < data_size; ++i)
+			{
+				Assert::IsTrue(test_map.contains(random_uniq_keys[i]));
+			}
+
+			for(int i = 0; i < data_size; ++i)
+			{
+				Assert::IsFalse(test_map.contains(random_separate_keys[i]));
+			}
+		}
+
+		TEST_METHOD(static_map_get)
+		{
+			nostl::static_map<int, int, data_size> test_map;
+			for(int i = 0; i < data_size; ++i)
+			{
+				test_map.insert(random_uniq_keys[i], random_uniq_values[i]);
+			}
+
+			for(int i = 0; i < data_size; ++i)
+			{
+				Assert::AreEqual(random_uniq_values[i], test_map.get(random_uniq_keys[i]));
+			}
+		}
+
+		TEST_METHOD(static_map_erase)
 		{
 			nostl::static_map<int, int, data_size> test_map;
 
@@ -202,7 +264,7 @@ namespace nostl_unit_test
 
 			for(int i = 0; i < data_size; ++i)
 			{
-				test_map.erase(random_uniq_keys[i]);
+				Assert::IsTrue(test_map.erase(random_uniq_keys[i]));
 
 				//make sure size is correct
 				Assert::AreEqual(data_size - (i + 1), test_map.size(), L"incorrect size");
@@ -215,7 +277,48 @@ namespace nostl_unit_test
 			}
 		}
 
-		TEST_METHOD(Insert_Duplicate)
+		TEST_METHOD(static_map_size)
+		{
+			nostl::static_map<int, int, data_size> test_map;
+
+			for(uint i = 0; i < data_size; ++i)
+			{
+				Assert::AreEqual(i, test_map.size());
+				test_map.insert(random_uniq_keys[i], random_uniq_values[i]);
+				Assert::AreEqual(i + 1, test_map.size());
+			}
+
+			for(uint i = data_size; i > 0; --i)
+			{
+				Assert::AreEqual(i, test_map.size());
+				test_map.erase(random_uniq_keys[i-1]);
+				Assert::AreEqual(i - 1, test_map.size());
+			}
+		}
+
+		TEST_METHOD(static_map_max_size)
+		{
+			nostl::static_map<int, int, 1> test_map_1;
+			nostl::static_map<int, int, 10> test_map_10;
+			nostl::static_map<int, int, 100> test_map_100;
+			nostl::static_map<int, int, 1000> test_map_1000;
+			nostl::static_map<int, int, 10000> test_map_10000;
+			nostl::static_map<int, int, 2> test_map_2;
+			nostl::static_map<int, int, 4> test_map_4;
+			nostl::static_map<int, int, 8> test_map_8;
+			nostl::static_map<int, int, 16> test_map_16;
+
+			Assert::AreEqual(1u   , test_map_1.max_size());
+			Assert::AreEqual(10u  , test_map_10.max_size());
+			Assert::AreEqual(100u , test_map_100.max_size());
+			Assert::AreEqual(1000u, test_map_1000.max_size());
+			Assert::AreEqual(2u   , test_map_2.max_size());
+			Assert::AreEqual(4u   , test_map_4.max_size());
+			Assert::AreEqual(8u   , test_map_8.max_size());
+			Assert::AreEqual(16u  , test_map_16.max_size());
+		}
+
+		TEST_METHOD(static_map_insert_duplicate)
 		{
 			nostl::static_map<int, int, data_size> test_map;
 
@@ -234,6 +337,7 @@ namespace nostl_unit_test
 			}
 		}
 
+		// checks to see if a key is contained in the structure, without relying on contains()
 		bool exists(std::vector<std::pair<int, int>> keys, int key, std::vector<std::pair<int, int>>::iterator& out_iter)
 		{
 			out_iter = std::find_if(keys.begin(), keys.end(), [&](const std::pair<int, int>& value)
@@ -243,7 +347,7 @@ namespace nostl_unit_test
 			return out_iter!= keys.end();
 		}
 
-		TEST_METHOD(Random_Modification)
+		TEST_METHOD(static_map_fuzz_random_modification)
 		{
 			nostl::static_map<int, int, data_size> test_map;
 			std::vector<std::pair<int, int>> current_pairs;
@@ -283,11 +387,6 @@ namespace nostl_unit_test
 					int value = uniform_dis(rand_gen_value);
 					std::vector<std::pair<int, int>>::iterator existing_pair = current_pairs.end();
 
-					if(key == 1088450312)
-					{
-						breakpoint_nop();
-					}
-
 					if(exists(current_pairs, key, existing_pair))
 					{
 						uint size_prior = test_map.size();
@@ -299,19 +398,9 @@ namespace nostl_unit_test
 						Assert::AreEqual(value, test_map.get(key));
 
 						existing_pair->second = value;
-
-						if(!test_map.contains(1088450312))
-						{
-							breakpoint_nop();
-						}
 					}
 					else
 					{
-						if(key == 547181388)
-						{
-							breakpoint_nop();
-						}
-
 						uint size_prior = test_map.size();
 						test_map.insert(key, value);
 
@@ -319,11 +408,6 @@ namespace nostl_unit_test
 						Assert::AreEqual(value, test_map.get(key));
 
 						current_pairs.push_back(std::make_pair(key, value));
-
-						if(!test_map.contains(1088450312))
-						{
-							breakpoint_nop();
-						}
 					}
 
 					Assert::IsTrue(test_map.contains(key));
@@ -335,16 +419,6 @@ namespace nostl_unit_test
 					int random_pair_index = uniform_dis_index(rand_gen_index);
 					std::pair<int, int> key_value = current_pairs.at(random_pair_index);
 
-					if(key_value.first == 2094092985)
-					{
-						breakpoint_nop();
-					}
-
-					if(key_value.first == 1088450312)
-					{
-						breakpoint_nop();
-					}
-
 					Assert::IsTrue(test_map.contains(key_value.first));
 
 					uint size_prior = test_map.size();
@@ -354,25 +428,17 @@ namespace nostl_unit_test
 					Assert::IsFalse(test_map.contains(key_value.first));
 
 					current_pairs.erase(current_pairs.begin() + random_pair_index);
-
-					if(!test_map.contains(1088450312))
-					{
-						breakpoint_nop();
-					}
-				}
-				if(!test_map.contains(1088450312))
-				{
-					breakpoint_nop();
 				}
 			}
 		}
 	};
 
-	int nostl_unit_test::unit_test::data[nostl_unit_test::unit_test::data_size];
-	int nostl_unit_test::unit_test::random_uniq_keys[nostl_unit_test::unit_test::data_size];
-	int nostl_unit_test::unit_test::random_uniq_values[nostl_unit_test::unit_test::data_size];
-	int nostl_unit_test::unit_test::random_nonuniq_keys[nostl_unit_test::unit_test::data_size];
-	int nostl_unit_test::unit_test::random_nonuniq_values[nostl_unit_test::unit_test::data_size];
-	int nostl_unit_test::unit_test::random_nonuniq_mapping[nostl_unit_test::unit_test::data_size];
-	uint nostl_unit_test::unit_test::num_uniq_keys_in_nonuniq_set = 0;
+	int nostl_unit_test::unit_test_static_map::data[nostl_unit_test::unit_test_static_map::data_size];
+	int nostl_unit_test::unit_test_static_map::random_uniq_keys[nostl_unit_test::unit_test_static_map::data_size];
+	int nostl_unit_test::unit_test_static_map::random_uniq_values[nostl_unit_test::unit_test_static_map::data_size];
+	int nostl_unit_test::unit_test_static_map::random_separate_keys[nostl_unit_test::unit_test_static_map::data_size];
+	int nostl_unit_test::unit_test_static_map::random_nonuniq_keys[nostl_unit_test::unit_test_static_map::data_size];
+	int nostl_unit_test::unit_test_static_map::random_nonuniq_values[nostl_unit_test::unit_test_static_map::data_size];
+	int nostl_unit_test::unit_test_static_map::random_nonuniq_mapping[nostl_unit_test::unit_test_static_map::data_size];
+	uint nostl_unit_test::unit_test_static_map::num_uniq_keys_in_nonuniq_set = 0;
 }

@@ -55,29 +55,29 @@ namespace nostl_unit_test
 			Assert::IsTrue(true);
 		}
 
-		TEST_METHOD(Default_Constructor_Primitive)
+		TEST_METHOD(static_array_default_constructor_primitive)
 		{
 			nostl::static_array<int, 10> s_array;
 		}
 
-		TEST_METHOD(Default_Constructor_Complex)
+		TEST_METHOD(static_array_default_constructor_complex)
 		{
 			nostl::static_array<test_struct, 10> s_array;
 		}
 
-		TEST_METHOD(Copy_Constructor_PointerSize)
+		TEST_METHOD(static_array_copy_constructor_pointerSize)
 		{
 			nostl::static_array<int, data_size> s_array(data, data_size);
 		}
 
-		TEST_METHOD(Copy_Constructor_static_array)
+		TEST_METHOD(static_array_copy_constructor_static_array)
 		{
 			nostl::static_array<int, data_size> s_array(data, data_size);
 
 			nostl::static_array<int, data_size> test_array(s_array);
 		}
 
-		TEST_METHOD(Move_Constructor_static_array)
+		TEST_METHOD(static_array_move_constructor_static_array)
 		{
 			nostl::static_array<int, data_size> s_array(data, data_size);
 
