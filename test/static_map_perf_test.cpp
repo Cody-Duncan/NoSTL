@@ -8,6 +8,7 @@
 #include <memory>
 #include <numeric>
 #include <fstream>
+#include "Stopwatch.h"
 
 #undef min
 #undef max
@@ -424,7 +425,23 @@ void random_modification_test(
 	}
 }
 
-void run_tests()
+std::function<void(std::vector<uint64>&, double&, double&)> calc_stats =
+[](std::vector<uint64>& data, double& out_mean, double& out_variance)
+{
+	double mean = std::accumulate(data.begin(), data.end(), 0ll) / double(data.size());
+
+	double variance = std::accumulate(data.begin(), data.end(), 0.0,
+		[&](const double& sum, const uint64& v_i)
+	{
+		return sum + std::pow((double(v_i) - mean), 2);
+	});
+	variance /= double(data.size());
+
+	out_mean = mean;
+	out_variance = variance;
+};
+
+void static_map_perf_test_1()
 {
 	std::vector<int> keys;
 	keys.reserve(1000);
@@ -467,34 +484,18 @@ void run_tests()
 		out_results_file << static_times[i] << ", " << unordered_times[i] << ", " << load[i];
 		if(i == 0)
 		{
-			out_results_file << ", " << 
-				front_load << ", " << 
+			out_results_file << ", " <<
+				front_load << ", " <<
 				capacity << ", " <<
-				add_count << ", " << 
+				add_count << ", " <<
 				final_size;
 		}
-			
+
 		out_results_file << std::endl;
-		
+
 	}
 
 	out_results_file.close();
-
-	std::function<void(std::vector<uint64>&, double&, double&)> calc_stats =
-		[](std::vector<uint64>& data, double& out_mean, double& out_variance)
-	{
-		double mean = std::accumulate(data.begin(), data.end(), 0ll) / double(data.size());
-
-		double variance = std::accumulate(data.begin(), data.end(), 0.0,
-			[&](const double& sum, const uint64& v_i)
-		{
-			return sum + std::pow((double(v_i) - mean), 2);
-		});
-		variance /= double(data.size());
-
-		out_mean = mean;
-		out_variance = variance;
-	};
 
 	double static_mean;
 	double unordered_mean;
@@ -511,4 +512,96 @@ void run_tests()
 	printf("unordered: %10.1f mean ; %10.1f std_dev\n", unordered_variance, unordered_standard_devation);
 	printf("additions: %d ; erasures: %d\n", add_count, 1000 - add_count);
 	printf("static size: %d; unordered size: %d", static_map_test.size(), unordered_map_test.size());
+}
+
+Stopwatch::Duration perf_test_insertion(double d_load)
+{
+	const int capacity = 100;
+	const int load = (int)((d_load * capacity) + 0.5);
+	std::unordered_map<int,int> unordered_map_test;
+	unordered_map_test.reserve(100);
+	std::vector<int> keys;
+	keys.reserve(150);
+
+	for(int i = 0; i < 150; ++i)
+	{
+		keys.push_back(uniform_dis(key_gen));
+	}
+
+	std::sort(keys.begin(), keys.end());
+	std::unique(keys.begin(), keys.end());
+
+	for(int i = 0; i < load; ++i)
+	{
+		unordered_map_test.insert({keys[i], uniform_dis(value_gen)});
+	}
+
+	int key = keys[load + 1];
+	int value = uniform_dis(value_gen);
+
+	Stopwatch watch;
+	watch.Start();
+
+	unordered_map_test.insert({key, value});
+
+	watch.Stop();
+
+	return watch.ElapsedTime();
+}
+
+void perf_test_insertion_n_times(int n, double load, std::vector<std::pair<double, double>>& out_mean_variance)
+{
+	std::vector<uint64> results;
+	results.reserve(n);
+
+	for(int i = 0; i < n; ++i)
+	{
+		Stopwatch::Duration result = perf_test_insertion(load);
+		results.push_back(result.count());
+	}
+
+	double mean = 0.0;
+	double variance = 0.0;
+	calc_stats(results, mean, variance);
+
+	out_mean_variance.emplace_back(mean, variance);
+}
+
+void perf_test_insertion_n_times_over_load()
+{
+	std::vector<std::pair<double, double>> mean_variance_per_load;
+	mean_variance_per_load.reserve(100);
+	int n_tests = 10000;
+
+	for(int i = 0; i < 100; ++i)
+	{
+		Stopwatch watch;
+		printf("%d", i);
+		watch.Start();
+		perf_test_insertion_n_times(n_tests, (i / 100.0), mean_variance_per_load);
+		watch.Stop();
+		printf(" - %f seconds. Estimate: %f seconds\n", watch.ElapsedTimeSeconds(), watch.ElapsedTimeSeconds()*(100 - i - 1));
+	}
+
+	std::ofstream out_results_file;
+	out_results_file.open("perf_test_insertion_n_times_over_load.csv");
+
+
+	out_results_file << ("sample, load, mean, variance") << std::endl;
+	for(uint i = 0; i < mean_variance_per_load.size(); ++i)
+	{
+		out_results_file << 
+			i << ", " <<
+			(i / 100.0) << ", " <<
+			mean_variance_per_load[i].first << ", " <<
+			mean_variance_per_load[i].second << std::endl;
+
+	}
+	out_results_file << std::endl << "n = " << n_tests << std::endl;
+	out_results_file.close();
+}
+
+void run_static_map_perf_test()
+{
+	perf_test_insertion_n_times_over_load();
 }
