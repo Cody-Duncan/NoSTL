@@ -56,16 +56,13 @@ namespace nostl
 
 		void insert(Key new_key, Value new_value);
 		void emplace(Key&& new_key, Value&& new_value);
+
 		bool erase(const Key& key);
+
 		Value& get(const Key&);
 		const Value& get(const Key&) const;
 
 		bool contains(const Key&) const;
-
-		uint get_dist()
-		{
-			return *m_max_dist;
-		}
 
 	private:
 		HashFunction m_hash_function;
@@ -77,6 +74,7 @@ namespace nostl
 		uint compute_hash(const Key& key) const;
 		uint probe_distance(uint input_hash_value, uint index) const;
 		uint find_index(const Key& key) const;
+		uint find_stop_bucket(uint start_index) const;
 
 		void construct(uint pos, uint hash_value, Key&& key, Value&& value);
 		void emplace_with_hash(uint hash_value, Key&& new_key, Value&& new_value);
@@ -98,7 +96,6 @@ namespace nostl
 		m_size(0)
 	{
 		m_buckets.zero_array();
-		m_max_dist = new uint();
 	}
 
 	template <class Key, class Value, uint max_length, typename HashFunction, typename Equality>
@@ -177,7 +174,6 @@ namespace nostl
 		const uint hash_value = compute_hash(key);
 		uint pos = compute_desired_pos(hash_value);
 		uint dist = 0;
-		*m_max_dist = dist;
 
 		for(;;)
 		{
@@ -205,7 +201,6 @@ namespace nostl
 
 			pos = clamp_to_bucket_length(pos + 1);
 			++dist;
-			*m_max_dist = dist;
 		}
 	}
 
@@ -228,9 +223,11 @@ namespace nostl
 		uint desired_pos = compute_desired_pos(hash_value);
 		uint pos = desired_pos;
 		int dist = 0;
+		int i = 0;
 
-		for(;;)
+		for(i = 0; i < max_length; ++i)
 		{
+			pos = (desired_pos + i) % max_length;
 			map_pair<Key, Value>& bucket = m_buckets[pos];
 
 			if(bucket.hash_value == hash_value)
@@ -240,7 +237,8 @@ namespace nostl
 				break;
 			}
 
-			if(bucket.hash_value == empty_hash)
+			if(bucket.hash_value == empty_hash || 
+				bucket.hash_value == deleted_hash)
 			{
 				//construct
 				construct(pos, hash_value, std::forward<Key>(new_key), std::forward<Value>(new_value));
@@ -252,17 +250,8 @@ namespace nostl
 			// then swap places with existing
 			// elem, and keep going to find another slot for that elem.
 			int existing_distance = probe_distance(bucket.hash_value, pos);
-			if(existing_distance < dist)
+			if(dist > existing_distance)
 			{
-				// if this bucket is a tombstone, go ahead and take it.
-				if(bucket.hash_value == deleted_hash)
-				{
-					//construct
-					construct(pos, hash_value, std::forward<Key>(new_key), std::forward<Value>(new_value));
-					++m_size;
-					break;
-				}
-
 				// otherwise, swap the entry with the one in the bucket.
 				// The entry in the bucket is "rich" in that it got a slot early.
 				// We are giving it's easily obtained spot to one that is "poor" and had to resolve more collisions.
@@ -272,7 +261,6 @@ namespace nostl
 				dist = existing_distance;
 			}
 
-			pos = clamp_to_bucket_length(pos + 1);
 			++dist;
 		}
 	}
@@ -290,9 +278,43 @@ namespace nostl
 			return false;
 		}
 
-		m_buckets[pos].~map_pair<Key, Value>();
-		m_buckets[pos].hash_value = deleted_hash;
+		uint i = 1;
+		uint index_current = 0;
+		uint index_next = 0;
+		for(i = 1; i < max_length; i++)
+		{
+			index_current = (pos + i - 1) % max_length;
+			index_next = (pos + i) % max_length;
+
+			if(m_buckets[index_next].hash_value == deleted_hash ||
+				m_buckets[index_next].hash_value == empty_hash)
+			{
+				m_buckets[index_current].~map_pair<Key, Value>();
+				m_buckets[index_current].hash_value = deleted_hash;
+				break;
+			}
+
+			int existing_distance = probe_distance(m_buckets[index_next].hash_value, index_next);
+			if(existing_distance == 0)
+			{
+				m_buckets[index_current].~map_pair<Key, Value>();
+				m_buckets[index_current].hash_value = deleted_hash;
+				break;
+			}
+
+			m_buckets[index_current].hash_value = m_buckets[index_next].hash_value;
+			m_buckets[index_current].key = m_buckets[index_next].key;
+			m_buckets[index_current].value = m_buckets[index_next].value;
+		}
+
+		if(i == max_length)
+		{
+			m_buckets[index_next].~map_pair<Key, Value>();
+			m_buckets[index_next].hash_value = deleted_hash;
+		}
+
 		--m_size;
+
 		return true;
 	}
 

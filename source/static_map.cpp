@@ -41,28 +41,6 @@ namespace nostl
 			map.emplace(2, 'z');
 			breakpoint_nop();
 
-			uint sum = 0;
-
-			map.get(1);  sum += map.get_dist();
-			map.get(2);  sum += map.get_dist();
-			map.get(3);  sum += map.get_dist();
-			map.get(17); sum += map.get_dist();
-			map.get(18); sum += map.get_dist();
-			map.get(6);  sum += map.get_dist();
-			map.get(7);  sum += map.get_dist();
-			map.get(8);  sum += map.get_dist();
-			map.get(9);  sum += map.get_dist();
-			map.get(10); sum += map.get_dist();
-			map.get(11); sum += map.get_dist();
-			map.get(12); sum += map.get_dist();
-			map.get(13); sum += map.get_dist();
-			map.get(14); sum += map.get_dist();
-			map.get(15); sum += map.get_dist();
-			map.get(16); sum += map.get_dist();
-			float avg_1 = (float)sum / 16.0f;
-			unused(avg_1);
-			breakpoint_nop();
-
 			map.erase(12);
 			map.erase(3);
 			map.erase(16);
@@ -79,27 +57,6 @@ namespace nostl
 			map.emplace(12, 'l');
 			map.emplace(16, 'p');
 			map.emplace(17, 'd');
-			breakpoint_nop();
-
-			sum = 0;
-			map.get(1);  sum += map.get_dist();
-			map.get(2);	 sum += map.get_dist();
-			map.get(3);	 sum += map.get_dist();
-			map.get(17); sum += map.get_dist();
-			map.get(18); sum += map.get_dist();
-			map.get(6);	 sum += map.get_dist();
-			map.get(7);	 sum += map.get_dist();
-			map.get(8);	 sum += map.get_dist();
-			map.get(9);	 sum += map.get_dist();
-			map.get(10); sum += map.get_dist();
-			map.get(11); sum += map.get_dist();
-			map.get(12); sum += map.get_dist();
-			map.get(13); sum += map.get_dist();
-			map.get(14); sum += map.get_dist();
-			map.get(15); sum += map.get_dist();
-			map.get(16); sum += map.get_dist();
-			float avg_2 = (float)sum / 16.0f;
-			unused(avg_2);
 			breakpoint_nop();
 		}
 	}
