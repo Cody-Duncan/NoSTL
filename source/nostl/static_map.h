@@ -35,11 +35,98 @@ namespace nostl
 	class static_map : protected base_array<map_pair<Key, Value>, static_map<Key, Value, max_length, HashFunction, Equality>>
 	{
 	public:
-		struct Bucket
+		template
+		<
+			class T = map_pair<Key, Value>,
+			class Unqualified_T = std::remove_cv_t<T>
+		>
+		class static_map_iterator
+			: public std::iterator<std::bidirectional_iterator_tag,
+			Unqualified_T,
+			std::ptrdiff_t,
+			T*,
+			T&>
 		{
-			uint hash_value;
-			uint storage_index;
+			T* m_ptr;
+
+			explicit static_map_iterator(T* nd)
+				: m_ptr(nd)
+			{}
+
+		public:
+			static_map_iterator()
+				: m_ptr(nullptr)
+			{}
+
+			void swap(static_map_iterator& other) noexcept
+			{
+				swap(m_ptr, other.m_ptr);
+			}
+
+			static_map_iterator& operator++ () // Pre-increment
+			{
+				z_assert(m_ptr != nullptr && "out of bounds iterator increment.");
+				m_ptr = ++m_ptr;
+				return *this;
+			}
+
+			static_map_iterator operator++ (int) // Post-increment
+			{
+				z_assert(m_ptr != nullptr && "out of bounds iterator increment.");
+				static_map_iterator out_iter(*this);
+				m_ptr = ++m_ptr;
+				return out_iter;
+			}
+
+			static_map_iterator& operator-- () // Pre-decrement
+			{
+				z_assert(m_ptr != nullptr && "out of bounds iterator decrement.");
+				m_ptr = --m_ptr;
+				return *this;
+			}
+
+			static_map_iterator operator- (int) // Post-decrement
+			{
+				z_assert(m_ptr != nullptr && "out of bounds iterator decrement.");
+				static_map_iterator out_iter(*this);
+				m_ptr = --m_ptr;
+				return out_iter;
+			}
+
+			// two-way comparison: v.begin() == v.cbegin() and vice versa
+			template<class other_t>
+			bool operator == (const static_map_iterator<other_t>& rhs) const
+			{
+				return m_ptr == rhs.m_ptr;
+			}
+
+			template<class other_t>
+			bool operator != (const static_map_iterator<other_t>& rhs) const
+			{
+				return m_ptr != rhs.m_ptr;
+			}
+
+			T& operator*() const
+			{
+				z_assert(m_ptr != nullptr && "invalid iterator dereference");
+				return *m_ptr;
+			}
+
+			T& operator->() const
+			{
+				assert(m_ptr != nullptr && "invalid iterator dereference");
+				return *m_ptr;
+			}
+
+			// One way conversion: iterator -> const_iterator
+			operator static_map_iterator<const T>() const
+			{
+				return static_map_iterator<const T>(itr);
+			}
 		};
+
+		typedef static_map_iterator<map_pair<Key, Value>> iterator;
+		typedef static_map_iterator<const map_pair<Key, Value>> const_iterator;
 
 		// ==== constructors / destructors ====
 

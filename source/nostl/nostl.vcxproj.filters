@@ -108,6 +108,9 @@
     <ClInclude Include="range.h">
       <Filter>Algorithms\Range2</Filter>
     </ClInclude>
+    <ClInclude Include="static_map_iterator.h">
+      <Filter>DataStructures</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dyna_string.cpp">

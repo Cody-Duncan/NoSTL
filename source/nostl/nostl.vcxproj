@@ -34,6 +34,7 @@
     <ClInclude Include="range_forward_declarations.h" />
     <ClInclude Include="static_array.h" />
     <ClInclude Include="static_map.h" />
+    <ClInclude Include="static_map_iterator.h" />
     <ClInclude Include="static_string.h" />
     <ClInclude Include="static_vector.h" />
     <ClInclude Include="str_util.h" />
