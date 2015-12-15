@@ -23,8 +23,11 @@ namespace nostl
 
 		struct InputRange
 		{
-			//template<typename T>
-            //using value_t = concepts::Readable::value_t<iterator_t<T>>;
+			template <typename T>
+			using _t = typename T::type;
+
+			template<typename T>
+            using value_t = _t<T>;
 
             template<typename T>
             using reference_t = concepts::Readable::reference_t<Range::iterator_t<T>>;

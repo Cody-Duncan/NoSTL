@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <limits>
 
-#ifdef _MSC_VER
+#if defined(_MSC_VER) && !defined(__clang__)
 #pragma intrinsic(__rdtsc)
 inline uint64 GetRDTSC()
 {
@@ -39,5 +39,20 @@ inline void WarmupRDTSC()
 
 	g_accuracy = maxDiff - minDiff;
 	//printf("Measurement Accuracy (in clocks) : %llu\n", g_accuracy);
+}
+#else
+#include <assert.h>
+inline uint64 GetRDTSC()
+{
+	assert(false); // cannot call this on clang. no accesss to __cpuid
+	return 0llu;
+}
+
+extern uint64 g_correctionFactor;
+extern uint64 g_accuracy;
+
+inline void WarmupRDTSC()
+{
+	assert(false); // cannot call this on clang. no accesss to __cpuid
 }
 #endif
