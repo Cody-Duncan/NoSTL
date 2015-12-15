@@ -29,7 +29,7 @@
     <ClInclude Include="primitives.h" />
     <ClInclude Include="allocator_slot.h" />
     <ClInclude Include="allocator_stack.h" />
-    <ClInclude Include="range2.h" />
+    <ClInclude Include="range.h" />
     <ClInclude Include="range_concepts.h" />
     <ClInclude Include="range_forward_declarations.h" />
     <ClInclude Include="static_array.h" />

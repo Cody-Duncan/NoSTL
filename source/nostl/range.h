@@ -9,8 +9,8 @@ Description:
 
 #pragma once
 
-#ifndef RANGE2_H
-#define RANGE2_H
+#ifndef range_H
+#define range_H
 
 // ---------- includes ---------
 

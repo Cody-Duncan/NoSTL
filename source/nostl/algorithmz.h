@@ -14,7 +14,7 @@ Description:
 
 // ---------- includes ---------
 #include <type_traits>
-#include "range2.h"
+#include "range.h"
 #include "range_algorithms.h"
 
 namespace nostl

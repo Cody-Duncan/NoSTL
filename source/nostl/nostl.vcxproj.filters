@@ -90,9 +90,6 @@
     <ClInclude Include="assert.h">
       <Filter>Debugging</Filter>
     </ClInclude>
-    <ClInclude Include="range2.h">
-      <Filter>Algorithms\Range2</Filter>
-    </ClInclude>
     <ClInclude Include="view_interface.h">
       <Filter>Algorithms\Range2</Filter>
     </ClInclude>
@@ -106,6 +103,9 @@
       <Filter>Algorithms\Range2</Filter>
     </ClInclude>
     <ClInclude Include="iterator_concepts.h">
+      <Filter>Algorithms\Range2</Filter>
+    </ClInclude>
+    <ClInclude Include="range.h">
       <Filter>Algorithms\Range2</Filter>
     </ClInclude>
   </ItemGroup>

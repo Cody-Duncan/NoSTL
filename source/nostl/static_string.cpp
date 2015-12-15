@@ -159,12 +159,12 @@ namespace nostl
 			unused(test_range_two_index);
 
 			const static_string<20> arr2(data);
-			range<const char*> test_range2_front = arr2.find_char('D');
-			range<const char*> test_range2_back = arr2.find_char_reverse('D');
-			range<const char*> test_range2_two_index = arr2.find("FGH");
-			unused(test_range2_front);
-			unused(test_range2_back);
-			unused(test_range2_two_index);
+			range<const char*> test_range_front_const = arr2.find_char('D');
+			range<const char*> test_range_back_const = arr2.find_char_reverse('D');
+			range<const char*> test_range_two_index_const = arr2.find("FGH");
+			unused(test_range_front_const);
+			unused(test_range_back_const);
+			unused(test_range_two_index_const);
 
 			static_string<4> arr_find("FGH");
 			range<char*> test_range3_two_index = arr.find(arr_find);
