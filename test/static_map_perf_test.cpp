@@ -2,6 +2,7 @@
 #include "RDTSC.h"
 
 #include "nostl\static_map.h"
+#include "nostl\unused.h"
 #include <array>
 #include <unordered_map>
 #include <random>
@@ -9,6 +10,7 @@
 #include <numeric>
 #include <fstream>
 #include "Stopwatch.h"
+
 
 #undef min
 #undef max
@@ -208,6 +210,8 @@ void insertion_test()
 	WarmupRDTSC();
 	uint64 result1 = GetRDTSC();
 	uint64 result2 = GetRDTSC();
+	unused(result1);
+	unused(result2);
 
 	std::vector<uint64> static_times;
 	std::vector<uint64> unordered_times;
@@ -395,6 +399,7 @@ void random_modification_test(
 	}
 
 	int count_prior = unordered_map_test.count(key);
+	unused(count_prior);
 	int start_size = unordered_map_test.size();
 	WarmupRDTSC();
 	uint64 unordered_map_start_time = GetRDTSC();
@@ -516,14 +521,13 @@ void static_map_perf_test_1()
 
 Stopwatch::Duration perf_test_insertion(double d_load)
 {
-	const int capacity = 100;
+	const int capacity = 100000;
 	const int load = (int)((d_load * capacity) + 0.5);
-	std::unordered_map<int,int> unordered_map_test;
-	unordered_map_test.reserve(100);
+	nostl::static_map<int,int, capacity> unordered_map_test;
 	std::vector<int> keys;
 	keys.reserve(150);
 
-	for(int i = 0; i < 150; ++i)
+	for(int i = 0; i < 150000; ++i)
 	{
 		keys.push_back(uniform_dis(key_gen));
 	}
@@ -533,7 +537,7 @@ Stopwatch::Duration perf_test_insertion(double d_load)
 
 	for(int i = 0; i < load; ++i)
 	{
-		unordered_map_test.insert({keys[i], uniform_dis(value_gen)});
+		unordered_map_test.insert(keys[i], uniform_dis(value_gen));
 	}
 
 	int key = keys[load + 1];
@@ -542,7 +546,7 @@ Stopwatch::Duration perf_test_insertion(double d_load)
 	Stopwatch watch;
 	watch.Start();
 
-	unordered_map_test.insert({key, value});
+	unordered_map_test.insert(key, value);
 
 	watch.Stop();
 
@@ -571,7 +575,7 @@ void perf_test_insertion_n_times_over_load()
 {
 	std::vector<std::pair<double, double>> mean_variance_per_load;
 	mean_variance_per_load.reserve(100);
-	int n_tests = 10000;
+	int n_tests = 1000;
 
 	for(int i = 0; i < 100; ++i)
 	{
@@ -584,7 +588,7 @@ void perf_test_insertion_n_times_over_load()
 	}
 
 	std::ofstream out_results_file;
-	out_results_file.open("perf_test_insertion_n_times_over_load.csv");
+	out_results_file.open("perf_test_insertion_n_times_over_load_release_robin.csv");
 
 
 	out_results_file << ("sample, load, mean, variance") << std::endl;

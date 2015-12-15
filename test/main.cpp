@@ -22,6 +22,7 @@ int main(int argc, char* argv[])
 	//nostl::test::test_static_map();
 
 	run_static_map_perf_test();
+	std::cout << "end test" << std::endl;
 	
 	char i[128];
 	std::cin >> i;
