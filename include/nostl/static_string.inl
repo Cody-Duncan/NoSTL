@@ -55,7 +55,7 @@ namespace nostl
 	template<typename T>
 	static_string<str_max_length>::static_string(const base_string<T>& other)
 	{
-		z_assert(other.max_size() <= str_max_length-1);
+		z_assert(other.size() <= str_max_length-1);
 		clear_zero();
 		append(other);
 	}
