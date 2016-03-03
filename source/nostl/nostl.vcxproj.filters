@@ -30,85 +30,85 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="debug_print.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\debug_print.h">
       <Filter>Debugging</Filter>
     </ClInclude>
-    <ClInclude Include="dyna_string.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\dyna_string.h">
       <Filter>Fundamental_Types\string</Filter>
     </ClInclude>
-    <ClInclude Include="static_vector.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\static_vector.h">
       <Filter>DataStructures</Filter>
     </ClInclude>
-    <ClInclude Include="dyna_map.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\dyna_map.h">
       <Filter>DataStructures</Filter>
     </ClInclude>
-    <ClInclude Include="dyna_vector.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\dyna_vector.h">
       <Filter>DataStructures</Filter>
     </ClInclude>
-    <ClInclude Include="static_array.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\static_array.h">
       <Filter>DataStructures</Filter>
     </ClInclude>
-    <ClInclude Include="static_map.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\static_map.h">
       <Filter>DataStructures</Filter>
     </ClInclude>
-    <ClInclude Include="allocator_heap.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\allocator_heap.h">
       <Filter>Allocators</Filter>
     </ClInclude>
-    <ClInclude Include="allocator_slot.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\allocator_slot.h">
       <Filter>Allocators</Filter>
     </ClInclude>
-    <ClInclude Include="allocator_stack.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\allocator_stack.h">
       <Filter>Allocators</Filter>
     </ClInclude>
-    <ClInclude Include="algorithmz.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\algorithmz.h">
       <Filter>Algorithms</Filter>
     </ClInclude>
-    <ClInclude Include="static_string.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\static_string.h">
       <Filter>Fundamental_Types\string</Filter>
     </ClInclude>
-    <ClInclude Include="base_array.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\base_array.h">
       <Filter>DataStructures</Filter>
     </ClInclude>
-    <ClInclude Include="str_util.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\str_util.h">
       <Filter>Fundamental_Types\string</Filter>
     </ClInclude>
-    <ClInclude Include="unused.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\unused.h">
       <Filter>Macros</Filter>
     </ClInclude>
-    <ClInclude Include="zero_struct.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\zero_struct.h">
       <Filter>Macros</Filter>
     </ClInclude>
-    <ClInclude Include="no_op.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\no_op.h">
       <Filter>Macros</Filter>
     </ClInclude>
-    <ClInclude Include="macros.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\macros.h">
       <Filter>Macros</Filter>
     </ClInclude>
-    <ClInclude Include="primitives.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\primitives.h">
       <Filter>Fundamental_Types</Filter>
     </ClInclude>
-    <ClInclude Include="assert.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\assert.h">
       <Filter>Debugging</Filter>
     </ClInclude>
-    <ClInclude Include="view_interface.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\view_interface.h">
       <Filter>Algorithms\Range2</Filter>
     </ClInclude>
-    <ClInclude Include="iterator.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\iterator.h">
       <Filter>Algorithms\Range2\utility</Filter>
     </ClInclude>
-    <ClInclude Include="range_forward_declarations.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\range_forward_declarations.h">
       <Filter>Algorithms\Range2</Filter>
     </ClInclude>
-    <ClInclude Include="range_concepts.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\range_concepts.h">
       <Filter>Algorithms\Range2</Filter>
     </ClInclude>
-    <ClInclude Include="iterator_concepts.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\iterator_concepts.h">
       <Filter>Algorithms\Range2</Filter>
     </ClInclude>
-    <ClInclude Include="range.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\range.h">
       <Filter>Algorithms\Range2</Filter>
     </ClInclude>
-    <ClInclude Include="static_map_iterator.h">
+    <ClInclude Include="$(SolutionDir)include\nostl\static_map_iterator.h">
       <Filter>DataStructures</Filter>
     </ClInclude>
   </ItemGroup>
@@ -155,15 +155,18 @@
     <ClCompile Include="quicktest.cpp">
       <Filter>Algorithms\Range2</Filter>
     </ClCompile>
+    <ClCompile Include="debug_print.cpp">
+      <Filter>Debugging</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="static_array.inl">
+    <None Include="$(SolutionDir)include\nostl\static_array.inl">
       <Filter>DataStructures</Filter>
     </None>
-    <None Include="static_vector.inl">
+    <None Include="$(SolutionDir)include\nostl\static_vector.inl">
       <Filter>DataStructures</Filter>
     </None>
-    <None Include="static_string.inl">
+    <None Include="$(SolutionDir)include\nostl\static_string.inl">
       <Filter>Fundamental_Types\string</Filter>
     </None>
   </ItemGroup>

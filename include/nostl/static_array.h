@@ -106,7 +106,7 @@ namespace nostl
 	};
 }
 
-#include "static_array.inl"
+#include "nostl/static_array.inl"
 
 // --------- testing functions --------
 

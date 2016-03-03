@@ -229,7 +229,6 @@ FakesAssemblies/
 # Visual Studio 6 workspace options file
 *.opt
 
-include
 lib
 /test_include
 /*.opendb

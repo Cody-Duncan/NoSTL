@@ -7,7 +7,7 @@ Description:
 
 */
 
-#include "allocator_slot.h"
+#include "nostl/allocator_slot.h"
 
 namespace nostl
 {

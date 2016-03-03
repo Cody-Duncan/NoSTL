@@ -104,7 +104,7 @@ namespace nostl
 	};
 }
 
-#include "static_vector.inl"
+#include "nostl/static_vector.inl"
 
 // --------- testing functions --------
 

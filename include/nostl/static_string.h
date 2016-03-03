@@ -163,7 +163,7 @@ namespace nostl
 	};
 }
 
-#include "static_string.inl"
+#include "nostl/static_string.inl"
 
 namespace nostl
 {

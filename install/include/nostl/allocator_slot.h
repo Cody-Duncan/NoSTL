@@ -7,9 +7,17 @@ Description:
 
 */
 
-#include "nostl/allocator_heap.h"
+#pragma once
+
+#ifndef ALLOCATOR_SLOT_H
+#define ALLOCATOR_SLOT_H
+
+// ---------- includes ---------
+
 
 namespace nostl
 {
 
 }
+
+#endif

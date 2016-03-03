@@ -7,9 +7,17 @@ Description:
 
 */
 
-#include "nostl/allocator_heap.h"
+#pragma once
+
+#ifndef DYNA_STRING_H
+#define DYNA_STRING_H
+
+// ---------- includes ---------
+
 
 namespace nostl
 {
 
 }
+
+#endif

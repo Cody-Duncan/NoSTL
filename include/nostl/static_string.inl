@@ -1,8 +1,8 @@
 #ifdef __INTELLISENSE__
-	#include "static_string.h"
+	#include "nostl/static_string.h"
 #endif
 
-#include "str_util.h"
+#include "nostl/str_util.h"
 
 namespace nostl
 {

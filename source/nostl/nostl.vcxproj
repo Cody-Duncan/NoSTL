@@ -15,35 +15,36 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="assert.h" />
-    <ClInclude Include="base_array.h" />
-    <ClInclude Include="debug_print.h" />
-    <ClInclude Include="dyna_map.h" />
-    <ClInclude Include="dyna_string.h" />
-    <ClInclude Include="dyna_vector.h" />
-    <ClInclude Include="allocator_heap.h" />
-    <ClInclude Include="iterator.h" />
-    <ClInclude Include="iterator_concepts.h" />
-    <ClInclude Include="macros.h" />
-    <ClInclude Include="no_op.h" />
-    <ClInclude Include="primitives.h" />
-    <ClInclude Include="allocator_slot.h" />
-    <ClInclude Include="allocator_stack.h" />
-    <ClInclude Include="range.h" />
-    <ClInclude Include="range_concepts.h" />
-    <ClInclude Include="range_forward_declarations.h" />
-    <ClInclude Include="static_array.h" />
-    <ClInclude Include="static_map.h" />
-    <ClInclude Include="static_map_iterator.h" />
-    <ClInclude Include="static_string.h" />
-    <ClInclude Include="static_vector.h" />
-    <ClInclude Include="str_util.h" />
-    <ClInclude Include="unused.h" />
-    <ClInclude Include="algorithmz.h" />
-    <ClInclude Include="view_interface.h" />
-    <ClInclude Include="zero_struct.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\algorithmz.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\assert.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\base_array.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\debug_print.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\dyna_map.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\dyna_string.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\dyna_vector.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\allocator_heap.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\iterator.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\iterator_concepts.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\macros.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\no_op.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\primitives.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\allocator_slot.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\allocator_stack.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\range.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\range_concepts.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\range_forward_declarations.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\static_array.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\static_map.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\static_map_iterator.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\static_string.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\static_vector.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\str_util.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\unused.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\view_interface.h" />
+    <ClInclude Include="$(SolutionDir)include\nostl\zero_struct.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="debug_print.cpp" />
     <ClCompile Include="dyna_map.cpp" />
     <ClCompile Include="dyna_string.cpp" />
     <ClCompile Include="dyna_vector.cpp" />
@@ -60,9 +61,9 @@
     <ClCompile Include="str_util.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="static_array.inl" />
-    <None Include="static_string.inl" />
-    <None Include="static_vector.inl" />
+    <None Include="$(SolutionDir)include\nostl\static_array.inl" />
+    <None Include="$(SolutionDir)include\nostl\static_string.inl" />
+    <None Include="$(SolutionDir)include\nostl\static_vector.inl" />
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="nostl.natvis" />
@@ -134,8 +135,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy $(ProjectDir)*.h $(SolutionDir)install\include\$(ProjectName)\  /E /Y /D
-xcopy $(ProjectDir)*.inl $(SolutionDir)install\include\$(ProjectName)\  /E /Y /D
+      <Command>xcopy $(SolutionDir)include\*.h $(SolutionDir)install\include\ /E /Y /D
+xcopy $(SolutionDir)include\*.inl $(SolutionDir)install\include\  /E /Y /D
 xcopy $(OutDir)*.lib $(SolutionDir)install\lib\$(Configuration)\  /E /Y /D
 xcopy $(OutDir)*.pdb $(SolutionDir)install\lib\$(Configuration)\  /E /Y /D</Command>
     </PostBuildEvent>

@@ -1,10 +1,10 @@
 #ifdef __INTELLISENSE__
 // Intellisense can be bad with identifying types in .inl files.
 // This helps it along.
-#include "static_array.h"
+#include "nostl/static_array.h"
 #endif
 
-#include "algorithmz.h"
+#include "nostl/algorithmz.h"
 
 namespace nostl
 {

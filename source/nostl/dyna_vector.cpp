@@ -7,7 +7,7 @@ Description:
 
 */
 
-#include "dyna_vector.h"
+#include "nostl/dyna_vector.h"
 
 namespace nostl
 {

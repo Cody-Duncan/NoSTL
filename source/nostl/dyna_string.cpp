@@ -7,7 +7,7 @@ Description:
 
 */
 
-#include "dyna_string.h"
+#include "nostl/dyna_string.h"
 
 namespace nostl
 {
