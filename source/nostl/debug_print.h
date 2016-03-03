@@ -14,13 +14,13 @@ Description:
 
 // ---------- includes ---------
 #if defined(_WIN32)
-#include <cstdarg>
 #include <stdio.h>
-#include <wtypes.h>
-#include <Windows.h>
+#include <stdarg.h>
 #endif
 
 #if defined(_WIN32)
+
+void OutputDebugString_fwd(const char*);
 
 inline void internal_debug_print(const char* szFormat, ...)
 {
@@ -31,7 +31,7 @@ inline void internal_debug_print(const char* szFormat, ...)
 	_vsnprintf_s(szBuff, sizeof(szBuff), szFormat, arg);
 	va_end(arg);
 
-	OutputDebugString(szBuff);
+	OutputDebugString_fwd(szBuff);
 }
 
 #define debug_print(...) internal_debug_print(__VA_ARGS__)

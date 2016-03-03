@@ -458,9 +458,10 @@ namespace nostl
 	template<unsigned int str_max_length>
 	bool static_string<str_max_length>::starts_with(const char* prefix) const
 	{
-		unsigned int length = strlen(prefix);
-		z_assert(length <= size());
-		return strncmp(m_str.internal_array(), prefix, length) == 0;
+		unsigned int prefix_length = strlen(prefix);
+		return 
+			(prefix_length <= size()) &&
+			strncmp(m_str.internal_array(), prefix, prefix_length) == 0;
 	}
 
 	template<unsigned int str_max_length>
