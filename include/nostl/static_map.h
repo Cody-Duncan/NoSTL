@@ -240,7 +240,7 @@ namespace nostl
 		static_map<Key, Value, max_length, HashFunction, Equality>::
 		compute_hash(const Key& key) const
 	{
-		return m_hash_function(key);
+		return (uint)m_hash_function(key);
 	}
 
 	template <class Key, class Value, uint max_length, typename HashFunction, typename Equality>

@@ -125,7 +125,7 @@ namespace nostl_unit_test
 
 			std::sort(std::begin(temp_nonuniq_keys), std::end(temp_nonuniq_keys));
 			int* end_unique = std::unique(std::begin(temp_nonuniq_keys), std::end(temp_nonuniq_keys));
-			num_uniq_keys_in_nonuniq_set = data_size - ((temp_nonuniq_keys + data_size) - end_unique);
+			num_uniq_keys_in_nonuniq_set = uint(data_size - ((temp_nonuniq_keys + data_size) - end_unique));
 
 			for(uint i = 0; i < data_size; ++i)
 			{
@@ -136,7 +136,9 @@ namespace nostl_unit_test
 						&random_nonuniq_keys[i],
 						&random_nonuniq_keys[i+1]);
 
-				random_nonuniq_mapping[i] = &(*result) - random_nonuniq_keys;
+				int* ptr_result = &(*result);
+				int new_result = int(ptr_result - random_nonuniq_keys);
+				random_nonuniq_mapping[i] = new_result;
 			}
 		}
 
@@ -165,7 +167,7 @@ namespace nostl_unit_test
 
 		TEST_METHOD(static_map_Default_Constructor_Complex)
 		{
-			nostl::static_map<int, test_struct, data_size> test_map;
+			nostl::static_map<int32, test_struct, data_size> test_map;
 		}
 
 		TEST_METHOD(static_map_Copy_Constructor)
@@ -433,7 +435,7 @@ namespace nostl_unit_test
 				else // erase
 				{
 
-					std::uniform_int_distribution<> uniform_dis_index(0, current_pairs.size()-1);
+					std::uniform_int_distribution<> uniform_dis_index(0, int(current_pairs.size()-1));
 					int random_pair_index = uniform_dis_index(rand_gen_index);
 					std::pair<int, int> key_value = current_pairs.at(random_pair_index);
 

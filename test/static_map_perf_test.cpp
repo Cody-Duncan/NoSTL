@@ -516,7 +516,7 @@ void static_map_perf_test_1()
 	printf("static   : %10.1f mean ; %10.1f std_dev\n", static_mean, static_standard_devation);
 	printf("unordered: %10.1f mean ; %10.1f std_dev\n", unordered_variance, unordered_standard_devation);
 	printf("additions: %d ; erasures: %d\n", add_count, 1000 - add_count);
-	printf("static size: %d; unordered size: %d", static_map_test.size(), unordered_map_test.size());
+	printf("static size: %d; unordered size: %d", static_map_test.size(), (int32)unordered_map_test.size());
 }
 
 Stopwatch::Duration perf_test_insertion(double d_load)
